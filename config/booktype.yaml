@@ -1,0 +1,161 @@
+simulation:
+  orders: 500
+  seed: 42
+
+arrival:
+  distribution: exponential
+  rate: 2.0  # orders per hour
+
+order:
+  page_count:
+    distribution: discrete
+    values: [100, 200, 300, 400]
+    weights: [0.3, 0.4, 0.2, 0.1]
+  units:
+    distribution: uniform_int
+    min: 100
+    max: 500
+  book_types: [A, B, C]
+  priority_range: [1, 5]
+
+lots:
+  books_per_lot: 50  # CLPL
+
+stages:
+  printing:
+    machines: 3  # CM[0]
+    processing_time:
+      distribution: exponential
+      mean: 2.0
+    setup_time: 0.5  # TPM[0] hours
+    energy_rate: 10.0  # CEM[0]
+    operating_windows:
+      - [0, 24]  # unrestricted by default
+    failure:
+      mtbf: 40.0  # TEF[0]
+      repair_time:
+        distribution: exponential
+        mean: 2.0  # TDR[0]
+    materials: [0, 1]
+
+  binding:
+    machines: 2  # CM[1]
+    processing_time:
+      distribution: exponential
+      mean: 1.5
+    setup_time: 0.3
+    energy_rate: 8.0
+    operating_windows:
+      - [0, 24]
+    failure:
+      mtbf: 60.0
+      repair_time:
+        distribution: exponential
+        mean: 1.5
+    materials: [2, 3]
+
+  qa:
+    machines: 1  # CM[2]
+    processing_time:
+      distribution: uniform
+      min: 0.5
+      max: 1.5
+    setup_time: 0.0
+    energy_rate: 2.0
+    operating_windows:
+      - [0, 24]
+    defect_probability: 0.05   # PD
+    defect_threshold: 0.05     # PQA
+    failure:
+      mtbf: 100.0
+      repair_time:
+        distribution: exponential
+        mean: 1.0
+    materials: []
+
+  packaging:
+    machines: 2  # CM[3]
+    processing_time:
+      distribution: normal
+      mean: 0.8
+      std: 0.1
+    setup_time: 0.2
+    energy_rate: 5.0
+    operating_windows:
+      - [0, 24]
+    failure:
+      mtbf: 80.0
+      repair_time:
+        distribution: exponential
+        mean: 1.0
+    materials: [4]
+
+  dispatch:
+    threshold: 20  # CPTD
+
+materials:
+  - index: 0
+    name: paper
+    initial_stock: 10000
+    reorder_point: 1000
+    replenishment_quantity: 5000
+    consumption_per_lot: 10
+    lead_time:
+      distribution: uniform
+      min: 1.0
+      max: 3.0
+  - index: 1
+    name: ink
+    initial_stock: 5000
+    reorder_point: 500
+    replenishment_quantity: 3000
+    consumption_per_lot: 5
+    lead_time:
+      distribution: uniform
+      min: 0.5
+      max: 2.0
+  - index: 2
+    name: binding_material
+    initial_stock: 3000
+    reorder_point: 300
+    replenishment_quantity: 2000
+    consumption_per_lot: 8
+    lead_time:
+      distribution: uniform
+      min: 1.0
+      max: 2.0
+  - index: 3
+    name: adhesive
+    initial_stock: 2000
+    reorder_point: 200
+    replenishment_quantity: 1500
+    consumption_per_lot: 3
+    lead_time:
+      distribution: uniform
+      min: 0.5
+      max: 1.5
+  - index: 4
+    name: packaging_material
+    initial_stock: 4000
+    reorder_point: 400
+    replenishment_quantity: 2500
+    consumption_per_lot: 6
+    lead_time:
+      distribution: uniform
+      min: 1.0
+      max: 2.5
+
+maintenance:
+  frequency: 80.0  # FMP: hours between preventive maintenance
+  durations:
+    printing: 3.0   # TMM[0]
+    binding: 2.0
+    qa: 1.0
+    packaging: 1.5
+
+sequencing:
+  policy: BOOK_TYPE  # FIFO | PRIORITY | BOOK_TYPE
+
+output:
+  event_log: false
+  format: json
