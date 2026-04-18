@@ -17,7 +17,6 @@ class PRNGFactory:
 
     def get_stream(self, name: str) -> np.random.Generator:
         if name not in self._streams:
-            child_seq = self._seed_seq.spawn(1)[0]
             # Use a deterministic sub-seed based on stream registration order
             # We create a new SeedSequence from a hash of the name for stability
             named_seed = np.random.SeedSequence(

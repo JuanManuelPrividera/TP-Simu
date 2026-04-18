@@ -6,7 +6,7 @@ import sys
 
 from sim.config.loader import load_config
 from sim.engine.simulator import Simulator
-from sim.metrics.reporter import generate_report, write_csv, write_json
+from sim.metrics.reporter import generate_report, write_csv, write_json, write_trace_jsonl
 
 
 def cmd_validate(args: argparse.Namespace) -> None:
@@ -17,7 +17,8 @@ def cmd_validate(args: argparse.Namespace) -> None:
 def cmd_run(args: argparse.Namespace) -> None:
     config = load_config(args.config)
     seed = args.seed if args.seed is not None else config.simulation.seed
-    sim = Simulator(config, seed=seed)
+    trace_enabled = args.trace or config.output.event_log
+    sim = Simulator(config, seed=seed, trace_enabled=trace_enabled)
     collector = sim.run()
 
     os.makedirs(args.output_dir, exist_ok=True)
@@ -46,6 +47,11 @@ def cmd_run(args: argparse.Namespace) -> None:
     json_path = os.path.join(args.output_dir, "results.json")
     write_json(report, json_path)
     print(f"Results written to {json_path}")
+
+    if trace_enabled:
+        trace_path = os.path.join(args.output_dir, "trace.jsonl")
+        write_trace_jsonl(collector.event_log, trace_path)
+        print(f"Trace written to {trace_path}")
 
     if fmt in ("csv", "both"):
         csv_path = os.path.join(args.output_dir, "results.csv")

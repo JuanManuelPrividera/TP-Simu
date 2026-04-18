@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum, auto
 
 
@@ -24,6 +24,9 @@ class Lot:
     order_id: int
     book_type: str
     priority: int
+    page_count: int
+    units_in_lot: int
+    material_requirements: dict[int, float]
     stage: StageEnum = StageEnum.PRINTING
     status: LotStatus = LotStatus.WAITING
     rework_count: int = 0
