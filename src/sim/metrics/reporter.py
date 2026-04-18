@@ -1,9 +1,7 @@
 import csv
 import json
-from datetime import datetime
 
 from sim.metrics.collector import MetricsCollector
-
 
 STAGE_NAMES = ["printing", "binding", "qa", "packaging"]
 
@@ -40,7 +38,7 @@ def generate_report(
         "meta": {
             **meta,
             "simulation_time": round(sim_time, 4),
-            "run_timestamp": datetime.utcnow().isoformat(),
+            "trace_enabled": bool(collector.event_log),
         },
         "metrics": {
             "TPPT": round(tppt, 4) if tppt is not None else None,
@@ -81,3 +79,9 @@ def write_csv(report: dict, path: str) -> None:
         writer = csv.DictWriter(f, fieldnames=["metric", "value"])
         writer.writeheader()
         writer.writerows(rows)
+
+
+def write_trace_jsonl(events: list[dict], path: str) -> None:
+    with open(path, "w") as f:
+        for event in events:
+            f.write(json.dumps(event) + "\n")

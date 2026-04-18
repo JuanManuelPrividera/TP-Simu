@@ -83,7 +83,7 @@ Control parameters that MUST be configurable:
 - `RHFM[5][CM]` — machine operating time windows (energy constraints)
 - `CPTD` — finished-lot dispatch threshold
 - `CLPL` — lot size (books per lot)
-- `CM[6]` — machine counts per stage
+- `CM[5]` — machine counts per stage
 - `SPR[5]` — reorder points per raw material
 
 Rationale: The study objective is to compare alternative management policies;
@@ -114,7 +114,7 @@ collection to simulation logic makes it impossible to extend or audit outputs.
 
 The simulation state MUST track:
 
-- `CLM[6]` — lot queue per machine type
+- `CLM[5]` — lot queue per machine type
 - `CxM[5][CM]` — per-machine configuration/status
 - `SD[5]` — available stock of each raw material (paper, ink, binding
   material, packaging, labels)

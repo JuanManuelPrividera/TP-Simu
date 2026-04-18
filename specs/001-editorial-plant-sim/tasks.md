@@ -102,6 +102,8 @@ Running again with the same seed produces an identical file (SC-001, SC-002).
 
 - [x] T025 [US1] Implement `src/sim/__main__.py`: `argparse` with subcommands `run`, `validate`, `compare`; `run`: `load_config → Simulator(config, seed).run() → generate_report → write_json/csv`; `validate`: `load_config` and print "Configuration valid." or errors; `compare`: run each config with same seed and write side-by-side comparison dict
 
+- [ ] T026 [US1] Implement optional event trace capture/export: persist one ordered record per processed event with `time`, `seq`, `type`, and relevant entity IDs; expose via `--trace` / trace output file so SC-004 can be verified
+
 **Checkpoint**: `python -m sim run --config config/default.yaml --seed 42` produces
 `results/results.json` with TPPT, TPPL, CxTP, TSP[0..4], TPE[0..4], PR all non-null.
 Same command run twice produces identical output. SC-001 ✅ SC-002 ✅
@@ -119,13 +121,13 @@ in trace log when `--trace` is used.
 
 ### Implementation for User Story 3
 
-- [x] T026 [US3] Implement `src/sim/events/failure.py` — `handle_machine_failure(event, state)`: guard — discard event if `machine.status in (SETUP, MAINTENANCE)` (FR-016); set `machine.status = FAILED`; if `machine.current_lot` is not None set `lot.status = SUSPENDED`, store `lot.remaining_process_time = t_stage_end - t`; cancel pending MAINTENANCE_DUE for this machine if it falls within repair window; schedule REPAIR_END at `t + prng.exponential("TDR_i", TDR[i])`; schedule next MACHINE_FAILURE at `t_repair_end + prng.exponential("TEF_i", TEF[i])`; evaluate FR-015: if all machines of type i unavailable, compare `remaining_repair_time` vs `TPM[compatible]` for each waiting lot → redirect or leave in queue; call `collector.record_downtime(i, repair_duration)`
+- [x] T027 [US3] Implement `src/sim/events/failure.py` — `handle_machine_failure(event, state)`: guard — discard event if `machine.status in (SETUP, MAINTENANCE)` (FR-016); set `machine.status = FAILED`; if `machine.current_lot` is not None set `lot.status = SUSPENDED`, store `lot.remaining_process_time = t_stage_end - t`; cancel pending MAINTENANCE_DUE for this machine if it falls within repair window; schedule REPAIR_END at `t + prng.exponential("TDR_i", TDR[i])`; schedule next MACHINE_FAILURE at `t_repair_end + prng.exponential("TEF_i", TEF[i])`; evaluate FR-015: if all machines of type i unavailable, compare `remaining_repair_time` vs `TPM[compatible]` for each waiting lot → redirect or leave in queue; call `collector.record_downtime(i, repair_duration)`
 
-- [x] T027 [US3] Implement `src/sim/events/failure.py` — `handle_repair_end(event, state)`: set `machine.status = IDLE`; if `machine.current_lot` has `status == SUSPENDED` → reschedule STAGE_END at `t + lot.remaining_process_time`, set `lot.status = IN_PROCESS`; else check `state.queues[stage]` → schedule STAGE_START if lots waiting and materials available; reschedule MAINTENANCE_DUE at `t + FMP` (reset maintenance clock after repair)
+- [x] T028 [US3] Implement `src/sim/events/failure.py` — `handle_repair_end(event, state)`: set `machine.status = IDLE`; if `machine.current_lot` has `status == SUSPENDED` → reschedule STAGE_END at `t + lot.remaining_process_time`, set `lot.status = IN_PROCESS`; else check `state.queues[stage]` → schedule STAGE_START if lots waiting and materials available; reschedule MAINTENANCE_DUE at `t + FMP` (reset maintenance clock after repair)
 
-- [x] T028 [US3] Implement `src/sim/events/maintenance.py` — `handle_maintenance_due(event, state)`: if `machine.status == BUSY` → set `machine.pending_maintenance = True`; return (Option A — deferred); if `machine.status == IDLE` → set `machine.status = MAINTENANCE`; schedule MAINTENANCE_END at `t + prng.normal("TMM_i", TMM[i], std)`; discard if `machine.status == FAILED`
+- [x] T029 [US3] Implement `src/sim/events/maintenance.py` — `handle_maintenance_due(event, state)`: if `machine.status == BUSY` → set `machine.pending_maintenance = True`; return (Option A — deferred); if `machine.status == IDLE` → set `machine.status = MAINTENANCE`; schedule MAINTENANCE_END at `t + prng.normal("TMM_i", TMM[i], std)`; discard if `machine.status == FAILED`
 
-- [x] T029 [US3] Implement `src/sim/events/maintenance.py` — `handle_maintenance_end(event, state)`: set `machine.status = IDLE`; clear `machine.pending_maintenance`; schedule MAINTENANCE_DUE at `t + FMP`; reschedule MACHINE_FAILURE at `t + prng.exponential("TEF_i", TEF[i])` (reset failure clock); check `state.queues[stage]` → schedule STAGE_START if lots waiting; call `collector.record_downtime(i, TMM_duration)`
+- [x] T030 [US3] Implement `src/sim/events/maintenance.py` — `handle_maintenance_end(event, state)`: set `machine.status = IDLE`; clear `machine.pending_maintenance`; schedule MAINTENANCE_DUE at `t + FMP`; reschedule MACHINE_FAILURE at `t + prng.exponential("TEF_i", TEF[i])` (reset failure clock); check `state.queues[stage]` → schedule STAGE_START if lots waiting; call `collector.record_downtime(i, TMM_duration)`
 
 **Checkpoint**: Two scenario runs (FMP=80 vs FMP=0) produce different `TSP[i]`. Lots
 remain SUSPENDED (not requeued) during machine repair. US3 independent test passes.
@@ -143,13 +145,13 @@ grows during off-hours and drains on window open. CxTP is lower than unrestricte
 
 ### Implementation for User Story 4
 
-- [x] T030 [US4] Update `src/sim/engine/simulator.py` — schedule WINDOW_OPEN / WINDOW_CLOSE events at init: for each machine type i, for each `(start_h, end_h)` in `RHFM[i]`, schedule recurring events for each 24-hour cycle within the simulation horizon; use `math.floor(horizon / 24) + 1` cycles
+- [x] T031 [US4] Update `src/sim/engine/simulator.py` — schedule WINDOW_OPEN / WINDOW_CLOSE events at init: for each machine type i, for each `(start_h, end_h)` in `RHFM[i]`, schedule recurring events for each 24-hour cycle within the simulation horizon; use `math.floor(horizon / 24) + 1` cycles
 
-- [x] T031 [US4] Implement `src/sim/events/window.py` — `handle_window_open(event, state)`: for each IDLE machine of this type, if `state.queues[stage]` has lots and materials available → schedule STAGE_START immediately; `handle_window_close` is a no-op (machines already check `in_window` before starting new lots)
+- [x] T032 [US4] Implement `src/sim/events/window.py` — `handle_window_open(event, state)`: for each IDLE machine of this type, if `state.queues[stage]` has lots and materials available → schedule STAGE_START immediately; `handle_window_close` is a no-op (machines already check `in_window` before starting new lots)
 
-- [x] T032 [US4] Update `src/sim/events/arrival.py` and `handle_stage_end` in `processing.py`: wrap every STAGE_START/SETUP_START scheduling decision with `machine.is_available(t)` guard — machines outside their window are skipped; lot stays in queue until WINDOW_OPEN fires
+- [x] T033 [US4] Update `src/sim/events/arrival.py` and `handle_stage_end` in `processing.py`: wrap every STAGE_START/SETUP_START scheduling decision with `machine.is_available(t)` guard — machines outside their window are skipped; lot stays in queue until WINDOW_OPEN fires
 
-- [x] T033 [US4] Update `src/sim/metrics/collector.py` — `record_energy(stage_idx, duration)`: accumulate `energy_active_time[stage_idx] += duration`; update `reporter.py` to compute `CxTP = sum(CEM[i] * energy_active_time[i] for all i) / total_simulation_time`
+- [x] T034 [US4] Update `src/sim/metrics/collector.py` — `record_energy(stage_idx, duration)`: accumulate `energy_active_time[stage_idx] += duration`; update `reporter.py` to compute `CxTP = sum(CEM[i] * energy_active_time[i] for all i) / total_simulation_time`
 
 **Checkpoint**: `python -m sim run --config config/8h-windows.yaml --seed 42` produces
 lower CxTP than `config/default.yaml` (unrestricted). Trace shows no STAGE_START outside
@@ -167,27 +169,39 @@ validates correctness in full simulation runs.
 
 ### Implementation for User Story 2
 
-- [x] T034 [P] [US2] Create `config/fifo.yaml`, `config/priority.yaml`, `config/booktype.yaml` — copies of `default.yaml` with only `sequencing.policy` changed to `FIFO`, `PRIORITY`, `BOOK_TYPE` respectively
+- [x] T035 [P] [US2] Create `config/fifo.yaml`, `config/priority.yaml`, `config/booktype.yaml` — copies of `default.yaml` with only `sequencing.policy` changed to `FIFO`, `PRIORITY`, `BOOK_TYPE` respectively
 
-- [x] T035 [US2] Update `src/sim/events/processing.py` — `handle_stage_end`: when checking `pending_maintenance`, also record setup event count in `collector` for BookType verification; add `collector.record_setup()` call inside `handle_setup_start`
+- [x] T036 [US2] Update `src/sim/events/processing.py` — `handle_stage_end`: when checking `pending_maintenance`, also record setup event count in `collector` for BookType verification; add `collector.record_setup()` call inside `handle_setup_start`
 
-- [x] T036 [US2] Add `setup_count` accumulator to `src/sim/metrics/collector.py` and expose in `reporter.py` output under `metrics.setup_count`
+- [x] T037 [US2] Add `setup_count` accumulator to `src/sim/metrics/collector.py` and expose in `reporter.py` output under `metrics.setup_count`
 
 **Checkpoint**: `python -m sim compare` outputs three reports with distinct TPPT.
 `booktype` report has lower `setup_count` than `fifo` report. SC-003 ✅
 
 ---
 
-## Phase 7: Polish & Cross-Cutting Concerns
+## Phase 7: Traceability & Statistical Validation
+
+**Purpose**: Cubrir explícitamente SC-004 y SC-005 antes del cierre final.
+
+- [x] T038 [P] [US1] Add `tests/scenario/test_event_trace.py`: run simulation with trace enabled; assert the trace contains ORDER_ARRIVAL, STAGE_START, STAGE_END, SETUP_START, SETUP_END, MACHINE_FAILURE, REPAIR_END, MAINTENANCE_DUE, MAINTENANCE_END, STOCK_REPLENISHMENT, DISPATCH, WINDOW_OPEN, WINDOW_CLOSE; assert `(time, seq)` is monotonic throughout (SC-004)
+
+- [x] T039 [P] [US3] Add `tests/scenario/test_rework_rate.py`: run a long workload generating 1000+ lots with fixed seed; compare observed `PR` against configured `PD`; assert deviation is within ±10% of expected value (SC-005)
+
+**Checkpoint**: SC-004 and SC-005 have explicit automated coverage and no longer depend on implied manual verification.
+
+---
+
+## Phase 8: Polish & Cross-Cutting Concerns
 
 **Purpose**: Final validation, lint, reproducibility check, and documentation.
 
-- [x] T037 [P] Run `ruff check src/ tests/` and fix all reported issues; run `ruff format src/ tests/`
-- [x] T038 [P] Run `python -m sim run --config config/default.yaml --seed 42 --output-dir results/run1/` then same with `--output-dir results/run2/`; diff `run1/results.json` vs `run2/results.json` — must be identical (SC-002)
-- [x] T039 [P] Run `python -m sim validate --config config/default.yaml` — must print "Configuration valid." with exit code 0
-- [x] T040 [P] Run `python -m sim validate --config /dev/null` — must print validation errors with exit code 1 (FR-013)
-- [x] T041 [P] Complete `docs/distributions.md` with final distribution types and parameters for all random variables (IA, PCP, CUL, PD, TEF[0..4], TDR[0..4], TMM[0..4], lead times)
-- [x] T042 Run quickstart.md validation checklist end-to-end and confirm all six items pass
+- [x] T040 [P] Run `ruff check src/ tests/` and fix all reported issues; run `ruff format src/ tests/`
+- [x] T041 [P] Run `python -m sim run --config config/default.yaml --seed 42 --output-dir results/run1/` then same with `--output-dir results/run2/`; diff `run1/results.json` vs `run2/results.json` — must be identical (SC-002)
+- [x] T042 [P] Run `python -m sim validate --config config/default.yaml` — must print "Configuration valid." with exit code 0
+- [x] T043 [P] Run `python -m sim validate --config /dev/null` — must print validation errors with exit code 1 (FR-013)
+- [x] T044 [P] Complete `docs/distributions.md` with final distribution types and parameters for all random variables (IA, PCP, CUL, PD, TEF[0..4], TDR[0..4], TMM[0..4], lead times)
+- [x] T045 Run quickstart.md validation checklist end-to-end and confirm all six items pass
 
 ---
 
@@ -201,7 +215,8 @@ validates correctness in full simulation runs.
 - **US3 / Phase 4**: Depends on Phase 3 (simulator.py must exist) — independent of US4
 - **US4 / Phase 5**: Depends on Phase 3 — independent of US3
 - **US2 / Phase 6**: Depends on Phase 3 (policies already wired in Phase 2) — independent of US3/US4
-- **Polish (Phase 7)**: Depends on all user story phases complete
+- **Traceability & Validation (Phase 7)**: Depends on Phases 3-6
+- **Polish (Phase 8)**: Depends on all user story phases complete
 
 ### User Story Dependencies
 
@@ -215,7 +230,7 @@ validates correctness in full simulation runs.
 - All `[P]`-marked tasks have no file conflicts — safe to run in parallel
 - T018–T024 must complete in order (each builds on the previous handler)
 - T026–T029 must complete in order within Phase 4
-- T030–T033 must complete in order within Phase 5
+- T031–T034 must complete in order within Phase 5
 
 ### Parallel Opportunities
 
@@ -249,7 +264,8 @@ Phase 4 (US3)  |  Phase 5 (US4)  |  Phase 6 (US2)
 1. Phase 1 + Phase 2 → Foundation ready
 2. Phase 3 (US1) → Baseline simulation running → **MVP**
 3. Phase 4 (US3) + Phase 5 (US4) + Phase 6 (US2) in parallel → Full feature set
-4. Phase 7 → Polish and validation
+4. Phase 7 → Traceability and statistical validation
+5. Phase 8 → Polish and validation
 
 ### Parallel Team Strategy
 
@@ -257,6 +273,7 @@ With multiple developers after Phase 3 completes:
 - Developer A: Phase 4 — failure & maintenance handlers
 - Developer B: Phase 5 — energy window handlers
 - Developer C: Phase 6 — sequencing policy verification + config files
+- Developer D: Phase 7 — trace export and statistical validation
 
 ---
 

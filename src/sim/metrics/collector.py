@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from sim.events.base import Event
     from sim.model.lot import Lot
 
 NUM_STAGES = 4  # printing, binding, qa, packaging (dispatch is not a machine stage)
@@ -19,6 +20,7 @@ class MetricsCollector:
     total_lots: int = 0
     energy_active_time: list[float] = field(default_factory=lambda: [0.0] * NUM_STAGES)
     setup_count: int = 0
+    event_log: list[dict] = field(default_factory=list)
     dispatched_orders: set[int] = field(default_factory=set)
     # Per order: order_id -> lot completion times
     _order_lot_times: dict[int, list[float]] = field(default_factory=dict)
@@ -56,3 +58,13 @@ class MetricsCollector:
 
     def record_setup(self) -> None:
         self.setup_count += 1
+
+    def record_event(self, event: "Event") -> None:
+        self.event_log.append(
+            {
+                "time": event.time,
+                "seq": event.seq,
+                "type": event.type.name,
+                "payload": event.payload,
+            }
+        )

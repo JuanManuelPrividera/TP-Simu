@@ -1,0 +1,224 @@
+@startuml
+title Simulacion completa de la planta editorial
+
+start
+
+:Invocar CLI `sim run --config ... [--seed] [--trace]`;
+:Cargar y validar configuracion YAML;
+:Resolver semilla efectiva y modo trace;
+:Construir estado inicial del simulador;
+note right
+Incluye:
+- PRNG
+- EventQueue
+- MetricsCollector
+- 4 colas por etapa
+- maquinas por etapa
+- stocks de materiales
+- almacenamiento final
+end note
+
+:Programar eventos iniciales;
+note right
+- Primera llegada de pedido
+- Primera falla por maquina
+- Mantenimiento preventivo por maquina
+- Apertura/cierre de ventanas horarias
+end note
+
+while (¿Hay eventos pendientes\ny faltan pedidos por completar?) is (si)
+  :Extraer proximo evento de EventQueue;
+  :Actualizar `sim_time = event.time`;
+
+  if (¿Trace habilitado?) then (si)
+    :Registrar evento en `collector.event_log`;
+  endif
+
+  switch (Tipo de evento)
+    case (ORDER_ARRIVAL)
+      :Crear pedido con paginas, unidades,\ntipo de libro y prioridad;
+      :Generar perfil de materiales por pedido;
+      note right
+      Perfil comun para todos los lotes
+      del mismo pedido/libro.
+      Incluye variacion aleatoria controlada.
+      end note
+      :Dividir pedido en lotes;
+      :Para cada lote calcular:
+      - unidades del lote
+      - requerimientos de materiales
+      - misma configuracion del libro;
+      :Encolar lotes en impresion;
+      :Programar siguiente ORDER_ARRIVAL;
+      :Intentar iniciar impresion;
+      :Verificar reorder de materiales 0 y 1;
+
+    case (STAGE_START)
+      :Mirar proximo lote de la cola;
+      if (¿No hay lote o maquina no disponible?) then (si)
+        :Cancelar intento;
+      else (no)
+        if (¿Hay stock suficiente\npara ese lote?) then (si)
+          :Tomar lote de la cola;
+          :Registrar espera en cola;
+          :Marcar maquina BUSY y lote IN_PROCESS;
+          :Muestrear tiempo de proceso;
+          :Programar STAGE_END;
+        else (no)
+          :Mantener lote en cola bloqueado por material;
+        endif
+      endif
+
+    case (SETUP_START)
+      :Tomar proximo lote esperado;
+      if (¿Maquina IDLE y hay lote?) then (si)
+        :Marcar maquina SETUP;
+        :Registrar setup;
+        :Programar SETUP_END segun setup_time;
+      else (no)
+        :Ignorar evento;
+      endif
+
+    case (SETUP_END)
+      :Liberar maquina;
+      :Programar STAGE_START inmediato;
+
+    case (STAGE_END)
+      :Registrar energia consumida;
+      :Consumir materiales segun\n`lot.material_requirements`;
+      :Verificar reorder de materiales consumidos;
+      :Liberar maquina y guardar ultimo tipo procesado;
+
+      if (¿Etapa = QA?) then (si)
+        if (¿Lote defectuoso?) then (si)
+          :Incrementar reproceso;
+          :Reencolar lote en impresion;
+          :Intentar reiniciar impresion;
+          :Verificar reorder de materiales 0 y 1;
+        else (no)
+          :Mover lote a packaging;
+          :Intentar iniciar packaging;
+        endif
+      else (no)
+        if (¿Etapa = packaging?) then (si)
+          :Marcar lote DONE;
+          :Enviar lote a storage;
+          :Registrar lote terminado;
+          if (¿CLTA >= umbral de despacho?) then (si)
+            :Programar DISPATCH inmediato;
+          endif
+        else (no)
+          :Mover lote a siguiente etapa;
+          :Intentar iniciar siguiente etapa;
+        endif
+      endif
+
+      if (¿Maquina tiene mantenimiento pendiente?) then (si)
+        :Programar MAINTENANCE_DUE inmediato;
+      else (no)
+        :Intentar iniciar siguiente lote\nen la misma etapa;
+      endif
+
+    case (MACHINE_FAILURE)
+      if (¿Maquina inmune?\nSETUP o MAINTENANCE) then (si)
+        :Ignorar falla;
+      else (no)
+        :Marcar maquina FAILED;
+        if (¿Habia lote en proceso?) then (si)
+          :Suspender lote y guardar tiempo restante;
+        endif
+        :Muestrear tiempo de reparacion;
+        :Programar REPAIR_END;
+        :Programar proxima MACHINE_FAILURE;
+        :Registrar downtime;
+        :Evaluar redireccion de lotes\n(hook FR-015, no implementado);
+      endif
+
+    case (REPAIR_END)
+      :Marcar maquina IDLE;
+      if (¿Lote suspendido sigue asociado?) then (si)
+        :Reanudar lote;
+        :Programar STAGE_END con tiempo restante;
+        :Marcar maquina BUSY;
+      else (no)
+        if (¿Hay mantenimiento preventivo activo?) then (si)
+          :Programar proximo MAINTENANCE_DUE;
+        endif
+        :Intentar iniciar lote pendiente;
+      endif
+
+    case (MAINTENANCE_DUE)
+      if (¿Maquina FAILED?) then (si)
+        :Descartar evento;
+      else (no)
+        if (¿Maquina BUSY?) then (si)
+          :Marcar mantenimiento pendiente;
+        else (no)
+          if (¿Maquina ya en MAINTENANCE?) then (si)
+            :Ignorar evento duplicado;
+          else (no)
+            :Marcar maquina MAINTENANCE;
+            :Muestrear duracion de mantenimiento;
+            :Programar MAINTENANCE_END;
+            :Registrar downtime;
+          endif
+        endif
+      endif
+
+    case (MAINTENANCE_END)
+      :Marcar maquina IDLE;
+      :Limpiar flags de mantenimiento y lote actual;
+      if (¿FMP > 0?) then (si)
+        :Programar proximo MAINTENANCE_DUE;
+      endif
+      :Reiniciar reloj de falla de la maquina;
+      :Programar nueva MACHINE_FAILURE;
+      :Intentar iniciar lote pendiente;
+
+    case (STOCK_REPLENISHMENT)
+      :Reponer material y limpiar flag pending;
+      :Para cada etapa que usa ese material,\nintentar iniciar procesamiento;
+
+    case (DISPATCH)
+      :Despachar todos los lotes almacenados;
+      :Vaciar storage y resetear CLTA;
+      :Agrupar lotes por pedido;
+      :Por cada pedido no despachado antes,\nregistrar pedido completado;
+      :Incrementar `orders_completed`;
+
+    case (WINDOW_OPEN)
+      :Intentar iniciar lotes en esa etapa;
+
+    case (WINDOW_CLOSE)
+      :No hacer nada;
+      note right
+      El bloqueo se aplica cuando una maquina
+      evalua `is_available()` antes de iniciar.
+      end note
+  endswitch
+endwhile (no)
+
+:Generar reporte final;
+note right
+Metricas principales:
+- TPPT
+- TPPL
+- CxTP
+- TSP
+- TPE
+- PR
+- cuello de botella
+- costo de energia
+end note
+
+:Escribir `results.json`;
+if (¿Trace habilitado?) then (si)
+  :Escribir `trace.jsonl`;
+endif
+
+if (¿Formato CSV o both?) then (si)
+  :Escribir `results.csv`;
+endif
+
+stop
+@enduml

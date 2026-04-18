@@ -50,8 +50,14 @@ class SimState:
 
 
 class Simulator:
-    def __init__(self, config: SimConfig, seed: int | None = None) -> None:
+    def __init__(
+        self,
+        config: SimConfig,
+        seed: int | None = None,
+        trace_enabled: bool = False,
+    ) -> None:
         self.config = config
+        self.trace_enabled = trace_enabled
         effective_seed = seed if seed is not None else config.simulation.seed
         prng = PRNGFactory(effective_seed)
         policy = make_policy(config.sequencing.policy)
@@ -112,13 +118,6 @@ class Simulator:
 
         # Machine failures and maintenance for each machine
         fmp = st.config.maintenance.frequency
-        maint_durations = st.config.maintenance.durations
-        dur_map = {
-            0: maint_durations.printing,
-            1: maint_durations.binding,
-            2: maint_durations.qa,
-            3: maint_durations.packaging,
-        }
         stage_cfgs = [
             st.config.stages.printing,
             st.config.stages.binding,
@@ -159,6 +158,27 @@ class Simulator:
                     st.push(t_open, EventType.WINDOW_OPEN, {"machine_type": i})
                     st.push(t_close, EventType.WINDOW_CLOSE, {"machine_type": i})
 
+    def _build_order_material_profile(self, order: Order) -> dict[int, float]:
+        """Generate per-unit material demand shared by every lot of an order."""
+        st = self.state
+        nominal_lot_size = st.config.lots.books_per_lot
+        page_values = st.config.order.page_count.values or [order.page_count]
+        mean_page_count = sum(page_values) / len(page_values)
+        page_factor = max(0.5, order.page_count / mean_page_count) if mean_page_count else 1.0
+
+        profile: dict[int, float] = {}
+        for mc in st.config.materials:
+            base_per_unit = mc.consumption_per_lot / nominal_lot_size
+            variability = st.prng.uniform(f"MATCFG_{order.id}_{mc.index}", 0.95, 1.05)
+            if mc.index in {0, 1}:  # paper and ink scale with page count
+                variability *= page_factor
+            profile[mc.index] = base_per_unit * variability
+        return profile
+
+    @staticmethod
+    def _lot_material_requirement(lot: Lot, mat_idx: int) -> float:
+        return lot.material_requirements.get(mat_idx, 0.0)
+
     # ── Main loop ─────────────────────────────────────────────────────────────
 
     def run(self) -> MetricsCollector:
@@ -180,6 +200,9 @@ class Simulator:
         return self._sim_time
 
     def _dispatch(self, event: Event) -> None:
+        if self.trace_enabled:
+            self.state.collector.record_event(event)
+
         handlers = {
             EventType.ORDER_ARRIVAL: self._handle_order_arrival,
             EventType.STAGE_START: self._handle_stage_start,
@@ -208,10 +231,16 @@ class Simulator:
         st.orders_created += 1
 
         cfg = st.config
-        page_count = int(st.prng.discrete("PCP", cfg.order.page_count.values, cfg.order.page_count.weights))
+        page_count = int(
+            st.prng.discrete("PCP", cfg.order.page_count.values, cfg.order.page_count.weights)
+        )
         unit_count = st.prng.uniform_int("CUL", cfg.order.units.min, cfg.order.units.max)
-        book_type = st.prng.discrete("BOOK_TYPE", cfg.order.book_types, [1] * len(cfg.order.book_types))
-        priority = st.prng.uniform_int("PRIORITY", cfg.order.priority_range[0], cfg.order.priority_range[1])
+        book_type = st.prng.discrete(
+            "BOOK_TYPE", cfg.order.book_types, [1] * len(cfg.order.book_types)
+        )
+        priority = st.prng.uniform_int(
+            "PRIORITY", cfg.order.priority_range[0], cfg.order.priority_range[1]
+        )
 
         order = Order(
             id=order_id,
@@ -221,6 +250,7 @@ class Simulator:
             book_type=str(book_type),
             priority=priority,
         )
+        order.material_profile = self._build_order_material_profile(order)
         st.orders_map[order_id] = order
         lots = order.create_lots(cfg.lots.books_per_lot)
 
@@ -253,25 +283,35 @@ class Simulator:
         ]
         sc = stage_cfgs[stage_idx]
 
-        # Check material availability
+        lot = st.queues[stage_idx].peek()
+        if lot is None:
+            return
+
+        # Check material availability for the specific lot to process.
         for mat_idx in sc.materials:
             stock = st.stocks[mat_idx]
-            if stock.quantity < stock.consumption_per_lot:
+            required = self._lot_material_requirement(lot, mat_idx)
+            if stock.quantity < required:
                 return  # not enough material
 
         for machine in st.machines[stage_idx]:
             if machine.is_available(t):
-                lot = st.queues[stage_idx].peek()
-                if lot is None:
-                    break
                 # Check if setup needed
                 if machine.last_lot_type is not None and machine.last_lot_type != lot.book_type:
-                    st.push(t, EventType.SETUP_START, {
-                        "stage": stage_idx, "machine_id": machine.id,
-                        "from_type": machine.last_lot_type, "to_type": lot.book_type,
-                    })
+                    st.push(
+                        t,
+                        EventType.SETUP_START,
+                        {
+                            "stage": stage_idx,
+                            "machine_id": machine.id,
+                            "from_type": machine.last_lot_type,
+                            "to_type": lot.book_type,
+                        },
+                    )
                 else:
-                    st.push(t, EventType.STAGE_START, {"stage": stage_idx, "machine_id": machine.id})
+                    st.push(
+                        t, EventType.STAGE_START, {"stage": stage_idx, "machine_id": machine.id}
+                    )
                 return  # one machine at a time per call
 
     def _handle_stage_start(self, event: Event) -> None:
@@ -283,6 +323,23 @@ class Simulator:
 
         if not machine.is_available(t):
             return
+
+        lot = st.queues[stage_idx].peek()
+        if lot is None:
+            return
+
+        stage_cfgs = [
+            st.config.stages.printing,
+            st.config.stages.binding,
+            st.config.stages.qa,
+            st.config.stages.packaging,
+        ]
+        sc = stage_cfgs[stage_idx]
+        for mat_idx in sc.materials:
+            stock = st.stocks[mat_idx]
+            required = self._lot_material_requirement(lot, mat_idx)
+            if stock.quantity < required:
+                return
 
         lot = st.queues[stage_idx].dequeue()
         if lot is None:
@@ -383,7 +440,8 @@ class Simulator:
         ]
         sc = stage_cfgs[stage_idx]
         for mat_idx in sc.materials:
-            st.stocks[mat_idx].consume(st.stocks[mat_idx].consumption_per_lot)
+            required = self._lot_material_requirement(lot, mat_idx)
+            st.stocks[mat_idx].consume(required)
             self._check_reorder(mat_idx, t)
 
         machine.status = MachineStatus.IDLE
@@ -394,7 +452,6 @@ class Simulator:
         if stage_idx == 2:  # QA
             qa_cfg = st.config.stages.qa
             pd = qa_cfg.defect_probability or 0.05
-            pqa = qa_cfg.defect_threshold or 0.05
             sample = st.prng.random("PD")
             if sample < pd:
                 # Lot fails QA — rework
@@ -436,7 +493,11 @@ class Simulator:
         # Check pending maintenance (Option A)
         if machine.pending_maintenance:
             machine.pending_maintenance = False
-            st.push(t, EventType.MAINTENANCE_DUE, {"machine_type": stage_idx, "machine_id": machine_id})
+            st.push(
+                t,
+                EventType.MAINTENANCE_DUE,
+                {"machine_type": stage_idx, "machine_id": machine_id},
+            )
         else:
             # Try next lot on same machine
             self._try_start_stage(stage_idx, t)
@@ -445,7 +506,6 @@ class Simulator:
         stock = self.state.stocks[mat_idx]
         if stock.needs_reorder():
             stock.replenishment_pending = True
-            cfg = self.state.config.materials[mat_idx]
             lead = self._sample_lead_time(mat_idx)
             self.state.push(t + lead, EventType.STOCK_REPLENISHMENT, {"material_index": mat_idx})
 
@@ -527,7 +587,11 @@ class Simulator:
         repair_time = st.prng.exponential(f"TDR_{stage_idx}", repair_dist.mean)
         machine.t_repair_done = t + repair_time
 
-        st.push(t + repair_time, EventType.REPAIR_END, {"machine_type": stage_idx, "machine_id": machine_id})
+        st.push(
+            t + repair_time,
+            EventType.REPAIR_END,
+            {"machine_type": stage_idx, "machine_id": machine_id},
+        )
         # Next failure scheduled after repair
         st.push(t + repair_time + st.prng.exponential(f"TEF_{stage_idx}", sc.failure.mtbf),
                 EventType.MACHINE_FAILURE, {"machine_type": stage_idx, "machine_id": machine_id})
@@ -593,9 +657,14 @@ class Simulator:
             2: st.config.maintenance.durations.qa,
             3: st.config.maintenance.durations.packaging,
         }
-        maint_duration = st.prng.normal(f"TMM_{stage_idx}", dur_map[stage_idx], dur_map[stage_idx] * 0.1)
-        st.push(t + maint_duration, EventType.MAINTENANCE_END,
-                {"machine_type": stage_idx, "machine_id": machine_id, "duration": maint_duration})
+        maint_duration = st.prng.normal(
+            f"TMM_{stage_idx}", dur_map[stage_idx], dur_map[stage_idx] * 0.1
+        )
+        st.push(
+            t + maint_duration,
+            EventType.MAINTENANCE_END,
+            {"machine_type": stage_idx, "machine_id": machine_id, "duration": maint_duration},
+        )
         st.collector.record_downtime(stage_idx, maint_duration)
 
     def _handle_maintenance_end(self, event: Event) -> None:

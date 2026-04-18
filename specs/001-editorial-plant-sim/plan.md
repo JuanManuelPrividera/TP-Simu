@@ -203,6 +203,7 @@ collector. Nothing else can be built without these.
        - `generate_report(collector, meta) → dict`
        - `write_json(report, path)`, `write_csv(report, path)`
        - Derived metric calculations (TPPT, TPPL, TSP, TPE, PR, CxTP)
+       - Include trace metadata in report output when event tracing is enabled
 
 **Checkpoint**: Engine ready — event queue testable, PRNG produces seeded
 streams, config loads and validates, metrics collector accumulates.
@@ -285,6 +286,8 @@ or maintenance. This delivers User Story 1 (baseline simulation run).
        - `run() → MetricsCollector` — processes events until termination
        - Termination: N orders completed (configurable in config)
        - Dispatches events to correct handler by EventType
+       - Optionally capture a full event trace with monotonic timestamps for
+         every processed event type (SC-004)
 
 - [ ] T022 Implement `src/sim/__main__.py` — CLI:
        - `run` subcommand: load config → create Simulator → run → report
@@ -371,13 +374,40 @@ Failure/repair events appear in trace. US3 scenario tests pass.
 
 ---
 
-## Phase 8: Polish & Cross-Cutting
+## Phase 8: Traceability & Statistical Validation
 
-- [ ] T033 [P] Write `docs/distributions.md` with final parameterization
-- [ ] T034 [P] Run `ruff check src/ tests/` and fix all lint errors
-- [ ] T035 [P] Run full `pytest` suite; all tests must pass
-- [ ] T036 [P] Run simulation twice with same seed; diff results → identical
-- [ ] T037 Run quickstart.md validation checklist
+**Purpose**: Close the remaining measurable-outcome gaps for event trace
+correctness (SC-004) and QA rework-rate calibration (SC-005).
+
+- [ ] T033 Implement event trace capture/export:
+       - Add optional trace sink under `src/sim/metrics/` or `src/sim/engine/`
+       - Persist one ordered record per processed event with `time`, `seq`,
+         `type`, and minimal entity identifiers
+       - Expose trace output through CLI flag and structured file output
+
+- [ ] T034 Add scenario test for SC-004:
+       - Run simulation with trace enabled
+       - Assert all required event types appear in trace
+       - Assert timestamps are monotonically non-decreasing and ties preserve
+         event queue sequence order
+
+- [ ] T035 Add scenario/statistical validation for SC-005:
+       - Run long simulation workload (1000+ lots) with fixed seed
+       - Compare observed `PR` against configured `PD`
+       - Assert deviation remains within the specified ±10% tolerance
+
+**Checkpoint**: Trace export is available and SC-004/SC-005 are explicitly
+verified by automated tests.
+
+---
+
+## Phase 9: Polish & Cross-Cutting
+
+- [ ] T036 [P] Write `docs/distributions.md` with final parameterization
+- [ ] T037 [P] Run `ruff check src/ tests/` and fix all lint errors
+- [ ] T038 [P] Run full `pytest` suite; all tests must pass
+- [ ] T039 [P] Run simulation twice with same seed; diff results → identical
+- [ ] T040 Run quickstart.md validation checklist
 
 ---
 
@@ -394,7 +424,9 @@ Phase 1 (Setup) → Phase 2 (Engine) → Phase 3 (Model)
                     │                     │                  │
                     └─────────────────────┴──────────────────┘
                                           │
-                                  Phase 8 (Polish)
+                         Phase 8 (Traceability & Validation)
+                                          │
+                                  Phase 9 (Polish)
 ```
 
 Phases 5, 6, 7 are independent of each other and can proceed in parallel
