@@ -1,0 +1,37 @@
+flowchart TD
+    subgraph Init
+    direction TD
+    CI[[CI]]
+    CI[[CI]] --> LlegaLote{{Menor TPLL}} --> Impresion{{Menor TPI}} --> Encuadernacion{{Menor TPE}} --> QA{{Menor TPQA}} --> Embalaje{{Menor TPEM}} --> Despacho{{Menor TPD}} --> Desperfecto{{Menor TPDE}} --> Mantenimiento{{Menor TPMA}} --> Repo{{Menor TPRE}}
+    end
+    
+    subgraph Eleccion de Evento 
+    direction TD
+    Init{{Init}} --> MenorLlegada{{EsLlegadaMenor}}
+    MenorLlegada ==> if{bool = true}
+    if --> |si| Llegada{{LlegadaPedido}}
+    if --> |no| EsImpresionMenor{{EsImpresionMenor}}
+    EsImpresionMenor --> if2{bool = true}
+    if2 --> |si| Impresion2{{Impresion}}
+    if2 --> |no| EsEncuadernadoMenor{{EsEncuadernadoMenor}}
+    EsEncuadernadoMenor --> if3{bool = true}
+    if3 --> |si| Encuadernacion2{{Encuadernacion}}
+    if3 --> |no| EsQAMenor{{EsQAMenor}}
+    EsQAMenor --> if4{bool = true}
+    if4 --> |si| QA2{{QA}}
+    if4 --> |no| EsEmbalajeMenor{{EsEmbalajeMenor}}
+    EsEmbalajeMenor --> if5{bool = true}
+    if5 --> |si| Embalaje2{{Embalaje}}
+    if5 --> |no| EsDespachoMenor{{EsDespachoMenor}}
+    EsDespachoMenor --> if6{bool = true}
+    if6 --> |si| Despacho2{{Despacho}}
+    if6 --> |no| EsDesperfectoMenor{{EsDesperfectoMenor}}
+    EsDesperfectoMenor --> if7{bool = true}
+    if7 --> |si| Desperfecto2{{Desperfecto}}
+    if7 --> |no| EsMantenimientoMenor{{EsMantenimientoMenor}}
+    EsMantenimientoMenor --> if8{bool = true}
+    if8 --> |si| Mantenimiento2{{Mantenimiento}}
+    if8 --> |no| EsRepoMenor{{EsRepoMenor}}
+    EsRepoMenor --> if9{bool = true}
+    if9 --> |si| Repo2{{Repo}}
+    end

@@ -1,404 +1,198 @@
-flowchart TB
-    START["main"]
-    CLI["args = argparse"]
-    CFG["config = load_config"]
-    SEED["seed = args.seed else config.simulation.seed"]
-    TRACE{"trace_enabled"}
-    SIM["sim = Simulator"]
-    RUN["collector = sim.run"]
-    REPORT["report = generate_report"]
-    JSON["write_json results_json"]
-    TRACE_OUT["write_trace_jsonl trace_jsonl"]
-    CSVQ{"fmt_is_csv_or_both"}
-    CSV["write_csv results_csv"]
-    END["return_0"]
+flowchart TD
+    CI[[C. I.]]
+    CI --> I0["Leer CLI y configuracion"]
+    I0 --> I1["Inicializar PRNG, EventQueue, metricas, CLM[0..3], CxM, SD[0..4], CLTA = 0"]
+    I1 --> I2["Programar eventos iniciales"]
+    I2 --> I3["TPLL = T + IA"]
+    I3 --> I4["Para cada etapa i y maquina k programar TDF[i][k] = T + TEF[i]"]
+    I4 --> DFM{"FMP > 0"}
+    DFM -->|Si| I5["Para cada etapa i y maquina k programar TM[i][k] = T + FMP"]
+    DFM -->|No| I6["Programar RHFM con eventos WINDOW_OPEN y WINDOW_CLOSE"]
+    I5 --> I6
+    I6 --> D0{"Hay eventos pendientes y pedidos completados < objetivo"}
 
-    START --> CLI --> CFG --> SEED --> TRACE --> SIM --> RUN --> REPORT --> JSON
-    JSON --> T1{"trace_enabled"}
-    T1 -->|True| TRACE_OUT --> CSVQ
-    T1 -->|False| CSVQ
-    CSVQ -->|True| CSV --> END
-    CSVQ -->|False| END
-
-    RUN -.-> LOOP
-    RUN -.-> INIT
-    RUN -.-> ARRIVAL
-    RUN -.-> TRY_STAGE
-    RUN -.-> STAGE_FLOW
-    RUN -.-> SETUP_FLOW
-    RUN -.-> FAILURE_FLOW
-    RUN -.-> MAINT_FLOW
-    RUN -.-> STOCK_FLOW
-    RUN -.-> DISPATCH_FLOW
-    RUN -.-> WINDOW_FLOW
-
-    subgraph LOOP["run_and_dispatch"]
+    subgraph EVENTOS["Bucle evento a evento"]
         direction TB
-        L0["schedule_initial_events"]
-        L1{"eq_not_empty"}
-        L2["event = eq.pop"]
-        L3["sim_time = event.time"]
-        L4{"orders_completed_ge_target"}
-        L5{"self.trace_enabled"}
-        L6["collector.record_event"]
-        L7["handler = handlers[event.type]"]
-        L8["handler event"]
-        L9["return collector"]
-
-        L0 --> L1
-        L1 -->|True| L2 --> L3 --> L4
-        L4 -->|True| L9
-        L4 -->|False| L5
-        L5 -->|True| L6 --> L7 --> L8 --> L1
-        L5 -->|False| L7 --> L8 --> L1
-        L1 -->|False| L9
+        E0["Extraer proximo evento"]
+        E1["Actualizar T = tiempo del evento"]
+        E2{"Trace habilitado"}
+        E3["Registrar evento en traza"]
+        E4{"Tipo de evento"}
     end
 
-    subgraph INIT["schedule_initial_events"]
-        direction TB
-        I0["ia = 1_over_arrival_rate"]
-        I1["t_arrive = prng_exponential_IA"]
-        I2["push ORDER_ARRIVAL"]
-        I3["fmp = maintenance.frequency"]
-        I4["for each stage_idx and machine"]
-        I5["mtbf = stage.failure.mtbf"]
-        I6["t_fail = prng_exponential_TEF_stage"]
-        I7["push MACHINE_FAILURE"]
-        I8{"fmp_gt_0"}
-        I9["push MAINTENANCE_DUE"]
-        I10["ia_mean = 1_over_arrival_rate"]
-        I11["horizon = orders * ia_mean * 3"]
-        I12["cycles = floor horizon_over_24 plus 2"]
-        I13["for each operating_window"]
-        I14{"window_is_0_24"}
-        I15["t_open = cycle_times_24_plus_start"]
-        I16["t_close = cycle_times_24_plus_end"]
-        I17["push WINDOW_OPEN"]
-        I18["push WINDOW_CLOSE"]
+    D0 -->|Si| E0
+    D0 -->|No| O0
+    E0 --> E1 --> E2
+    E2 -->|Si| E3 --> E4
+    E2 -->|No| E4
 
-        I0 --> I1 --> I2 --> I3 --> I4 --> I5 --> I6 --> I7 --> I8
-        I8 -->|True| I9 --> I10
-        I8 -->|False| I10
-        I10 --> I11 --> I12 --> I13 --> I14
-        I14 -->|True| I13
-        I14 -->|False| I15 --> I16 --> I17 --> I18 --> I13
+    subgraph LLEGADA["ORDER_ARRIVAL"]
+        direction TB
+        A0["Generar pedido con PCP, CUL, tipo de libro y prioridad"]
+        A1["Calcular perfil de materiales del pedido"]
+        A2["Dividir pedido en lotes de tamano CLPL"]
+        A3["Encolar lotes en CLM[0]"]
+        A4["Programar nueva llegada TPLL = T + IA"]
+        A5["Intentar iniciar Impresion"]
+        A6["Verificar reposicion de SD[0] y SD[1]"]
     end
 
-    subgraph ARRIVAL["handle_order_arrival"]
+    subgraph INICIO_ETAPA["STAGE_START"]
         direction TB
-        A0["t = event.time"]
-        A1["order_id = orders_created"]
-        A2["orders_created += 1"]
-        A3["page_count = prng_discrete_PCP"]
-        A4["unit_count = prng_uniform_int_CUL"]
-        A5["book_type = prng_discrete_BOOK_TYPE"]
-        A6["priority = prng_uniform_int_PRIORITY"]
-        A7["order = Order"]
-        A8["nominal_lot_size = books_per_lot"]
-        A9["mean_page_count = avg page_values"]
-        A10["page_factor = max 0_5 order_page_over_mean"]
-        A11["base_per_unit = consumption_per_lot_over_nominal_lot_size"]
-        A12["variability = prng_uniform_MATCFG"]
-        A13{"mat_idx_eq_0_or_1"}
-        A14["variability = variability_times_page_factor"]
-        A15["profile mat_idx = base_per_unit_times_variability"]
-        A16["order.material_profile = profile"]
-        A17["orders_map order_id = order"]
-        A18["n = ceil unit_count_over_clpl"]
-        A19["units_in_lot = min clpl remaining_units"]
-        A20["material_requirements mat_idx = per_unit_amount_times_units_in_lot"]
-        A21["lot = Lot"]
-        A22["queues_0.enqueue lot"]
-        A23["push next ORDER_ARRIVAL"]
-        A24["try_start_stage 0"]
-        A25["check_reorder 0"]
-        A26["check_reorder 1"]
-
-        A0 --> A1 --> A2 --> A3 --> A4 --> A5 --> A6 --> A7 --> A8 --> A9 --> A10 --> A11 --> A12 --> A13
-        A13 -->|True| A14 --> A15
-        A13 -->|False| A15
-        A15 --> A16 --> A17 --> A18 --> A19 --> A20 --> A21 --> A22 --> A23 --> A24 --> A25 --> A26
+        S0{"Hay lote en CLM[i] y maquina disponible en CxM[i][k]"}
+        S1{"SD materiales requeridos >= demanda del lote"}
+        S2["Desencolar lote"]
+        S3["Registrar espera en cola TPE[i]"]
+        S4["Marcar maquina BUSY y lote IN_PROCESS"]
+        S5["Programar fin de proceso segun etapa"]
+        S6["TPI[k] o TPE[k] o TPQA o TPD"]
     end
 
-    subgraph TRY_STAGE["try_start_stage_and_sample_processing_time"]
+    subgraph SETUP["SETUP_START / SETUP_END"]
         direction TB
-        T0{"queue_has_lot"}
-        T1A["lot = queue.peek"]
-        T2{"lot_is_none"}
-        T3["sc = stage_cfg stage_idx"]
-        T4["required = lot.material_requirements.get"]
-        T5{"stock_lt_required"}
-        T6["for machine in machines stage_idx"]
-        T7{"machine.is_available"}
-        T8{"last_lot_type_differs"}
-        T9["push SETUP_START"]
-        T10["push STAGE_START"]
-        T11{"dist_is_exponential"}
-        T12["proc_time = prng_exponential_PROC"]
-        T13{"dist_is_normal"}
-        T14["proc_time = prng_normal_PROC"]
-        T15{"dist_is_uniform"}
-        T16["proc_time = prng_uniform_PROC"]
-        T17["proc_time = dist.mean_or_1"]
-
-        T0 -->|True| T1A --> T2
-        T0 -->|False| T11
-        T2 -->|True| T11
-        T2 -->|False| T3 --> T4 --> T5
-        T5 -->|True| T11
-        T5 -->|False| T6 --> T7
-        T7 -->|False| T6
-        T7 -->|True| T8
-        T8 -->|True| T9 --> T11
-        T8 -->|False| T10 --> T11
-        T11 -->|True| T12
-        T11 -->|False| T13
-        T13 -->|True| T14
-        T13 -->|False| T15
-        T15 -->|True| T16
-        T15 -->|False| T17
+        U0{"Cambio de tipo de libro respecto a ultimo lote"}
+        U1["Marcar maquina SETUP"]
+        U2["Registrar tiempo de setup"]
+        U3["Programar fin de setup con TPM[i]"]
+        U4["Al finalizar setup relanzar STAGE_START"]
     end
 
-    subgraph STAGE_FLOW["handle_stage_start_and_stage_end"]
+    subgraph FIN_ETAPA["STAGE_END"]
         direction TB
-        S0["stage_idx = payload.stage"]
-        S1["machine_id = payload.machine_id"]
-        S2["machine = machines stage_idx machine_id"]
-        S3{"machine.is_available"}
-        S4["lot = queue.peek"]
-        S5{"lot_is_none"}
-        S6{"stock_lt_required"}
-        S7["lot = queue.dequeue"]
-        S8["wait = t_minus_lot.entry_time"]
-        S9["collector.record_queue_wait"]
-        S10["machine.status = BUSY"]
-        S11["machine.current_lot = lot"]
-        S12["lot.status = IN_PROCESS"]
-        S13["lot.start_time = t"]
-        S14["lot.remaining_process_time = sample_processing_time"]
-        S15["push STAGE_END"]
-        S16["lot = machine.current_lot"]
-        S17{"lot_is_none_end"}
-        S18["proc_duration = t_minus_lot.start_time"]
-        S19["collector.record_energy"]
-        S20["stock.consume required"]
-        S21["check_reorder mat_idx"]
-        S22["machine.status = IDLE"]
-        S23["machine.current_lot = None"]
-        S24["machine.last_lot_type = lot.book_type"]
-        S25{"stage_idx_eq_2"}
-        S26["pd = qa.defect_probability_or_0_05"]
-        S27["sample = prng_random_PD"]
-        S28{"sample_lt_pd"}
-        S29["lot.rework_count += 1"]
-        S30["lot.stage = PRINTING"]
-        S31["lot.status = WAITING"]
-        S32["lot.entry_time = t"]
-        S33["collector.record_rework"]
-        S34["queues_0.enqueue lot"]
-        S35["try_start_stage 0"]
-        S36["check_reorder 0"]
-        S37["check_reorder 1"]
-        S38["lot.stage = PACKAGING"]
-        S39["lot.status = WAITING"]
-        S40["lot.entry_time = t"]
-        S41["queues_3.enqueue lot"]
-        S42["try_start_stage 3"]
-        S43{"stage_idx_eq_3"}
-        S44["lot.status = DONE"]
-        S45["lot.stage = DISPATCHED"]
-        S46["storage.append lot"]
-        S47["clta += 1"]
-        S48["collector.record_lot_done"]
-        S49{"clta_ge_dispatch_threshold"}
-        S50["push DISPATCH"]
-        S51["next_stage = NEXT_STAGE stage_idx"]
-        S52["next_idx = next_stage.value"]
-        S53["lot.stage = next_stage"]
-        S54["lot.status = WAITING"]
-        S55["lot.entry_time = t"]
-        S56["queues_next_idx.enqueue lot"]
-        S57["try_start_stage next_idx"]
-        S58{"machine.pending_maintenance"}
-        S59["machine.pending_maintenance = False"]
-        S60["push MAINTENANCE_DUE"]
-        S61["try_start_stage stage_idx"]
-
-        S0 --> S1 --> S2 --> S3
-        S3 -->|False| S16
-        S3 -->|True| S4 --> S5
-        S5 -->|True| S16
-        S5 -->|False| S6
-        S6 -->|True| S16
-        S6 -->|False| S7 --> S8 --> S9 --> S10 --> S11 --> S12 --> S13 --> S14 --> S15 --> S16
-        S16 --> S17
-        S17 -->|True| S58
-        S17 -->|False| S18 --> S19 --> S20 --> S21 --> S22 --> S23 --> S24 --> S25
-        S25 -->|True| S26 --> S27 --> S28
-        S28 -->|True| S29 --> S30 --> S31 --> S32 --> S33 --> S34 --> S35 --> S36 --> S37 --> S58
-        S28 -->|False| S38 --> S39 --> S40 --> S41 --> S42 --> S58
-        S25 -->|False| S43
-        S43 -->|True| S44 --> S45 --> S46 --> S47 --> S48 --> S49
-        S49 -->|True| S50 --> S58
-        S49 -->|False| S58
-        S43 -->|False| S51 --> S52 --> S53 --> S54 --> S55 --> S56 --> S57 --> S58
-        S58 -->|True| S59 --> S60
-        S58 -->|False| S61
+        F0["Registrar consumo energetico con CEM[i]"]
+        F1["Consumir materiales del lote y actualizar SD[n]"]
+        F2["Verificar si SD[n] <= SPR[n]"]
+        F2A["Programar STOCK_REPLENISHMENT en T + TR[n]"]
+        F3{"Etapa actual = QA"}
+        F4{"Muestra de defecto < PD"}
+        F5["Reencolar lote en CLM[0]"]
+        F6["Intentar reiniciar Impresion"]
+        F7{"Etapa actual = Embalaje"}
+        F8["Marcar lote terminado y sumar CLTA"]
+        F9{"CLTA >= CPTD"}
+        F10["Programar Despacho"]
+        F11["Mover lote a la siguiente CLM"]
+        F12["Intentar iniciar siguiente etapa"]
+        F13{"Mantenimiento pendiente en la maquina"}
+        F14["Programar MAINTENANCE_DUE inmediato"]
+        F15["Intentar nuevo lote en la misma etapa"]
     end
 
-    subgraph SETUP_FLOW["handle_setup_start_and_setup_end"]
+    subgraph FALLA["MACHINE_FAILURE / REPAIR_END"]
         direction TB
-        U0["stage_idx = payload.stage"]
-        U1["machine_id = payload.machine_id"]
-        U2["machine = machines stage_idx machine_id"]
-        U3{"machine.status_eq_IDLE"}
-        U4["lot = queue.peek"]
-        U5{"lot_is_none"}
-        U6["machine.status = SETUP"]
-        U7["collector.record_setup"]
-        U8["setup_time = stage_cfg.setup_time"]
-        U9["push SETUP_END"]
-        U10["machine.status = IDLE"]
-        U11["push STAGE_START"]
-
-        U0 --> U1 --> U2 --> U3
-        U3 -->|False| U10
-        U3 -->|True| U4 --> U5
-        U5 -->|True| U10
-        U5 -->|False| U6 --> U7 --> U8 --> U9 --> U10 --> U11
+        R0{"Maquina inmune por estar en SETUP o MAINTENANCE"}
+        R1["Marcar maquina FAILED"]
+        R2{"Habia lote en proceso"}
+        R3["Suspender lote y guardar tiempo restante"]
+        R4["Programar reparacion con TDR[i]"]
+        R5["Reprogramar proxima falla con TEF[i]"]
+        R6["Registrar TSP[i]"]
+        R7["Al reparar, marcar maquina IDLE"]
+        R8{"Existe lote suspendido asociado"}
+        R9["Reanudar lote y programar STAGE_END con tiempo restante"]
+        R9A{"FMP > 0"}
+        R10["Reprogramar mantenimiento preventivo desde T + FMP"]
+        R11["Intentar iniciar lote pendiente"]
     end
 
-    subgraph FAILURE_FLOW["handle_machine_failure_and_repair_end"]
+    subgraph MANT["MAINTENANCE_DUE / MAINTENANCE_END"]
         direction TB
-        F0["stage_idx = payload.machine_type"]
-        F1["machine_id = payload.machine_id"]
-        F2["machine = machines stage_idx machine_id"]
-        F3{"machine.is_failure_immune"}
-        F4["machine.status = FAILED"]
-        F5{"machine.current_lot_exists"}
-        F6["current_lot.status = SUSPENDED"]
-        F7["elapsed = t_minus_current_lot.start_time"]
-        F8["remaining_process_time = max_0 remaining_minus_elapsed"]
-        F9["repair_time = prng_exponential_TDR"]
-        F10["machine.t_repair_done = t_plus_repair_time"]
-        F11["push REPAIR_END"]
-        F12["push next MACHINE_FAILURE"]
-        F13["collector.record_downtime"]
-        F14["evaluate_redirect"]
-        F15["machine.status = IDLE"]
-        F16{"current_lot_is_SUSPENDED"}
-        F17["lot = machine.current_lot"]
-        F18["lot.status = IN_PROCESS"]
-        F19["lot.start_time = t"]
-        F20["push STAGE_END remaining_process_time"]
-        F21["machine.status = BUSY"]
-        F22["machine.current_lot = None"]
-        F23{"maintenance.frequency_gt_0"}
-        F24["push MAINTENANCE_DUE"]
-        F25["try_start_stage stage_idx"]
-        F26["evaluate_redirect = pass"]
-
-        F0 --> F1 --> F2 --> F3
-        F3 -->|True| F15
-        F3 -->|False| F4 --> F5
-        F5 -->|True| F6 --> F7 --> F8 --> F9
-        F5 -->|False| F9
-        F9 --> F10 --> F11 --> F12 --> F13 --> F14 --> F15 --> F16
-        F16 -->|True| F17 --> F18 --> F19 --> F20 --> F21 --> F26
-        F16 -->|False| F22 --> F23
-        F23 -->|True| F24 --> F25 --> F26
-        F23 -->|False| F25 --> F26
+        M0{"Maquina FAILED"}
+        M1{"Maquina BUSY"}
+        M2["Marcar mantenimiento pendiente"]
+        M3["Marcar maquina MAINTENANCE"]
+        M4["Programar fin de mantenimiento con TMM[i]"]
+        M5["Registrar TSP[i]"]
+        M6["Al finalizar, marcar maquina IDLE"]
+        M7{"FMP > 0"}
+        M8["Programar nuevo mantenimiento preventivo"]
+        M9["Reiniciar reloj de falla con TEF[i]"]
+        M10["Intentar iniciar lote pendiente"]
     end
 
-    subgraph MAINT_FLOW["handle_maintenance_due_and_end"]
+    subgraph REPOSICION["STOCK_REPLENISHMENT"]
         direction TB
-        M0["stage_idx = payload.machine_type"]
-        M1["machine_id = payload.machine_id"]
-        M2["machine = machines stage_idx machine_id"]
-        M3{"machine.status_eq_FAILED"}
-        M4{"machine.status_eq_BUSY"}
-        M5["machine.pending_maintenance = True"]
-        M6{"machine.status_eq_MAINTENANCE"}
-        M7["machine.status = MAINTENANCE"]
-        M8["maint_duration = prng_normal_TMM"]
-        M9["push MAINTENANCE_END"]
-        M10["collector.record_downtime"]
-        M11["machine.status = IDLE"]
-        M12["machine.pending_maintenance = False"]
-        M13["machine.current_lot = None"]
-        M14["fmp = maintenance.frequency"]
-        M15{"fmp_gt_0"}
-        M16["push next MAINTENANCE_DUE"]
-        M17["push reset MACHINE_FAILURE"]
-        M18["try_start_stage stage_idx"]
-
-        M0 --> M1 --> M2 --> M3
-        M3 -->|True| M11
-        M3 -->|False| M4
-        M4 -->|True| M5 --> M11
-        M4 -->|False| M6
-        M6 -->|True| M11
-        M6 -->|False| M7 --> M8 --> M9 --> M10 --> M11 --> M12 --> M13 --> M14 --> M15
-        M15 -->|True| M16 --> M17 --> M18
-        M15 -->|False| M17 --> M18
+        P0["Reponer material con TR[n]"]
+        P1["Actualizar SD[n] y limpiar flag de reposicion"]
+        P2["Intentar reiniciar etapas que usan ese material"]
     end
 
-    subgraph STOCK_FLOW["check_reorder_and_stock_replenishment"]
+    subgraph DESPACHO["DISPATCH"]
         direction TB
-        K0["stock = stocks mat_idx"]
-        K1{"quantity_le_reorder_point_and_not_pending"}
-        K2["stock.replenishment_pending = True"]
-        K3{"lead_time_is_uniform"}
-        K4["lead = prng_uniform_LT"]
-        K5["lead = lt.min_or_1"]
-        K6["push STOCK_REPLENISHMENT"]
-        K7["mat_idx = payload.material_index"]
-        K8["stocks mat_idx replenish"]
-        K9{"mat_idx_in_stage_materials"}
-        K10["try_start_stage i"]
-        K11["return"]
-
-        K0 --> K1
-        K1 -->|True| K2 --> K3
-        K3 -->|True| K4 --> K6 --> K7 --> K8 --> K9
-        K3 -->|False| K5 --> K6 --> K7 --> K8 --> K9
-        K1 -->|False| K7
-        K9 -->|True| K10 --> K11
-        K9 -->|False| K11
+        D1["Despachar todos los lotes almacenados"]
+        D2["Vaciar almacenamiento y resetear CLTA"]
+        D3["Agrupar lotes por pedido"]
+        D4["Registrar TPPT por pedido completado"]
     end
 
-    subgraph DISPATCH_FLOW["handle_dispatch"]
+    subgraph VENTANAS["WINDOW_OPEN / WINDOW_CLOSE"]
         direction TB
-        D0["dispatched = list storage"]
-        D1["storage.clear"]
-        D2["clta = 0"]
-        D3["lot.status = DISPATCHED"]
-        D4["order_lots append lot"]
-        D5["order = orders_map.get order_id"]
-        D6{"order_exists_and_not_dispatched"}
-        D7["collector.record_order_done"]
-        D8["orders_completed += 1"]
-
-        D0 --> D1 --> D2 --> D3 --> D4 --> D5 --> D6
-        D6 -->|True| D7 --> D8
-        D6 -->|False| D8
+        W0["WINDOW_OPEN: intentar iniciar lotes en la etapa"]
+        W1["WINDOW_CLOSE: no inicia nuevos lotes fuera de RHFM"]
     end
 
-    subgraph WINDOW_FLOW["window_open_close_and_is_available"]
-        direction TB
-        W0["stage_idx = payload.machine_type"]
-        W1["try_start_stage stage_idx"]
-        W2["window_close = pass"]
-        W3["hour = sim_time_mod_24"]
-        W4{"start_le_hour_lt_end"}
-        W5{"wrap_window_and_hour_in_range"}
-        W6["in_window = True"]
-        W7["in_window = False"]
-        W8["is_available = status_eq_IDLE_and_in_window"]
+    E4 -->|ORDER_ARRIVAL| A0
+    A0 --> A1 --> A2 --> A3 --> A4 --> A5 --> A6 --> DEND
 
-        W0 --> W1 --> W2 --> W3 --> W4
-        W4 -->|True| W6 --> W8
-        W4 -->|False| W5
-        W5 -->|True| W6 --> W8
-        W5 -->|False| W7 --> W8
-    end
+    E4 -->|STAGE_START| S0
+    S0 -->|Si| S1
+    S0 -->|No| DEND
+    S1 -->|Si| S2 --> S3 --> S4 --> S5 --> S6 --> DEND
+    S1 -->|No| DEND
+
+    E4 -->|SETUP_START| U0
+    U0 -->|Si| U1 --> U2 --> U3 --> DEND
+    U0 -->|No| DEND
+    E4 -->|SETUP_END| U4 --> DEND
+
+    E4 -->|STAGE_END| F0
+    F0 --> F1 --> F2
+    F2 -->|Si| F2A --> F3
+    F2 -->|No| F3
+    F3 -->|Si| F4
+    F4 -->|Si| F5 --> F6 --> F13
+    F4 -->|No| F11 --> F12 --> F13
+    F3 -->|No| F7
+    F7 -->|Si| F8 --> F9
+    F9 -->|Si| F10 --> F13
+    F9 -->|No| F13
+    F7 -->|No| F11 --> F12 --> F13
+    F13 -->|Si| F14 --> DEND
+    F13 -->|No| F15 --> DEND
+
+    E4 -->|MACHINE_FAILURE| R0
+    R0 -->|Si| DEND
+    R0 -->|No| R1 --> R2
+    R2 -->|Si| R3 --> R4
+    R2 -->|No| R4
+    R4 --> R5 --> R6 --> DEND
+
+    E4 -->|REPAIR_END| R7
+    R7 --> R8
+    R8 -->|Si| R9 --> DEND
+    R8 -->|No| R9A
+    R9A -->|Si| R10 --> R11 --> DEND
+    R9A -->|No| R11 --> DEND
+
+    E4 -->|MAINTENANCE_DUE| M0
+    M0 -->|Si| DEND
+    M0 -->|No| M1
+    M1 -->|Si| M2 --> DEND
+    M1 -->|No| M3 --> M4 --> M5 --> DEND
+
+    E4 -->|MAINTENANCE_END| M6
+    M6 --> M7
+    M7 -->|Si| M8 --> M9 --> M10 --> DEND
+    M7 -->|No| M9 --> M10 --> DEND
+
+    E4 -->|STOCK_REPLENISHMENT| P0
+    E4 -->|DISPATCH| D1
+    D1 --> D2 --> D3 --> D4 --> DEND
+
+    E4 -->|WINDOW_OPEN| W0 --> DEND
+    E4 -->|WINDOW_CLOSE| W1 --> DEND
+
+    DEND{"Continuar simulacion"}
+    DEND -->|Si| D0
+    DEND -->|No| O0[/"TPPT, TPPL, CxTP,\nTSP[i], TPE[i], PR"/]
+    O0 --> FIN([ ])
