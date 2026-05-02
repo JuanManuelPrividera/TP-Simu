@@ -1,0 +1,12 @@
+flowchart TD
+    direction TD
+    a[T = TPLL] --> b{{IA}} --> c[TPLL = T + IA] --> d{{Cant Lotes}}
+    d{{Cant Lotes}} --> bb[j = 0]
+    bb --> iff{"j < CM[0]"}
+    iff --> |si| cc[j ++] --> e{{Encontrar Maquina Impresion Libre}} --> f{puede_imprimir} 
+    iff --> |no| fin((FIN)) 
+    f --> |si| g{{DI}} --> i["TPI[i] = T + DI + TConf"]
+    f --> |no| h{{Agregar lote a cola}}
+    h --> j{{" "}}
+    i --> j
+    j --> iff
