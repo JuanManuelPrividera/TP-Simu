@@ -8,12 +8,12 @@ flowchart TD
     if --> |si| s{{DI}} --> d{{TConf}} --> b["TPI[i] = T + DI + TConf"] --> e{{"Sacar de la cola de impresion"}} --> l
     if --> |no| l[" "]
     end
-    subgraph Generar encaudernacion
+    subgraph Generar encaudernacion %%Manejo de stock en encontrar encuadernación
     l --> g{{Encontrar encuadernasion libre}} --> if2{puede_encuadernar}
     if2 --> |si| h["TPE[i] = T + DE + TConf"] --> ll[" "]
     if2 --> |no| aa{{Agregar a cola encuadernacion}}  --> ll
     end
-    subgraph Reponer stock
+    subgraph Reponer stock impresión
     ll --> if3{"SD[0] <= SPR[0]"}
     if3 --> |si| r{{Reposicion}}
     end

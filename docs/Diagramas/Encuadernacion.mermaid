@@ -1,0 +1,19 @@
+flowchart TD
+    direction TD
+    
+    %% tpi ya es el menor tpi[]
+    %% TODO: Poner stock
+    a["T = TPE"] --> if{"CLM[1] > 0 && SD[1] > 0"}
+    subgraph Generar nueva encuadernación
+    if --> |si| s{{DE}} --> d{{TConf}} --> b["TPE[i] = T + DE + TConf"] --> e{{"Sacar de la cola de encuadernación"}} --> l
+    if --> |no| l["SD[1] --"]
+    end
+    subgraph Generar QA 
+    l --> g{{Encontrar QA libre}} --> if2{puede_QAar}
+    if2 --> |si| h["TPQA[i] = T + DQA "] --> ll[" "]
+    if2 --> |no| aa{{Agregar a cola QA}}  --> ll
+    end
+    subgraph Reponer stock encuadernación 
+    ll --> if3{"SD[1] <= SPR[1]"}
+    if3 --> |si| r{{Reposicion}}
+    end

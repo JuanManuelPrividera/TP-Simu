@@ -1,0 +1,25 @@
+flowchart TD
+    direction TD
+    
+    %% tpi ya es el menor tpi[]
+    a[T = TPQA] --> if{"CLM[2] > 0"}
+    subgraph Generar nuevo QA
+    if --> |si| s{{DQA}} --> b["TPQA[i] = T + DQA"] --> e{{"Sacar de la cola de QA"}} --> l
+    if --> |no| l[" "]
+    end
+    subgraph Generar Embalaje %% acá se maneja el stock y reposición
+    l --> g{{Encontrar embalaje libre}} --> if2{puede_embalar}
+    if2 --> |si| h["TPEm[i] = T + DEm"] --> ll[" "] %%Embalaje no lleva configuración
+    if2 --> |no| aa{{Agregar a cola Embalaje}}  --> ll
+    end
+    subgraph Generar Impresión
+    ll --> l2{{PD}}
+    l2 --> |si| if3{"PD <= PQA"}
+    if3 --> |si| t0{{Encontrar Impresora libre}} %%maneja stock, 'i', reposición TConf
+    t0 --> r{"puede_imprimir"} 
+    r  -->|si| r4{{DI}} --> r3["TPI[i] = T + DI + TConf"]
+    r --> |no| z1{{Agregar a cola impresión}}
+    end
+    if3 --> |no| fin((FIN))
+    z1 --> |no| fin
+    r3 --> |no| fin
