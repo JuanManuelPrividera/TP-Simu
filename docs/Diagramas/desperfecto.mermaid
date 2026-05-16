@@ -1,0 +1,9 @@
+flowchart TD
+    direction TD
+    
+    %% tpi ya es el menor tpi[]
+    a[T = TPD] --> b{{TMD}} %% Tiempo mantenimiento desperfecto 
+    b --> d{ID}
+    d --> c["TPD[i][j] = T + ID"]
+    c --> e["TP[i][j] = TP[i][j] + TMD"] %% TP[0] = TPI, TP[1] = TPE,...
+    e --> j[" "]
