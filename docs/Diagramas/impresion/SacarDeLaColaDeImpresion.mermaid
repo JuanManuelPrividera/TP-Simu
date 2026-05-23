@@ -1,0 +1,9 @@
+flowchart TD
+a0{{SacarDeLaColaDeImpresion}} --> if{ALG}
+if --> |POR_CONFIGURACION| a2["indice = CLM[0].index(min(filter(lambda lote: lote.config==CxM[0][i_imp], CLM[0]), key=lambda lote: lote.ts))"]
+if --> |PRIORIDADES| a3["indice = CLM[0].index(min(filter(lambda lote: lote.config==CONFIG_PRIORITARIA, CLM[0]), key=lambda lote: lote.ts))"]
+if --> |FIFO| a1{indice = null}
+a1 --> |si| b["indice = CLM[0].index(min(CLM[0], key=lambda lote: lote.ts))"]
+a1 --> |no| g((fin))
+a2 --> a1
+a3 --> a1

@@ -2,7 +2,8 @@ flowchart TD
     direction TD
     
     %% tpi ya es el menor tpi[]
-    a[T = TPI] --> if{¿Hay Lote en Cola Impresion?} %% esto chequea stock tambien
+    %%a[T = TPI] --> if{¿Hay Lote en Cola Impresion?} %% esto chequea stock tambien
+    a[T = TPI] --> if{"CLM[0].size() > 0 && SD[0] > 0"} %% esto chequea stock tambien
     subgraph Generar nueva impresion
     if --> |si| e{{"Sacar de la cola de impresion"}} --> s{{DI}} --> b["TPI[i_imp] = T + DI + TConf"] --> l
     if --> |no| l[" "]
