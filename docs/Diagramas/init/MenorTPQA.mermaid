@@ -1,0 +1,7 @@
+flowchart TD
+    aa{{MenorTPQA}} --> bb[j = 0] --> tpqa[TPQA = HV] --> iff{"j < CM[2]"}
+    iff --> |si| if1{"TPQA >= TPQA[j]"} 
+    if1 --> |si| a1["TPQA = TPQA[j]"] --> a2[i_qa = j] --> cc[j ++] --> iff
+    if1 --> |no| cc
+    iff --> |no| a4((fin))
+

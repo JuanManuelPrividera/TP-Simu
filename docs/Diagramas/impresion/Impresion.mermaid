@@ -3,17 +3,24 @@ flowchart TD
     
     %% tpi ya es el menor tpi[]
     %%a[T = TPI] --> if{¿Hay Lote en Cola Impresion?} %% esto chequea stock tambien
-    a[T = TPI] --> if{"CLM[0].size() > 0 && SD[0] > 0"} %% esto chequea stock tambien
-    subgraph Generar nueva impresion
-    if --> |si| e{{"Sacar de la cola de impresion"}} --> s{{DI}} --> b["TPI[i_imp] = T + DI + TConf"] --> l
-    if --> |no| l[" "]
-    end
+    a[T = TPI] 
+    if{"CLM[0].size() > 0 && SD[0] > 0"} %% esto chequea stock tambien
+   
     subgraph Generar encaudernacion
-    l --> g{{Encontrar encuadernasion libre}} --> if2{puede_encuadernar}
-    if2 --> |si| aaa{{DE}} --> h["TPE[i_enc] = T + DE + TConf"] --> ll[" "]
-    if2 --> |no| aa{{Agregar a cola encuadernacion}}  --> ll
+    a --> if2{"CLM[1].size() > 0 && SD[1] > 0"}
+    if2 --> |si| g{{Encontrar mejor encuadernadora}} --> aaa0["CxM[1][i_enc].lote = CxM[0][i_imp].lote"] -->aaa{{DE}} --> h["TPE[i_enc] = T + DE + TConf"] --> ll[" "] --> if
+    if2 --> |no| aa["CLM[1].push(CxM[0][i_imp].lote"]  --> ll 
     end
+   
+    subgraph Generar nueva impresion
+    if --> |si| e{{"Sacar de la cola de impresion"}} --> s{{DI}} --> b["TPI[i_imp] = T + DI + TConf"] --> l[" "]
+    if --> |no| zz["TPI[i_imp] = HV"] --> l
+    end
+    
+
+
     subgraph Reponer stock
-    ll --> if3{"SD[0] <= SPR[0]"}
-    if3 --> |si| r{{"Reposicion(0)"}}
+    l --> if3{"SD[0] <= SPR[0]"}
+    if3 --> |si| r{{"Reposicion(0)"}} --> fin
+    if3 --> |no| fin(("fin"))
     end

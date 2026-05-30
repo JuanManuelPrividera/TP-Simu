@@ -1,0 +1,9 @@
+flowchart TD
+    aa{{MenorTPD}} --> ii[i = 0] --> tpd[TPD = HV] --> ifi{"i < 3"}
+    ifi --> |si| jj[j = 0] --> ifj{"j < CM[i]"}
+    ifj --> |si| if1{"TPD >= TPD[i][j]"} 
+    if1 --> |si| a1["TPD = TPD[i][j]"] --> a2[i_des = i] --> a3[j_des = j] --> cc[j ++] --> ifj
+    if1 --> |no| cc
+    ifj --> |no| icc[i ++] --> ifi
+    ifi --> |no| a4((fin))
+

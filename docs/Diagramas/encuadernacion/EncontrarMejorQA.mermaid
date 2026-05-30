@@ -1,0 +1,7 @@
+flowchart TD
+a0{{EncontrarMejorQA}} --> a1[i_qa = 0]
+a1 --> a2{"i_qa < CM[2]"}
+a2 --> |si| a3{"TPQA[i_qa] == HV"}
+a3 --> |si| b["puede_QAar = true"] --> fin((fin))
+a3 --> |no| a4["i_qa++"] --> a2
+a2 --> |no| c["puede_QAar = false"] --> fin

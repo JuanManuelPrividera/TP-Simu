@@ -1,0 +1,14 @@
+flowchart TD
+a0{{EncontrarMejorEmbaladora}} --> a1["i_emb = 0"]
+a1 --> a2["candidata = null"]
+a2 --> a3{"i_emb < CM[3]"}
+a3 --> |si| a4{"TPEm[i_emb] == HV && SD[2] > 0"}
+a4 --> |si| a5{"CxM[3][i_emb] == lote.conf"}
+a5 --> |si| b["puede_embalajear = true"] --> b1[TConf = 0] --> fin((fin))
+a5 --> |no| c{"candidata == null"}
+c --> |si| d["candidata = i_emb"] --> e["i_emb++"] --> a3
+c --> |no| e
+a4 --> |no| e
+a3 --> |no| f{"candidata != null"}
+f --> |si| g["i_emb = candidata"] --> h{{TConf}} --> i["CxM[3][i_emb] = lote.conf"] --> j["puede_embalajear = true"] --> fin
+f --> |no| k["puede_embalajear = false"] --> fin

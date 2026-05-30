@@ -1,0 +1,6 @@
+flowchart TD
+    aa{{MenorTPEM}} --> bb[j = 0] --> tpem[TPEM = HV] --> iff{"j < CM[3]"}
+    iff --> |si| if1{"TPEM >= TPEm[j]"} 
+    if1 --> |si| a1["TPEM = TPEm[j]"] --> a2[i_emb = j] --> cc[j ++] --> iff
+    if1 --> |no| cc
+    iff --> |no| a4((fin))

@@ -1,0 +1,12 @@
+flowchart TD
+    aa{{DEm}} --> a{{R}}
+    a --> a1["DEm = DuracionEmbalaje(R)"]
+    a1 --> a4["HoraDia = Mod(T,1440)/60"]
+    a4 --> a2{" "}
+    a2 --> |"HoraDia > InicioBarato && HoraDia <= FinBarato"| b[TAdicional = TAB]
+    a2 --> |"HoraDia > InicioMedio && HoraDia <= FinMedio"| b1[TAdicional = TAM]
+    a2 --> |"HoraDia > InicioCaro && HoraDia <= FinCaro"| b2[TAdicional = TAC]
+    b --> c
+    b1 --> c
+    b2 --> c[DEm += TAdicional]
+    c --> d((Fin))

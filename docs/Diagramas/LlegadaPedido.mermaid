@@ -3,10 +3,10 @@ flowchart TD
     a[T = TPLL] --> b{{IA}} --> c[TPLL = T + IA] --> d{{Cant Lotes}}
     d{{Cant Lotes}} --> bb[j = 0]
     bb --> iff{"j < CantLotes"}
-    iff --> |si| cc[j ++] --> e{{Encontrar Maquina Impresion Libre}} --> f{puede_imprimir} 
+    iff --> |si| cc[j ++] --> f{"CLM[0].size() > 0 && SD[0] > 0"} 
     iff --> |no| fin((FIN)) 
     f --> |si| g{{DI}} --> i["TPI[i] = T + DI + TConf"]
-    f --> |no| h{{Agregar lote a cola}}
+    f --> |no| h{{Agregar lote a cola de impresion}}
     h --> j[" "]
     i --> j
     j --> iff 

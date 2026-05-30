@@ -1,0 +1,12 @@
+flowchart TD
+    direction TD
+
+    a[T = TPEm] --> if{"CLM[3].size() > 0 && SD[2] > 0"}
+    subgraph Generar nuevo embalaje
+    if --> |si| e{{"Sacar de la cola de embalaje"}} --> s{{DEm}} --> b["TPEm[i_emb] = T + DEm + TConf"] --> l
+    if --> |no| zz["TPEm[i_emb] = HV"] --> l[" "]
+    end
+    subgraph Reponer stock
+    l --> if3{"SD[2] <= SPR[2]"}
+    if3 --> |si| r{{"Reposicion(2)"}}
+    end

@@ -1,0 +1,7 @@
+flowchart TD
+    aa{{MenorTPE}} --> bb[j = 0] --> tpe[TPE = HV] --> iff{"j < CM[1]"}
+    iff --> |si| if1{"TPE >= TPE[j]"} 
+    if1 --> |si| a1["TPE = TPE[j]"] --> a2[i_enc = j] --> cc[j ++] --> iff
+    if1 --> |no| cc
+    iff --> |no| a4((fin))
+

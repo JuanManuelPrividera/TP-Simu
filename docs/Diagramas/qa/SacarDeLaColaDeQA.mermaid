@@ -1,0 +1,11 @@
+flowchart TD
+a0{{SacarDeLaColaDeQA}} --> if{ALG}
+if --> |POR_CONFIGURACION| a2["indice = CLM[2].index(min(filter(lambda lote: lote.config==CxM[2][i_qa], CLM[2]), key=lambda lote: lote.ts))"]
+if --> |PRIORIDADES| a3["indice = CLM[2].index(min(filter(lambda lote: lote.config==CONFIG_PRIORITARIA, CLM[2]), key=lambda lote: lote.ts))"]
+if --> |FIFO| a1{indice = null}
+a1 --> |si| b["indice = CLM[2].index(min(CLM[2], key=lambda lote: lote.ts))"]
+a1 --> |no| g
+a2 --> a1
+a3 --> a1
+b --> g["CLM[2].pop(indice)"]
+g --> h((fin))

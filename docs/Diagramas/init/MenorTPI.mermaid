@@ -1,7 +1,10 @@
 flowchart TD
-    aa{{MenorTPI}} --> if0{"TPI < TPE && TPI < TPQA && TPI < TPEM && TPI < TPD && TPI < TPMA && TPI < TPRE"}
-    if0 --> |si| a[bool = true]
-    if0 --> |no| a1[bool = false]
+    aa{{EsLlegadaMenor}} --> bb[j = 0] --> tpi[TPI = HV] --> iff{"j < CM[0]"}
+    iff --> |si| if1{"TPI >= TPI[j]"} 
+    if1 --> |si| a1["TPI = TPI[j]"] --> a2[i_imp = j] --> cc[j ++] --> iff
+    if1 --> |no| cc
+    iff --> |no| a4((fin))
 
-%% TODOS los menor EsMenorTPx es lo mismo  
 
+
+    
