@@ -1,4 +1,4 @@
 flowchart TD
     direction TD
-    a["T = TPRep[i]"] --> b["SD[i]=+ SAR[i]"] %% Stock a reponer
+    a["T = TPRep[i]"] --> b["SD[i] += SAR[i]"] --> c{{TR}} --> d["TPRep[i] = T + TR"]
     

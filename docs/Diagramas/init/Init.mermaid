@@ -1,8 +1,7 @@
-flowchart TD
-    subgraph Init
+flowchart TD    
     direction TD
-    CI[[CI]]
-    CI[[CI]] --> Impresion{{Menor TPI}} --> Encuadernacion{{Menor TPE}} --> QA{{Menor TPQA}} --> Embalaje{{Menor TPEM}} --> Desperfecto{{Menor TPD}} --> Mantenimiento{{Menor TPM}} --> Repo{{Menor TPRE}}
+    subgraph Init
+    CI[[CI]] --> Impresion{{Menor TPI}} --> Encuadernacion{{Menor TPE}} --> QA{{Menor TPQA}} --> Embalaje{{Menor TPEm}} --> Desperfecto{{Menor TPD}} --> Mantenimiento{{Menor TPM}} --> Repo{{Menor TPRE}}
     end
     
     subgraph Eleccion de Evento 

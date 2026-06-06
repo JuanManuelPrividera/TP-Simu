@@ -1,5 +1,5 @@
 flowchart TD
-    aa{{EsLlegadaMenor}} --> bb[j = 0] --> tpi[TPI = HV] --> iff{"j < CM[0]"}
+    aa{{MenorTPI}} --> bb[j = 0] --> tpi[TPI = HV] --> iff{"j < CM[0]"}
     iff --> |si| if1{"TPI >= TPI[j]"} 
     if1 --> |si| a1["TPI = TPI[j]"] --> a2[i_imp = j] --> cc[j ++] --> iff
     if1 --> |no| cc

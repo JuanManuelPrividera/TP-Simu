@@ -1,0 +1,14 @@
+flowchart TD
+    direction TD
+    a[T = TPLL] --> b{{IA}} --> c[TPLL = T + IA] --> d0{{TipoConfig}} --> d{{CantLotes}}
+    d --> bb[j = 0]
+    bb --> iff{"j < CantLotes"}
+    iff --> |si| cc[j ++] --> lote["lote = new Lote(config = TipoConfig)"] --> z1{{Encontrar mejor impresora}} --> f{"i_imp != null"}
+    iff --> |no| fin((FIN))
+    f --> |si| z2["CxM[0][i_imp].lote = lote; ; CxM[0][i_imp].config = lote.config"] --> g{{DI}} --> s0["SD[0] -= 1"] --> i["TPI[i_imp] = T + DI + TConf"] --> j[" "]
+    f --> |no| z9["lote.ts = T"] --> h["CLM[0].push(lote)"]
+    
+    h --> j --> if3
+    if3{"SD[0] <= SPR[0]"} --> |si| r{{"Reposicion(0)"}} --> iff
+    if3 --> |no| iff
+    

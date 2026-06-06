@@ -1,15 +1,16 @@
 flowchart TD
 a0{{SacarDeLaColaDeEncuadernacion}} --> if{ALG}
-if --> |POR_CONFIGURACION| a2["indice = CLM[1].index(min(filter(lambda lote: lote.config==CxM[1][i_enc], CLM[1]), key=lambda lote: lote.ts))"]
-if --> |PRIORIDADES| a3["indice = CLM[1].index(min(filter(lambda lote: lote.config==CONFIG_PRIORITARIA, CLM[1]), key=lambda lote: lote.ts))"]
-if --> |FIFO| a1{indice = null}
-a1 --> |si| b["indice = CLM[1].index(min(CLM[1], key=lambda lote: lote.ts))"]
-a1 --> |no| g
-a2 --> a1
-a3 --> a1
-b --> g{"CxM[1][i_enc] == CLM[1][indice].conf"}
+if --> |POR_CONFIGURACION| a2["indice = index_or_null(min(filter(lambda lote: lote.conf == CxM[1][i_enc].lote.conf, CLM[1]), key=lambda lote: lote.ts))"]
+if --> |PRIORIDADES| a3["indice = index_or_null(min(filter(lambda lote: lote.conf == CONFIG_PRIORITARIA, CLM[1]), key=lambda lote: lote.ts))"]
+if --> |FIFO| a1["indice = null"]
+a2 --> a4
+a3 --> a4
+a1 --> a4{"indice == null"}
+a4 --> |si| b["indice = CLM[1].index(min(CLM[1], key=lambda lote: lote.ts))"]
+a4 --> |no| g
+b --> g{"CxM[1][i_enc].conf == CLM[1][indice].conf"}
 g --> |si| g1[TConf = 0]
 g --> |no| g2{{TConf}}
-g1 --> g4
-g2 --> g3["CxM[1][i_enc] = CLM[1][indice].conf"] --> g4
-g4["CLM[1].pop(indice)"] --> g5((fin))
+g1 --> g3["CxM[1][i_enc].lote = CLM[1][indice]"]
+g2 --> g3
+g3 --> g4["CLM[1].pop(indice)"] --> g5((fin))

@@ -1,14 +1,14 @@
 flowchart TD
-a0{{EncontrarMejorEncuadernadora}} --> if{ALG}
-if --> |POR_CONFIGURACION| a2["indice = CLM[1].index(min(filter(lambda lote: lote.config==CxM[1][i_enc].lote.conf, CLM[1]), key=lambda lote: lote.ts))"]
-if --> |PRIORIDADES| a3["indice = CLM[1].index(min(filter(lambda lote: lote.config==CONFIG_PRIORITARIA, CLM[1]), key=lambda lote: lote.ts))"]
-if --> |FIFO| a1{indice == null}
-a1 --> |si| b["indice = CLM[1].index(min(CLM[1], key=lambda lote: lote.ts))"]
-a1 --> |no| g
-a2 --> a1
-a3 --> a1
-b --> g{"CxM[1][i_enc].lote.conf == CLM[1][indice].conf"}
-g --> |si| g1[TConf = 0]
-g --> |no| g2{{TConf}}
-g2 --> g3["CxM[1][i_enc].lote.conf = CLM[1][indice].conf"] --> g4 
-g1 --> g4((fin)) 
+a0{{EncontrarMejorEncuadernadora}} --> a1["i_enc = 0"]
+a1 --> a2["candidata = null"]
+a2 --> a3{"i_enc < CM[1]"}
+a3 --> |si| a4{"TPE[i_enc] == HV && SD[1] > 0"}
+a4 --> |si| a5{"CxM[1][i_enc].conf == lote.conf"}
+a5 --> |si| b1[TConf = 0] --> fin((fin))
+a5 --> |no| c{"candidata == null"}
+c --> |si| d["candidata = i_enc"] --> e["i_enc++"] --> a3
+c --> |no| e
+a4 --> |no| e
+a3 --> |no| f{"candidata != null"}
+f --> |si| g["i_enc = candidata"] --> h{{TConf}} --> fin
+f --> |no| k["i_enc = null"] --> fin

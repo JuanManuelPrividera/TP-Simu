@@ -1,16 +1,16 @@
 flowchart TD
 a0{{SacarDeLaColaDeImpresion}} --> if{ALG}
-if --> |POR_CONFIGURACION| a2["indice = CLM[0].index(min(filter(lambda lote: lote.config==CxM[0][i_imp], CLM[0]), key=lambda lote: lote.ts))"]
-if --> |PRIORIDADES| a3["indice = CLM[0].index(min(filter(lambda lote: lote.config==CONFIG_PRIORITARIA, CLM[0]), key=lambda lote: lote.ts))"]
-if --> |FIFO| a1{indice = null}
-a1 --> |si| b["indice = CLM[0].index(min(CLM[0], key=lambda lote: lote.ts))"]
-a1 --> |no| g
-a2 --> a1
-a3 --> a1
-b --> g{"CxM[0][i_imp] == CLM[0][indice].conf"}
+if --> |POR_CONFIGURACION| a2["indice = index_or_null(min(filter(lambda lote: lote.conf == CxM[0][i_imp].lote.conf, CLM[0]), key=lambda lote: lote.ts))"]
+if --> |PRIORIDADES| a3["indice = index_or_null(min(filter(lambda lote: lote.conf == CONFIG_PRIORITARIA, CLM[0]), key=lambda lote: lote.ts))"]
+if --> |FIFO| a1["indice = null"]
+a2 --> a4
+a3 --> a4
+a1 --> a4{"indice == null"}
+a4 --> |si| b["indice = CLM[0].index(min(CLM[0], key=lambda lote: lote.ts))"]
+a4 --> |no| g
+b --> g{"CxM[0][i_imp].conf == CLM[0][indice].conf"}
 g --> |si| g1[TConf = 0]
 g --> |no| g2{{TConf}}
-g1 --> g3
-g2 --> g3["CxM[0][i_imp].lote = CLM[0][indice].lote"]
+g1 --> g3["CxM[0][i_imp].lote = CLM[0][indice]"]
+g2 --> g3
 g3 --> g5["CLM[0].pop(indice)"] --> g4((fin))
-
