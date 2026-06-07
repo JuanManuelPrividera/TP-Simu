@@ -2,8 +2,14 @@ flowchart TD
     direction TD
     
     %% tpi ya es el menor tpi[]
-    a[T = TPM] --> b{{TMP}} %% Tiempo mantenimiento programado 
-    b --> d{IM}
-    d --> c["TPM[i][j] = T + IM"]
-    c --> e["TP[i][j] = TP[i][j] + TMP"] %% TP[0] = TPI, TP[1] = TPE,...
-    e --> j[" "]
+    a[T = TPM] --> b{{ID}} %% Tiempo mantenimiento programado 
+    b --> c["TPD[i_man][j_man] = T + ID"]
+    c --> d["TPM[i_man][j_man] = T + IM"]
+    d --> e{i_man}
+    e --> |0| f["TPI[j_man] += DM"]
+    e --> |1| f1["TPE[j_man] += DM"]
+    e --> |2| f2["TPEm[j_man] += DM"]
+    f --> g((fin))
+    f1 --> g
+    f2 --> g
+     
