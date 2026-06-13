@@ -11,7 +11,7 @@ flowchart TD
 
     subgraph Generar nueva encuadernacion
     ll --> if{"CLM[1].size() > 0 && SD[1] > 0"}
-    if --> |si| e{{"Sacar de la cola de encuadernacion"}} --> s{{DE}} --> s1["SD[1] -= 1"] --> b["TPE[i_enc] = T + DE + TConf"] --> l[" "]
+    if --> |si| e{{"Sacar de la cola de encuadernacion"}} --> s{{DE}} --> s1["sd[1] -= 1;  $TRep += $MP[1];  $TRep += $MP[1]"] --> b["TPE[i_enc] = T + DE + TConf"] --> l[" "]
     if --> |no| zz["TPE[i_enc] = HV"] --> l
     end
 

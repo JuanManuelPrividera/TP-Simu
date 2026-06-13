@@ -9,7 +9,8 @@ flowchart TD
     e --> |0| f["TPI[j_man] += DM"]
     e --> |1| f1["TPE[j_man] += DM"]
     e --> |2| f2["TPEm[j_man] += DM"]
-    f --> g((fin))
+    f --> g["$TM += $M[i_man]"]
     f1 --> g
     f2 --> g
+    g --> p((fin))
      

@@ -7,13 +7,13 @@ flowchart TD
     lote --> bb{{AQA}}
     bb --> bb1{"PQA < AQA"}
     bb1 --> |si| e1{{Encontrar mejor impresora}} --> f1{"i_imp != null"}
-    f1 --> |si| aimp["CxM[0][i_imp].lote = lote; CxM[0][i_imp].config = lote.config"] --> g1{{DI}} --> s0["SD[0] -= 1"] --> i["TPI[i_imp] = T + DI + TConf"] --> z[" "]
+    f1 --> |si| aimp["CxM[0][i_imp].lote = lote; CxM[0][i_imp].config = lote.config"] --> g1{{DI}} --> s0["SD[0] -= 1; $TRep += $MP[0]"] --> i["TPI[i_imp] = T + DI + TConf"] --> z[" "]
     f1 --> |no| z9["lote.ts = T"] --> h1["CLM[0].push(lote)"] --> z
     end
 
     subgraph Generar embalaje
     bb1 --> |no| g{{Encontrar mejor embaladora}} --> if2{"i_emb != null"}
-    if2 --> |si| aemb["CxM[3][i_emb].lote = lote; CxM[0][i_emb].config = lote.config"] --> aaa{{DEm}} --> s2["SD[2] -= 1"] --> h["TPEm[i_emb] = T + DEm + TConf"] --> z
+    if2 --> |si| aemb["CxM[3][i_emb].lote = lote; CxM[0][i_emb].config = lote.config"] --> aaa{{DEm}} --> s2["sd[2] -= 1;  $TRep += $MP[2]"] --> h["TPEm[i_emb] = T + DEm + TConf"] --> z
     if2 --> |no| z99["lote.ts = T"] --> aa["CLM[3].push(lote)"]  --> z
     end
 
