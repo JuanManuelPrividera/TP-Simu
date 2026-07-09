@@ -1,42 +1,35 @@
-
-
-| Título del trabajo | Editorial Matriz Pingüino  |
+| Titulo del trabajo | Editorial Matriz Pinguino |
 | :---: | :---: |
 
-| Descripción de la simulación a realizar |
+| Descripcion de la simulacion a realizar |
 | ----- |
-|  Una empresa editorial industrial se dedica a la producción de libros físicos. La planta funciona como un sistema multietapa donde cada pedido, que se divide en varios lotes, debe recorrer, en orden, las siguientes etapas: impresión, encuadernación, control de calidad (QA), embalaje y despacho. Cada lote puede recorrer un camino diferente, es decir, es independiente de los demás lotes del libro (Política de Secuenciación). La producción se realiza en múltiples líneas con máquinas especializadas, cada una con capacidad limitada y tiempos de preparación (setup). Adicionalmente, el equipamiento puede sufrir fallas aleatorias, cuenta con mantenimiento preventivo planificado y mantenimiento correctivo no planificado. El comportamiento del sistema se ve influenciado por la variabilidad en la llegada de pedidos, restricciones energéticas por franjas horarias, disponibilidad de insumos, reprocesos originados por defectos detectados en QA y limitaciones de capacidad de almacenamiento de lotes terminados, una vez alcanzado dicho limite, se despachan todos los lotes terminados. En este contexto, la empresa presenta dificultades para cumplir consistentemente con los plazos de entrega, sobre todo en picos de demanda o ante fallas críticas, observándose cuellos de botella dinámicos que se desplazan entre etapas, esperas elevadas por setups frecuentes y secuenciación ineficiente, reprocesos relevantes por detección tardía de defectos, acumulación de trabajos en curso por paradas no planificadas y consumo energético ineficiente con picos en horarios de tarifa alta. Las decisiones operativas actuales se toman mayormente por intuición, sin herramientas cuantitativas para comparar alternativas. Dada la complejidad e interacción entre componentes, se propone desarrollar un modelo de simulación de eventos discretos que represente la operación de la planta editorial y permita analizar su desempeño bajo diferentes políticas de gestión. El objetivo del estudio es evaluar el impacto del criterio de secuenciación de lotes a través de las etapas del proceso productivo, mantenimiento (preventivo vs. correctivo), control de calidad y uso de energía por franja horaria, con el fin de reducir el tiempo total de producción, identificar y cuantificar cuellos de botella y analizar el equilibrio entre costo operativo, nivel de servicio y utilización de recursos.  |
-| ¿Qué complejidad que extienda los casos vistos durante las clases tiene la simulación propuesta? |
-| La simulación propuesta extiende los casos vistos en clase porque deja de modelar un sistema simple (una cola o un stock aislado) y pasa a representar una operación industrial completa como una red **multietapa con múltiples recursos en paralelo**, colas intermedias, donde los tiempos no dependen solo del azar sino también del tipo de pedido y de los setups, y donde las decisiones de secuenciación y prioridades afectan fuertemente el desempeño. Además incorpora fenómenos típicamente no presentes en modelos básicos, como, por ejemplo, restricciones energéticas por franjas horarias, y reprocesos por defectos detectados en control de calidad, generando acumulación de WIP. |
+| Una empresa editorial industrial se dedica a la produccion de libros fisicos. La planta funciona como un sistema multietapa donde cada pedido, dividido en varios lotes, recorre las etapas de impresion, encuadernacion, control de calidad (QA), embalaje y despacho. Cada lote puede avanzar de forma independiente segun la politica de secuenciacion. La produccion utiliza multiples lineas con maquinas especializadas, capacidad limitada y tiempos de preparacion (setup). El equipamiento puede sufrir fallas aleatorias, mantenimiento preventivo planificado y mantenimiento correctivo no planificado. El comportamiento del sistema se ve influenciado por la variabilidad en la llegada de pedidos, restricciones energeticas por franjas horarias, reprocesos originados por defectos detectados en QA y limitaciones de capacidad de almacenamiento de lotes terminados; una vez alcanzado ese limite, se despachan los lotes acumulados. En este contexto, la empresa presenta dificultades para cumplir consistentemente con los plazos de entrega, sobre todo en picos de demanda o ante fallas criticas, con cuellos de botella dinamicos, esperas por setups frecuentes, secuenciacion ineficiente, reprocesos, acumulacion de trabajos en curso por paradas no planificadas y consumo energetico ineficiente con picos en horarios de tarifa alta. Se propone desarrollar un modelo de simulacion de eventos discretos que represente la operacion de la planta editorial y permita analizar su desempeno bajo diferentes politicas de gestion. El objetivo del estudio es evaluar el impacto del criterio de secuenciacion de lotes, mantenimiento, control de calidad y uso de energia por franja horaria, con el fin de reducir el tiempo total de produccion, identificar cuellos de botella y analizar el equilibrio entre costo operativo, nivel de servicio y utilizacion de recursos. |
+| Que complejidad que extienda los casos vistos durante las clases tiene la simulacion propuesta? |
+| La simulacion propuesta extiende los casos vistos en clase porque deja de modelar un sistema simple de una unica cola y pasa a representar una operacion industrial completa como una red multietapa con multiples recursos en paralelo, colas intermedias, tiempos dependientes del tipo de pedido y de los setups, y decisiones de secuenciacion y prioridades que afectan el desempeno. Ademas incorpora restricciones energeticas por franjas horarias, mantenimiento preventivo y correctivo, reprocesos por defectos detectados en control de calidad y acumulacion de WIP. |
 
-| Análisis previo (opcional) |  |
+| Analisis previo (opcional) | |
 | :---: | ----- |
-| Metodología | Evento a Evento |
-| Clasificación de variables |  |
-| Datos | IA (Intervalo arrivo), PCP (Prob Cant Páginas), CUL (Cant, Unidades de Libros a Imprimir), PD (Prob Defectos), TEF\[5\] (Tiempo entre fallas de cada máquina), TDR\[5\] (Tiempo de Reparación de cada máquina), TMM\[5\] (Tiempo de mantenimiento por máquina), CEM\[5\] (Consumo Energético de cada tipo de Máquina), TC\[5\] (Tiempo de configuración por maquina), DR\[3\] (Tiempo de reposición), DI (Duración Impresión), DE (Duración Encuadernación), DQA (Duración QA), DEm (Duración Embalaje), SAR\[3\](Stock a Reponer de cada máquina), AQA(Resultado del analisis de QA) |
-| Control | PS\[3\] (Política de secuenciación \= \[FIFO, Prioridad, Tipo libro\]), FMP (Frecuencia Mantenimiento Preventivo), PQA (Política QA), CLPL (Cantidad de Libros por Lote), CM\[5\] (Cantidad de Maquinas), LRD (Lotes Requeridos para Despachar), SPR\[5\] (Stock mín para reposición), InicioBarato (inicio horario de energía cara), FinBarato, InicioMedio, FinMedio, InicioCaro, FinCaro, TAB (T adicional barato), TAM (T adicional medio), TAC (t adicional caro) |
-| Resultado | TPPT (Tiempo Promedio de Producción Total), TPPL (Tiempo Promedio de Producción por Lote), CxTP (Costo por Tiempo de Producción), TSP\[5\] (Promedio Tiempo Sin Producción \= TPR (tiempo prom de reparacion \+ TO (tiempo ocioso) \+ TP (Tiempo Preparación)), TPE\[5\] (Tiempo de espera promedio en cola por tipo de máquina), PR (Prom Reproceso)  |
-| Estado | CLM\[5\] (Cola de Lotes por Tipo de Máquina), CxM\[5\]\[CM\] (Configuración de cada Maquina), SD\[5\] (Stock disponible de cada materia prima), CLTA (Cant Lotes Terminados Almacenados) |
+| Metodologia | Evento a Evento |
+| Clasificacion de variables | |
+| Datos | IA (Intervalo arrivo), PCP (Prob Cant Paginas), CUL (Cant. Unidades de Libros a Imprimir), PD (Prob Defectos), TEF[5] (Tiempo entre fallas de cada maquina), TDR[5] (Tiempo de Reparacion de cada maquina), TMM[5] (Tiempo de mantenimiento por maquina), CEM[5] (Consumo Energetico de cada tipo de Maquina), TC[5] (Tiempo de configuracion por maquina), DI (Duracion Impresion), DE (Duracion Encuadernacion), DQA (Duracion QA), DEm (Duracion Embalaje), AQA (Resultado del analisis de QA) |
+| Control | PS[3] (Politica de secuenciacion = [FIFO, Prioridad, Tipo libro]), FMP (Frecuencia Mantenimiento Preventivo), PQA (Politica QA), CLPL (Cantidad de Libros por Lote), CM[5] (Cantidad de Maquinas), LRD (Lotes Requeridos para Despachar), InicioBarato, FinBarato, InicioMedio, FinMedio, InicioCaro, FinCaro, TAB (T adicional barato), TAM (T adicional medio), TAC (T adicional caro) |
+| Resultado | TPPT (Tiempo Promedio de Produccion Total), TPPL (Tiempo Promedio de Produccion por Lote), CxTP (Costo por Tiempo de Produccion), TSP[5] (Promedio Tiempo Sin Produccion = TPR + TO + TP), TPE[5] (Tiempo de espera promedio en cola por tipo de maquina), PR (Prom Reproceso) |
+| Estado | CLM[5] (Cola de Lotes por Tipo de Maquina), CxM[5][CM] (Configuracion de cada Maquina), CLTA (Cant Lotes Terminados Almacenados) |
 
-| TEF | TPLL, TPI\[CM\[0\]\], TPE\[CM\[1\]\],TPQA\[CM\[2\]\], TPEm\[CM\[3\]\], TPD\[3\]\[CM\[i\]\],   TPM\[j\]CM\[i\], TPRep\[4\] |
+| TEF | TPLL, TPI[CM[0]], TPE[CM[1]], TPQA[CM[2]], TPEm[CM[3]], TPD[3][CM[i]], TPM[j]CM[i] |
 | :---: | :---: |
 
-| TEI o Clasificación de eventos (según corresponda) |  |  |  |
+| TEI o Clasificacion de eventos (segun corresponda) | | | |
 | :---: | :---: | :---: | :---: |
-| Evento | EFNC | EFC | Condición |
-| Llega Libro | Llega Libro | Impresión\[CM\[i\]\] | TPI\[CM\[i\]\] \= HV. ^ SD\[0\] \> 0 |
-| Impresión\[i\] | \- | Impresión\[i\] | CLM\[0\] \> 0 ^ SD\[0\] \> 0  |
-|  |  | Encuadernación\[j\] | TPE\[j\] \= HV ^ SD\[1\] \> 0  |
-|  |  | Reposición\[0\] | SD\[0\] \= SPR\[0\] |
-| Encuadernado\[i\] | \- | Encuadernado\[i\] | CLM\[1\] \> 0 ^ SD\[1\] \> 0  |
-|  |  | QA\[i\] | TPQA\[i\] \= HV |
-|  |  | Reposición\[1\] | SD\[1\] \<= SPR\[1\] |
-| QA\[i\] | \- | QA\[i\] | CLM\[3\] \> 0 |
-|  |  | Embalaje\[j\] | TPEM\[j\] \= HV ^ SD\[3\] \> 0 |
-|  |  | Impresión\[j\] | TPI\[j\] \= HV ^  \>= PQA |
-| Embalaje\[i\] | \- | Embalaje\[i\] | CLM\[3\] \> 0 ^ SD\[4\] \> 0 |
-|  |  | Despacho | CLTA \>= CPTD |
-|  |  | Reposición\[2\] | SD\[4\] \= SPR\[4\] |
-| Mantenimiento\[i\]\[CM\[j\]\] | Mantenimiento\[i\]\[CM\[j\]\] | \- | \- |
-| Reposición\[n\] | \- | \- | \- |
-
+| Evento | EFNC | EFC | Condicion |
+| Llega Libro | Llega Libro | Impresion[CM[i]] | TPI[CM[i]] = HV |
+| Impresion[i] | - | Impresion[i] | CLM[0] > 0 |
+| | | Encuadernacion[j] | TPE[j] = HV |
+| Encuadernado[i] | - | Encuadernado[i] | CLM[1] > 0 |
+| | | QA[i] | TPQA[i] = HV |
+| QA[i] | - | QA[i] | CLM[2] > 0 |
+| | | Embalaje[j] | TPEm[j] = HV |
+| | | Impresion[j] | TPI[j] = HV y AQA >= PQA |
+| Embalaje[i] | - | Embalaje[i] | CLM[3] > 0 |
+| | | Despacho | CLTA >= LRD |
+| Mantenimiento[i][CM[j]] | Mantenimiento[i][CM[j]] | - | - |

@@ -2,7 +2,7 @@ flowchart TD
 a0{{EncontrarMejorImpresora}} --> a1["i_imp = 0"]
 a1 --> a2["candidata = null"]
 a2 --> a3{"i_imp < CM[0]"}
-a3 --> |si| a4{"TPI[i_imp] == HV && SD[0] > 0"}
+a3 --> |si| a4{"TPI[i_imp] == HV"}
 a4 --> |si| a5{"CxM[0][i_imp].conf == lote.conf"}
 a5 --> |si| b1[TConf = 0] --> fin((fin))
 a5 --> |no| c{"candidata == null"}

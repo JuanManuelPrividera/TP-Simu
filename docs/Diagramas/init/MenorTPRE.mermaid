@@ -1,6 +1,0 @@
-flowchart TD
-    aa{{MenorTPRE}} --> ii[i = 0] --> tpre[TPRE = HV] --> iff{"i < 3"}
-    iff --> |si| if1{"TPRE >= TPRep[i]"} 
-    if1 --> |si| a1["TPRE = TPRep[i]"] --> a2[i_repo = i] --> cc[i ++] --> iff
-    if1 --> |no| cc
-    iff --> |no| a4((fin))

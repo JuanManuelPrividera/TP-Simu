@@ -2,7 +2,7 @@ flowchart TD
 a0{{EncontrarMejorEmbaladora}} --> a1["i_emb = 0"]
 a1 --> a2["candidata = null"]
 a2 --> a3{"i_emb < CM[3]"}
-a3 --> |si| a4{"TPEm[i_emb] == HV && SD[2] > 0"}
+a3 --> |si| a4{"TPEm[i_emb] == HV"}
 a4 --> |si| a5{"CxM[3][i_emb].conf == lote.conf"}
 a5 --> |si| b1[TConf = 0] --> fin((fin))
 a5 --> |no| c{"candidata == null"}

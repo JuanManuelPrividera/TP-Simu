@@ -1,7 +1,7 @@
 flowchart TD    
     direction TD
     subgraph Init
-    CI[[CI]] --> Impresion{{Menor TPI}} --> Encuadernacion{{Menor TPE}} --> QA{{Menor TPQA}} --> Embalaje{{Menor TPEm}} --> Desperfecto{{Menor TPD}} --> Mantenimiento{{Menor TPM}} --> Repo{{Menor TPRE}}
+    CI[[CI]] --> Impresion{{Menor TPI}} --> Encuadernacion{{Menor TPE}} --> QA{{Menor TPQA}} --> Embalaje{{Menor TPEm}} --> Desperfecto{{Menor TPD}} --> Mantenimiento{{Menor TPM}}
     end
     
     subgraph Eleccion de Evento 
@@ -27,7 +27,5 @@ flowchart TD
     if7 --> |no| EsMantenimientoMenor{{EsMantenimientoMenor}}
     EsMantenimientoMenor --> if8{bool = true}
     if8 --> |si| Mantenimiento2{{"Mantenimiento[i_man][j_man]"}}
-    if8 --> |no| EsRepoMenor{{EsRepoMenor}}
-    EsRepoMenor --> if9{bool = true}
-    if9 --> |si| Repo2{{"ActualizarStock[i_rep]"}}
+    if8 --> |no| fin((fin))
     end

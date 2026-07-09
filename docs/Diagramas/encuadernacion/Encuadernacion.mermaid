@@ -11,14 +11,10 @@ flowchart TD
     end
 
     subgraph Generar nueva encuadernacion
-    ll --> if{"CLM[1].size() > 0 && SD[1] > 0"}
-    if --> |si| e{{"Sacar de la cola de encuadernacion"}} --> s{{DE}} --> s1["sd[1] -= 1;  $TRep += $MP[1];  $TRep += $MP[1]"] --> i1{"TPE[i_enc] = HV"} --> |si| i2["FTO[1] += T"] --> b
+    ll --> if{"CLM[1].size() > 0"}
+    if --> |si| e{{"Sacar de la cola de encuadernacion"}} --> s{{DE}} --> i1{"TPE[i_enc] = HV"} --> |si| i2["FTO[1] += T"] --> b
     i1 --> |no| b["TPE[i_enc] = T + DE + TConf"] --> l[" "]
     if --> |no| zz["TPE[i_enc] = HV; ITO[1] += T"] --> l
     end
 
-    subgraph Reponer stock
-    l --> if3{"SD[1] <= SPR[1]"}
-    if3 --> |si| r{{"Reposicion(1)"}} --> fin((fin))
-    if3 --> |no| fin
-    end
+    l --> fin((fin))
