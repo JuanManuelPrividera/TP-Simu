@@ -3,8 +3,9 @@ flowchart TD
 
     a[T = TPEm] -->a1["TTFP += T"] -->if{"CLM[3].size() > 0 && SD[2] > 0"}
     subgraph Generar nuevo embalaje
-    if --> |si| e{{"Sacar de la cola de embalaje"}} --> s{{DEm}} --> s2["sd[2] -= 1;  $TRep += $MP[2]"] --> b["TPEm[i_emb] = T + DEm + TConf"] --> l
-    if --> |no| zz["TPEm[i_emb] = HV"] --> l[" "]
+    if --> |si| e{{"Sacar de la cola de embalaje"}} --> s{{DEm}} --> s2["sd[2] -= 1;  $TRep += $MP[2]"] --> i1{"TPEm[i_emb] = HV"} --> |si| i2["FTO[3] += T"] --> b
+    i1 --> |no| b["TPEm[i_emb] = T + DEm + TConf"] --> l
+    if --> |no| zz["TPEm[i_emb] = HV; ITO[4] += T"] --> l[" "]
     end
     subgraph Reponer stock
     l --> if3{"SD[2] <= SPR[2]"}

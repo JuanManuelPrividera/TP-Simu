@@ -3,7 +3,7 @@ flowchart TD
     
     %% tpi ya es el menor tpi[]
     a[T = TPD] --> b{{ID}} %% Tiempo mantenimiento programado 
-    b --> c["TPD[i_des][j_des] = T + ID"]
+    b --> c["TPD[i_des][j_des] = T + ID; TR[i_des] += DD"]
     c --> d["TPM[i_des][j_des] = T + IM"]
     d --> e{i_des}
     e --> |0| f["TPI[j_des] += DD"]

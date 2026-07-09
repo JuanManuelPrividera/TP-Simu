@@ -1,0 +1,17 @@
+flowchart TD
+    direction TD
+    
+    %% tpi ya es el menor tpi[]
+    a[T = TPM] --> a11["CantMan ++] --> b{{ID}} %% Tiempo mantenimiento programado 
+    b --> c["TPM[i_man][j_man] = T + IM"] --> c1{"TPD[i_man][j_man] >= TPM[i_man][j_man]"} --> |no| lal[DesEv ++] --> d
+    c1 --> |si| d
+    d["TPD[i_man][j_man] = T + ID TR[i_man] += DM"]
+    d --> e{i_man}
+    e --> |0| f["TPI[j_man] += DM"]
+    e --> |1| f1["TPE[j_man] += DM"]
+    e --> |2| f2["TPEm[j_man] += DM"]
+    f --> g["$TM += $M[i_man]; SAM"]
+    f1 --> g
+    f2 --> g
+    g --> p((fin))
+     
