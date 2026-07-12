@@ -11,10 +11,10 @@
 | :---: | ----- |
 | Metodologia | Evento a Evento |
 | Clasificacion de variables | |
-| Datos | IA (Intervalo arrivo), PCP (Prob Cant Paginas), CUL (Cant. Unidades de Libros a Imprimir), PD (Prob Defectos), TEF[5] (Tiempo entre fallas de cada maquina), TDR[5] (Tiempo de Reparacion de cada maquina), TMM[5] (Tiempo de mantenimiento por maquina), CEM[5] (Consumo Energetico de cada tipo de Maquina), TC[5] (Tiempo de configuracion por maquina), DI (Duracion Impresion), DE (Duracion Encuadernacion), DQA (Duracion QA), DEm (Duracion Embalaje), AQA (Resultado del analisis de QA) |
-| Control | PS[3] (Politica de secuenciacion = [FIFO, Prioridad, Tipo libro]), FMP (Frecuencia Mantenimiento Preventivo), PQA (Politica QA), CLPL (Cantidad de Libros por Lote), CM[5] (Cantidad de Maquinas), LRD (Lotes Requeridos para Despachar), InicioBarato, FinBarato, InicioMedio, FinMedio, InicioCaro, FinCaro, TAB (T adicional barato), TAM (T adicional medio), TAC (T adicional caro) |
-| Resultado | TPPT (Tiempo Promedio de Produccion Total), TPPL (Tiempo Promedio de Produccion por Lote), CxTP (Costo por Tiempo de Produccion), TSP[5] (Promedio Tiempo Sin Produccion = TPR + TO + TP), TPE[5] (Tiempo de espera promedio en cola por tipo de maquina), PR (Prom Reproceso) |
-| Estado | CLM[5] (Cola de Lotes por Tipo de Maquina), CxM[5][CM] (Configuracion de cada Maquina), CLTA (Cant Lotes Terminados Almacenados) |
+| Datos | IA (Intervalo arrivo), PCP (Prob Cant Paginas), CUL (Cant. Unidades de Libros a Imprimir), PD (Prob Defectos), TEF[4] (Tiempo entre fallas de cada etapa productiva), TDR[4] (Tiempo de Reparacion de cada etapa productiva), TMM[3] (Tiempo de mantenimiento para impresion, encuadernacion y embalaje), CEM[4] (Consumo Energetico de cada etapa productiva), TC[4] (Tiempo de configuracion por etapa productiva), DI (Duracion Impresion), DE (Duracion Encuadernacion), DQA (Duracion QA), DEm (Duracion Embalaje), AQA (Resultado del analisis de QA) |
+| Control | PS[3] (Politica de secuenciacion = [FIFO, Prioridad, Tipo libro]), FMP (Frecuencia Mantenimiento Preventivo), PQA (Politica QA), CLPL (Cantidad de Libros por Lote), CM[4] (Cantidad de Maquinas productivas), LRD (Lotes Requeridos para Despachar), InicioBarato, FinBarato, InicioMedio, FinMedio, InicioCaro, FinCaro, TAB (T adicional barato), TAM (T adicional medio), TAC (T adicional caro) |
+| Resultado | CostoPromPedido (Costo promedio de mantenimiento por pedido), CostoPromLote (Costo promedio de mantenimiento por lote), TPPL (Tiempo Promedio de Produccion por Lote), TPPP (Tiempo Promedio de Produccion por Pedido), TiempoParadoEtapa[4] (Tiempo total de maquinas paradas por etapa productiva), DesperfectosEvitadosPorMantenimiento, TiempoCaroEvitado[4], TiempoCaroEvitadoTotal, PR (Prom Reproceso) |
+| Estado | CLM[4] (Cola de Lotes por etapa productiva), CxM[4][CM] (Configuracion de cada Maquina), CLTA (Cant Lotes Terminados Almacenados), Pedidos (estado de pedidos en curso), InicioOcio[4][CM] (inicio de ociosidad abierta por maquina) |
 
 | TEF | TPLL, TPI[CM[0]], TPE[CM[1]], TPQA[CM[2]], TPEm[CM[3]], TPD[3][CM[i]], TPM[j]CM[i] |
 | :---: | :---: |
@@ -33,3 +33,18 @@
 | Embalaje[i] | - | Embalaje[i] | CLM[3] > 0 |
 | | | Despacho | CLTA >= LRD |
 | Mantenimiento[i][CM[j]] | Mantenimiento[i][CM[j]] | - | - |
+
+| Mapeo de indices | |
+| :---: | ----- |
+| Etapas productivas | 0 = impresion, 1 = encuadernacion, 2 = QA, 3 = embalaje |
+| Mantenimiento/desperfectos | 0 = impresion, 1 = encuadernacion, 2 = embalaje. QA queda excluido del mantenimiento/desperfectos en los diagramas actuales. |
+
+| Variables resultado y formulas | |
+| :---: | ----- |
+| CostoPromPedido | Si CTP > 0 entonces $TM / CTP; si no, 0 |
+| CostoPromLote | Si CTL > 0 entonces $TM / CTL; si no, 0 |
+| TPPL | Si CTLFin > 0 entonces STPL / CTLFin; si no, 0. STPL acumula T - lote.t_inicio al finalizar embalaje. |
+| TPPP | Si CTPFin > 0 entonces STPP / CTPFin; si no, 0. STPP acumula T - Pedidos[pedido_id].t_inicio cuando finaliza el ultimo lote del pedido. |
+| TiempoParadoEtapa[4] | FTO[i] - ITO[i] mas el tiempo de ociosidad abierta hasta TFin para cada maquina con InicioOcio[i][j] != HV. |
+| DesperfectosEvitadosPorMantenimiento | Si CantMan > 0 entonces DesEv / CantMan; si no, 0 |
+| TiempoCaroEvitadoTotal | Sumatoria de TiempoCaroEvitado[0..3] |

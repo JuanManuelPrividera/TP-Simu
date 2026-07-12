@@ -1,10 +1,14 @@
 flowchart TD
     direction TD
 
-    a[T = TPEm] -->a1["TTFP += T"] -->if{"CLM[3].size() > 0"}
+    a[T = TPEm] --> lote["lote = CxM[3][i_emb].lote"]
+    lote --> metricas["TTFP += T; STPL += T - lote.t_inicio; CTLFin ++; Pedidos[lote.pedido_id].lotes_finalizados ++"]
+    metricas --> pedido_fin{"Pedidos[lote.pedido_id].lotes_finalizados == Pedidos[lote.pedido_id].cant_lotes"}
+    pedido_fin --> |si| acum_pedido["STPP += T - Pedidos[lote.pedido_id].t_inicio; CTPFin ++"] --> if{"CLM[3].size() > 0"}
+    pedido_fin --> |no| if
     subgraph Generar nuevo embalaje
-    if --> |si| e{{"Sacar de la cola de embalaje"}} --> s{{DEm}} --> i1{"TPEm[i_emb] = HV"} --> |si| i2["FTO[3] += T"] --> b
+    if --> |si| e{{"Sacar de la cola de embalaje"}} --> s{{DEm}} --> i1{"TPEm[i_emb] = HV"} --> |si| i2["FTO[3] += T; InicioOcio[3][i_emb] = HV"] --> b
     i1 --> |no| b["TPEm[i_emb] = T + DEm + TConf"] --> l
-    if --> |no| zz["TPEm[i_emb] = HV; ITO[4] += T"] --> l[" "]
+    if --> |no| zz["TPEm[i_emb] = HV; ITO[3] += T; InicioOcio[3][i_emb] = T"] --> l[" "]
     end
     l --> fin((fin))
