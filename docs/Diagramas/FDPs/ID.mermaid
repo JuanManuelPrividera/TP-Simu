@@ -1,0 +1,6 @@
+%% Fuente: estudio de mantenimiento de prensa de impresión Heidelberg SM 102 ZP:
+%% MTBF = 35.08 h = 2104.8 min. https://journal.lppmunindra.ac.id/index.php/STRING/article/view/3614
+%% FDP uniforme estrecha, finita, centrada en el MTBF publicado:
+%% E(ID)=2104.8 min y sd=60.5 min.
+flowchart TD
+    inicio{{ID}} --> r{{R ~ U(0,1)}} --> a["ID = 2000 + (2209.6 - 2000) x R min"] --> fin((Fin))

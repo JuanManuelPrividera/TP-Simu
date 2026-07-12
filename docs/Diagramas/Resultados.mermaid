@@ -12,9 +12,9 @@ flowchart TD
     h --> |no| h2
     g --> |no| i1["i ++"] --> d
     d --> |no| r1{"CTP > 0"}
-    r1 --> |si| r2["CostoPromPedido = $TM / CTP"] --> r4
+    r1 --> |si| r2["CostoPromPedido = ((CMPxL x CTL) + CTE + $TM) / CTP"] --> r4
     r1 --> |no| r3["CostoPromPedido = 0"] --> r4
-    r4{"CTL > 0"} --> |si| r5["CostoPromLote = $TM / CTL"] --> r7
+    r4{"CTL > 0"} --> |si| r5["CostoPromLote = CMPxL + ((CTE + $TM) / CTL)"] --> r7
     r4 --> |no| r6["CostoPromLote = 0"] --> r7
     r7{"CTLFin > 0"} --> |si| r8["TPPL = STPL / CTLFin"] --> r10
     r7 --> |no| r9["TPPL = 0"] --> r10
@@ -22,4 +22,4 @@ flowchart TD
     r10 --> |no| r12["TPPP = 0"] --> r13
     r13{"CantMan > 0"} --> |si| r14["DesperfectosEvitadosPorMantenimiento = DesEv / CantMan"] --> r16
     r13 --> |no| r15["DesperfectosEvitadosPorMantenimiento = 0"] --> r16
-    r16["TiempoCaroEvitadoTotal = sum(TiempoCaroEvitado)"] --> fin((fin))
+    r16["CostoAhorradoPorTCaroTotal = sum(CostoAhorradoPorTCaro)"] --> fin((fin))

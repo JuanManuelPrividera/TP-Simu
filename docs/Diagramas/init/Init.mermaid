@@ -23,9 +23,6 @@ flowchart TD
     if5 --> |si| Embalaje2{{Embalaje}}
     if5 --> |no| EsDesperfectoMenor{{EsDesperfectoMenor}}
     EsDesperfectoMenor --> if7{bool = true}
-    if7 --> |si| Desperfecto2{{"Desperfecto[i_des][j_des]"}}
-    if7 --> |no| EsMantenimientoMenor{{EsMantenimientoMenor}}
-    EsMantenimientoMenor --> if8{bool = true}
-    if8 --> |si| Mantenimiento2{{"Mantenimiento[i_man][j_man]"}}
-    if8 --> |no| fin((fin))
+    if7 --> |si| Desperfecto2{{"Desperfecto[i_des][j_des]"}} --> fin
+    if7 --> |no| Mantenimiento2{{"Mantenimiento[i_man][j_man]"}} --> fin((fin))
     end

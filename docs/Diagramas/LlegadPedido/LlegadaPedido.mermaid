@@ -5,9 +5,8 @@ flowchart TD
     bb --> iff{"j < CantLotes"}
     iff --> |si| cc[j ++] --> lote["lote = new Lote(config = TipoConfig, pedido_id = pedido_id_actual, t_inicio = T)"] --> z1{{Encontrar mejor impresora}} --> f{"i_imp != null"}
     iff --> |no| fin((FIN))
-    f --> |si| z2["CxM[0][i_imp].lote = lote; CxM[0][i_imp].config = lote.config"] --> g{{DI}} --> i1{"TPI[i_imp] = HV"} --> |si| i2["FTO[0] += T; InicioOcio[0][i_imp] = HV"] --> i
-    i1 --> |no| i["TPI[i_imp] = T + DI + TConf"]
-    --> j[" "]
+    f --> |si| z2["CxM[0][i_imp].lote = lote; CxM[0][i_imp].config = lote.config"] --> g{{DI}} --> i1{"TPI[i_imp] == HV"} --> |si| i2["FTO[0] += T; InicioOcio[0][i_imp] = HV"] --> i
+    i1 --> |no| i["TPI[i_imp] = T + DI + TConf"] --> j[" "]
     f --> |no| z9["lote.ts = T"] --> h["CLM[0].push(lote)"]
     
     h --> j --> iff

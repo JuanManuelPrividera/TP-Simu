@@ -7,7 +7,7 @@ flowchart TD
     pedido_fin --> |si| acum_pedido["STPP += T - Pedidos[lote.pedido_id].t_inicio; CTPFin ++"] --> if{"CLM[3].size() > 0"}
     pedido_fin --> |no| if
     subgraph Generar nuevo embalaje
-    if --> |si| e{{"Sacar de la cola de embalaje"}} --> s{{DEm}} --> i1{"TPEm[i_emb] = HV"} --> |si| i2["FTO[3] += T; InicioOcio[3][i_emb] = HV"] --> b
+    if --> |si| e{{"Sacar de la cola de embalaje"}} --> s{{DEm}} --> i1{"TPEm[i_emb] == HV"} --> |si| i2["FTO[3] += T; InicioOcio[3][i_emb] = HV"] --> b
     i1 --> |no| b["TPEm[i_emb] = T + DEm + TConf"] --> l
     if --> |no| zz["TPEm[i_emb] = HV; ITO[3] += T; InicioOcio[3][i_emb] = T"] --> l[" "]
     end

@@ -5,14 +5,14 @@ flowchart TD
 
     subgraph Generar QA
     lote --> g{{Encontrar mejor QA}} --> if2{puede_QAar}
-    if2 --> |si| aaa0["CxM[2][i_qa].lote = lote; CxM[2][i_qa].config = lote.config"] --> aaa{{DQA}} --> ii1{"TPQA[i_qa] = HV"} --> |si| ii2["FTO[2] += T; InicioOcio[2][i_qa] = HV"] --> hh
+    if2 --> |si| aaa0["CxM[2][i_qa].lote = lote; CxM[2][i_qa].config = lote.config"] --> aaa{{DQA}} --> ii1{"TPQA[i_qa] == HV"} --> |si| ii2["FTO[2] += T; InicioOcio[2][i_qa] = HV"] --> hh
     ii1 --> |no| hh["TPQA[i_qa] = T + DQA"] --> ll[" "]
     if2 --> |no| z9["lote.ts = T"] --> aa["CLM[2].push(lote)"] --> ll
     end
 
     subgraph Generar nueva encuadernacion
     ll --> if{"CLM[1].size() > 0"}
-    if --> |si| e{{"Sacar de la cola de encuadernacion"}} --> s{{DE}} --> i1{"TPE[i_enc] = HV"} --> |si| i2["FTO[1] += T; InicioOcio[1][i_enc] = HV"] --> b
+    if --> |si| e{{"Sacar de la cola de encuadernacion"}} --> s{{DE}} --> i1{"TPE[i_enc] == HV"} --> |si| i2["FTO[1] += T; InicioOcio[1][i_enc] = HV"] --> b
     i1 --> |no| b["TPE[i_enc] = T + DE + TConf"] --> l[" "]
     if --> |no| zz["TPE[i_enc] = HV; ITO[1] += T; InicioOcio[1][i_enc] = T"] --> l
     end

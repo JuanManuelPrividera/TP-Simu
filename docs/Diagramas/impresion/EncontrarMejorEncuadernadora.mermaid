@@ -3,12 +3,12 @@ a0{{EncontrarMejorEncuadernadora}} --> a1["i_enc = 0"]
 a1 --> a2["candidata = null"]
 a2 --> a3{"i_enc < CM[1]"}
 a3 --> |si| a4{"TPE[i_enc] == HV"}
-a4 --> |si| a5{"CxM[1][i_enc].conf == lote.conf"}
+a4 --> |si| a5{"CxM[1][i_enc].config == lote.config"}
 a5 --> |si| b1[TConf = 0] --> fin((fin))
 a5 --> |no| c{"candidata == null"}
 c --> |si| d["candidata = i_enc"] --> e["i_enc++"] --> a3
 c --> |no| e
 a4 --> |no| e
 a3 --> |no| f{"candidata != null"}
-f --> |si| g["i_enc = candidata"] --> h{{TConf}} --> fin
+f --> |si| g["i_enc = candidata"] --> h{{TConf}} --> lol["SumTConf += TConf"] --> fin
 f --> |no| k["i_enc = null"] --> fin

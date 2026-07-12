@@ -1,9 +1,39 @@
 flowchart TD
     a1[[CI]] --> a2
     a2["
+        Estado global y relojes (minutos):
+        T = 0
+        TPLL = 0*
+        TPI[maquina] = HV
+        TPE[maquina] = HV
+        TPQA[maquina] = HV
+        TPEm[maquina] = HV
+        TPD[etapa_mantenible][maquina] = HV
+        TPM[etapa_mantenible][maquina] = HV
+        DI = 0*
+        DE = 0*
+        DQA = 0*
+        DEm = 0*
+        HoraDia = 0
+        TAdicional = 0
+        TConf = 0
+        TR[etapa_mantenible] = {0,0,0}
+
+        Costos y resultados:
+        CTE = 0
+        $TM = 0
+        CostoAhorradoPorTCaro = {0,0,0,0}
+        CostoAhorradoPorTCaroTotal = 0
+        CostoPromPedido = 0
+        CostoPromLote = 0
+        TPPL = 0
+        TPPP = 0
+        DesperfectosEvitadosPorMantenimiento = 0
+        TFin = 0
+
+        Contadores, pedidos y ociosidad:
         CTP = 0
         CTL = 0
-        $TM = 0
         CantMan = 0
         DesEv = 0
         TTIP = 0
@@ -14,12 +44,31 @@ flowchart TD
         CTPFin = 0
         pedido_id_actual = 0
         Pedidos = {}
+        CLM = {[],[],[],[]}
         ITO = {0,0,0,0}
         FTO = {0,0,0,0}
-        InicioOcio[etapa][maquina] = 0 para toda maquina productiva
+        InicioOcio[etapa][maquina] = 0
         TiempoParadoEtapa = {0,0,0,0}
-        TiempoCaroEvitado = {0,0,0,0}
+        CxM[etapa][maquina] = 0*
+
+        Variables de trabajo de los procedimientos:
+        i = 0
+        j = 0
+        i_imp = 0
+        i_enc = 0
+        i_qa = 0
+        i_emb = 0
+        i_des = 0
+        j_des = 0
+        i_man = 0
+        j_man = 0
+        candidata = 0*
+        indice = 0*
+        lote = 0*
+        puede_QAar = 0*
+        AQA = 0*
+        PQA = 0.025
+        bool = 0*
     "]
 
-    %% TODO: definir config inicial por defecto para cada maquina.
-    %% Ejemplo: CxM[etapa][maquina].lote.conf = CONF_DEFAULT.
+    %% * = valor/tipo inicial no determinado por los diagramas; revisar.

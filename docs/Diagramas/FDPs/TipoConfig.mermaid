@@ -1,0 +1,7 @@
+%% Alcance: configuración de producción (formato, papel, tapa, color), no categoría de e-commerce.
+%% La BQ-300 usa plantillas según estilo o sustrato y admite producción book-of-one:
+%% https://www.horizon.co.jp/products/catalog/e_pdf/e002bi/01bq1_pdf/BQ300_e.pdf
+%% La mezcla de configuraciones sólo puede salir de las órdenes reales de esta imprenta.
+%% Femp_config^-1 se construye contando configuraciones en órdenes aceptadas del período simulado.
+flowchart TD
+    inicio{{TipoConfig}} --> r{{R ~ U(0,1)}} --> a["TipoConfig = Femp_config^-1(R)"] --> fin((Fin))
