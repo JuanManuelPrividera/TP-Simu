@@ -1,2 +1,2 @@
 def muestrear(rng):
-    return rng.uniform(0.35, 0.4192)
+    return rng.triangular(0.35, 0.4192, 0.3846)

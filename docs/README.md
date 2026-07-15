@@ -16,8 +16,8 @@ No requiere dependencias externas. `configuracion.json` contiene todos los pará
 - `configuraciones_iniciales`: configuración inicial de cada máquina en el mismo orden que `CM`; use `null` si no tiene una configuración cargada.
 - `ALG`: `FIFO`, `PRIORIDADES` o `POR_CONFIGURACION`.
 - `PQA`: umbral de QA. Para cada lote se genera `AQA ~ U(0,1)` y se reprocesa si `AQA > PQA`. Por ejemplo, `0.975` implica aproximadamente 2,5% de reprocesos.
-- `distribucion_configuraciones`: lista de configuraciones posibles, elegidas de forma uniforme por el mock de `FDP/TipoConfig.py`.
-- `mock_cant_lotes_min` y `mock_cant_lotes_max`: límites enteros del mock uniforme de `FDP/CantLotes.py`. Reemplazá ese módulo cuando se defina la FDP o la regla definitiva.
+- `cantidad_configuraciones`: cantidad de tipos de configuración posibles. `FDP/TipoConfig.py` genera `config_1..config_N` con probabilidad uniforme.
+- `cant_lotes_min` y `cant_lotes_max`: límites enteros de la FDP discreta uniforme de `FDP/CantLotes.py`.
 - `semilla`: permite reproducir una corrida; puede eliminarse para usar una semilla no determinística.
 
 Las unidades de tiempos son minutos. Al comienzo se agenda un desperfecto (`ID`) y mantenimiento preventivo (`IM`) para cada máquina mantenible, como fue definido para completar la inicialización. QA queda excluido.
@@ -26,7 +26,7 @@ Cada lote equivale a un ejemplar, de modo que se toma `CantLibrosLote = 1`. Las 
 
 ## FDP
 
-Cada variable aleatoria está aislada en un archivo dentro de `FDP/` (por ejemplo, `FDP/CantLotes.py`, `FDP/AQA.py` y `FDP/DI.py`). Cada archivo ofrece la función `muestrear(rng, ...)`; se puede reemplazar una FDP sin alterar el motor de eventos. `CantLotes` y `TipoConfig` están señalados como mocks mientras se define su comportamiento definitivo.
+Cada variable aleatoria está aislada en un archivo dentro de `FDP/` (por ejemplo, `FDP/CantLotes.py`, `FDP/AQA.py` y `FDP/DI.py`). Cada archivo ofrece la función `muestrear(rng, ...)`; se puede reemplazar una FDP sin alterar el motor de eventos.
 
 ## Nota sobre `TiempoParadoEtapa`
 

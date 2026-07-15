@@ -3,7 +3,7 @@
 
 | Descripcion de la simulacion a realizar |
 | ----- |
-| Una empresa editorial industrial produce libros fisicos mediante un sistema multietapa de eventos discretos. Cada pedido se divide en lotes independientes y estos recorren, en forma secuencial, impresion, encuadernacion, control de calidad (QA) y embalaje. Las etapas disponen de multiples maquinas, colas intermedias y configuraciones que pueden requerir tiempo de preparacion. La seleccion de lotes puede responder a FIFO, prioridad por configuracion o preferencia por conservar la configuracion vigente. Un lote que no supera QA se reprocesa desde impresion. La simulacion incorpora fallas y mantenimiento preventivo en impresion, encuadernacion y embalaje; QA queda excluido de dichos mecanismos. Asimismo, las duraciones de produccion consideran la franja horaria: segun la politica energetica, una operacion que comienza en horario caro puede ejecutarse con costo caro o diferirse hasta el fin de esa franja. El modelo permite analizar tiempos de produccion, ociosidad, costos, efecto del mantenimiento y ahorro asociado a evitar la franja cara. |
+| Una empresa editorial industrial produce libros fisicos mediante un sistema multietapa de eventos discretos. Cada pedido se divide en lotes independientes y estos recorren, en forma secuencial, impresion, encuadernacion, control de calidad (QA) y embalaje. Las etapas disponen de multiples maquinas, colas intermedias y configuraciones que pueden requerir tiempo de preparacion. La seleccion de lotes puede responder a FIFO, prioridad por configuracion o preferencia por conservar la configuracion vigente. Un lote que no supera QA se reprocesa desde impresion. La simulacion incorpora fallas y mantenimiento preventivo en impresion, encuadernacion y embalaje; QA queda excluido de dichos mecanismos. Asimismo, las duraciones de produccion consideran la franja horaria: segun la politica energetica, una operacion que comienza en horario caro puede ejecutarse con costo caro o diferirse hasta el fin de esa franja. El modelo permite analizar tiempos de produccion, ociosidad, costos, efecto del mantenimiento, costo fijo por etapa, energia en parada y ahorro asociado a evitar la franja cara. |
 
 | Que complejidad que extienda los casos vistos durante las clases tiene la simulacion propuesta? |
 | ----- |
@@ -13,9 +13,9 @@
 | :---: | ----- |
 | Metodologia | Evento a Evento |
 | Clasificacion de variables | |
-| Datos | IA (intervalo de arribo), CantLotes (cantidad de lotes por pedido), TipoConfig (configuracion del pedido), PD (probabilidad de defectos), DI (duracion de impresion), DE (duracion de encuadernacion), DQA (duracion de QA), DEm (duracion de embalaje), AQA (resultado del analisis de QA), TConf (tiempo de configuracion), ID (intervalo entre desperfectos), DD (duracion de desperfecto), IM (intervalo de mantenimiento), DM (duracion de mantenimiento) |
-| Control | ALG (politica de secuenciacion: FIFO, PRIORIDADES o POR_CONFIGURACION), CONFIG_PRIORITARIA, PQA (umbral de QA), PEFC (permite producir en franja cara), CM[4] (cantidad de maquinas por etapa), InicioCaro, FinCaro, CTN/m (costo de produccion fuera de franja cara), CTC/m (costo por minuto de franja cara), CMPxL (costo de materia prima por lote), $M[3] (costo de mantenimiento por etapa mantenible) |
-| Resultado | CostoPromPedido, CostoPromLote, TPPL (tiempo promedio de produccion por lote), TPPP (tiempo promedio de produccion por pedido), TiempoParadoEtapa[4], DesperfectosEvitadosPorMantenimiento, CostoAhorradoPorTCaro[4], CostoAhorradoPorTCaroTotal, SumTConf, CantLotesReProcesados |
+| Datos | IA (intervalo de arribo), CantLotes (cantidad de lotes por pedido), TipoConfig (configuracion del pedido, uniforme discreta sobre `cantidad_configuraciones` valores), PD (probabilidad de defectos), DI (duracion de impresion), DE (duracion de encuadernacion), DQA (duracion de QA), DEm (duracion de embalaje), AQA (resultado del analisis de QA), TConf (tiempo de configuracion), ID (intervalo entre desperfectos), DD (duracion de desperfecto), IM (intervalo de mantenimiento), DM (duracion de mantenimiento) |
+| Control | ALG (politica de secuenciacion: FIFO, PRIORIDADES o POR_CONFIGURACION), CONFIG_PRIORITARIA, PQA (umbral de QA), PEFC (permite producir en franja cara), cantidad_configuraciones (cantidad de tipos de configuracion posibles), cant_lotes_min/cant_lotes_max (limites de CantLotes), CM[4] (cantidad de maquinas por etapa), InicioCaro, FinCaro, CMPxL (costo de materia prima por lote), CTC_por_min_etapa[4] (costo por minuto caro por etapa), CTN_por_min_etapa[4] (costo por minuto normal por etapa), CTP_parado_por_min_etapa[4] (costo por minuto en parado por etapa), CFM_por_min_etapa[4] (costo fijo por minuto por etapa), $M[3] (costo de mantenimiento por etapa mantenible). No se acepta una version unificada de estos costos energéticos. |
+| Resultado | CostoTotal, CostoPromPedido, CostoPromLote, CTEProd, CTEParado, CostoFijoMaquinas, TPPL (tiempo promedio de produccion por lote), TPPP (tiempo promedio de produccion por pedido), TiempoParadoEtapa[4], DesperfectosEvitadosPorMantenimiento, CostoAhorradoPorTCaro[4], CostoAhorradoPorTCaroTotal, SumTConf, CantLotesReProcesados |
 | Estado | CLM[4], CxM[4][CM] (maquina con atributos lote y config)|
 
 | TEF | TPLL, TPI[CM[0]], TPE[CM[1]], TPQA[CM[2]], TPEm[CM[3]], TPD[3][CM[i]], TPM[3][CM[i]] |
@@ -47,8 +47,9 @@
 
 | Variables resultado y formulas | |
 | :---: | ----- |
-| CostoPromPedido | Si CTP > 0 entonces `((CMPxL x CTL) + CTE + $TM) / CTP`; si no, 0. |
-| CostoPromLote | Si CTL > 0 entonces `CMPxL + ((CTE + $TM) / CTL)`; si no, 0. |
+| CostoTotal | `CMPxL × CTL + CTEProd + CTEParado + CostoFijoMaquinas + $TM`. |
+| CostoPromPedido | Si CTPFin > 0 entonces `CostoTotal / CTPFin`; si no, 0. |
+| CostoPromLote | Si CTLFin > 0 entonces `CostoTotal / CTLFin`; si no, 0. |
 | TPPL | Si CTLFin > 0 entonces `STPL / CTLFin`; si no, 0. STPL acumula `T - lote.t_inicio` al finalizar embalaje. |
 | TPPP | Si CTPFin > 0 entonces `STPP / CTPFin`; si no, 0. STPP acumula `T - Pedidos[pedido_id].t_inicio` al finalizar el ultimo lote del pedido. |
 | TiempoParadoEtapa[4] | Para cada etapa, `FTO[i] - ITO[i]`, mas el tiempo de ociosidad abierto hasta TFin para cada maquina cuyo InicioOcio sea distinto de HV. |
@@ -58,4 +59,4 @@
 | Alcance del flujo vigente | |
 | :---: | ----- |
 | Fin del proceso | El lote y el pedido se contabilizan como finalizados al concluir embalaje. Los diagramas vigentes no definen un evento de despacho ni una operacion de almacenamiento de lotes terminados. |
-| Regla energetica | Se evalua al inicio de cada operacion mediante `HoraDia = Mod(T,1440)/60`. Si la operacion comienza en la franja cara y PEFC es falso, su duracion se difiere hasta FinCaro; si PEFC es verdadero, se ejecuta y acumula CTPC. Fuera de la franja cara, acumula CTPN. |
+| Regla energetica | Se evalua al inicio de cada operacion mediante `HoraDia = Mod(T,1440)/60`. Si la operacion comienza en la franja cara y PEFC es falso, se difiere solo hasta `FinCaro` y el ahorro se limita al tiempo caro efectivamente evitado. Al contabilizar energía, la operación se descompone por solapamiento y por etapa: el tramo en franja cara suma a `CTC_por_min_etapa[e]` y el resto suma a `CTN_por_min_etapa[e]`. El tiempo ocioso suma aparte con `CTP_parado_por_min_etapa[e]`. |

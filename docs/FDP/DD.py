@@ -1,5 +1,2 @@
-from .DM import muestrear as muestrear_dm
-
-
 def muestrear(rng):
-    return muestrear_dm(rng) + rng.uniform(125, 137.2)
+    return rng.triangular(145, 162.2, 153.6)

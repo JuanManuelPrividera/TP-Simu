@@ -1,3 +1,3 @@
 def muestrear(rng, minimo, maximo):
-    """Mock uniforme discreto hasta definir CantLotes con datos reales."""
+    """Distribucion discreta parametrizable por rango hasta contar con datos reales."""
     return rng.randint(minimo, maximo)

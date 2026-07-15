@@ -5,8 +5,8 @@ flowchart TD
     a4 --> a9["TAdicional = 0"]
     a9 --> a2{"HoraDia > InicioCaro && HoraDia <= FinCaro"}
     a2 --> |si| a3{"PEFC == true"} %% Producimo en franja cara
-    a3 --> |no| b2["TAdicional = (FinCaro - HoraDia) x 60; CostoAhorradoPorTCaro[0] += CTC/m x TAdicional"]
-    a3 --> |si| a5["CTE += CTC/m x (FinCaro - T) + CTN/m * DI - (FinCar - T)"] --> d %% costo tiempo de produccion caro
-    a2 --> |no| a6["CTE += CTN/m x DI"] --> d
-    b2 --> c[DEm += TAdicional]
+    a3 --> |no| b2["TEspera = (FinCaro - HoraDia) x 60; TAdicional = min(DEm, TEspera); CostoAhorradoPorTCaro[3] += CTC/m x TAdicional"]
+    a3 --> |si| a5["SolapeCaro = minutos de DEm dentro de la franja cara; CTPC += CTC/m x SolapeCaro; CTPN += CTN/m x (DEm - SolapeCaro)"] --> d
+    a2 --> |no| a6["CTPN += CTN/m x DEm"] --> d
+    b2 --> c[DEm += TEspera]
     c --> d((Fin))

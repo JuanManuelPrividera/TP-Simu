@@ -1,2 +1,2 @@
 def muestrear(rng):
-    return rng.uniform(8.5, 9.5)
+    return rng.expovariate(1 / 9)

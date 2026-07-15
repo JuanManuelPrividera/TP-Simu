@@ -11,12 +11,23 @@ HoraDia = Mod(T, 1440) / 60
 TAdicional = 0
 
 si InicioCaro < HoraDia <= FinCaro y PEFC == false:
-    TAdicional = (FinCaro - HoraDia) × 60
+    TEspera = (FinCaro - HoraDia) × 60
+    TAdicional = min(DuracionEtapa, TEspera)
     CostoAhorradoPorTCaro[e] += (CTC/m) × TAdicional
-    DuracionEtapa += TAdicional
+    DuracionEtapa += TEspera
 ```
 
 `DuracionEtapa` es respectivamente `DI`, `DE`, `DQA` o `DEm`. La regla se evalúa al inicio de cada operación y difiere la producción hasta el final de la franja cara cuando `PEFC` es falso.
+
+Cuando una operación se ejecuta, el costo de energía se separa por solapamiento con la franja cara:
+
+```text
+SolapeCaro = minutos de la operación que caen dentro de la franja cara
+CTPC += (CTC/m) × SolapeCaro
+CTPN += (CTN/m) × (DuracionEtapa - SolapeCaro)
+```
+
+Si la operación comienza en franja cara y `PEFC` es falso, el ahorro registrado se limita al tiempo caro efectivamente evitado por el diferimiento inicial. El resto del consumo se contabiliza según la franja en la que realmente transcurre la ejecución.
 
 ```text
 CostoAhorradoPorTCaroTotal = sum(CostoAhorradoPorTCaro[0..3])
@@ -25,13 +36,16 @@ CostoAhorradoPorTCaroTotal = sum(CostoAhorradoPorTCaro[0..3])
 ## Costos de producción y mantenimiento
 
 ```text
-CTE = CTPC + CTPN
+CTEProd = CTPC + CTPN
+CTEParado = sum(CTP_parado_por_min_etapa[e] × TiempoParadoEtapa[e] para e en 0..3)
+$Fijo = TFin × sum(CFM[e] × CM[e] para e en 0..3)
 $TM += $M[i_man]    # al terminar la lógica de un mantenimiento
-CostoPromLote = CMPxL + ((CTE + $TM) / CTL) si CTL > 0; en otro caso 0
-CostoPromPedido = ((CMPxL × CTL) + CTE + $TM) / CTP si CTP > 0; en otro caso 0
+CostoTotal = (CMPxL × CTL) + CTEProd + CTEParado + $Fijo + $TM
+CostoPromLote = CostoTotal / CTLFin si CTLFin > 0; en otro caso 0
+CostoPromPedido = CostoTotal / CTPFin si CTPFin > 0; en otro caso 0
 ```
 
-La expresión por pedido es equivalente a distribuir el costo promedio por lote según la cantidad media de lotes por pedido: `CostoPromPedido = (CTL / CTP) × CostoPromLote`. Esto asume que `CTP` y `CTL` corresponden al mismo alcance temporal de pedidos y lotes.
+`CTP_parado_por_min_etapa[e]` es el costo de energía en tiempo ocioso por minuto de la etapa `e`. `CFM[e]` es el costo fijo por minuto de una máquina de la etapa `e`. `TiempoParadoEtapa[e]` es el tiempo ocioso total de la etapa `e`, excluyendo mantenimiento y desperfectos.
 
 ## Relojes, duraciones y configuración
 

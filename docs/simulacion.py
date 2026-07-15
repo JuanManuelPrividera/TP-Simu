@@ -44,6 +44,11 @@ class Simulacion:
         self.rng = random.Random(cfg.get("semilla"))
         self.tf = float(cfg["TF"])
         self.cm = [int(x) for x in cfg["CM"]]
+        self.ctc_por_min_etapa = self._leer_vector_costos("CTC_por_min_etapa", 4)
+        self.ctn_por_min_etapa = self._leer_vector_costos("CTN_por_min_etapa", 4)
+        self.ctp_parado_por_min_etapa = self._leer_vector_costos("CTP_parado_por_min_etapa", 4)
+        self.costo_fijo_por_min_etapa = self._leer_vector_costos("CFM_por_min_etapa", 4)
+        self.costo_mantenimiento_por_etapa = self._leer_vector_costos("mantenimiento_por_etapa", 3)
         self.t = 0.0
         self.tpll = 0.0
         self.tproximo = [[HV] * n for n in self.cm]
@@ -60,6 +65,8 @@ class Simulacion:
         self.ctp = self.ctl = self.ctl_fin = self.ctp_fin = 0
         self.cant_man = self.des_ev = self.reprocesados = 0
         self.ctpc = self.ctpn = self.costo_mantenimiento = 0.0
+        self.ctpc_etapa = [0.0] * 4
+        self.ctpn_etapa = [0.0] * 4
         self.costo_ahorrado = [0.0] * 4
         self.tr = [0.0] * 3
         self.sum_tconf = self.stpl = self.stpp = self.ttip = self.ttfp = 0.0
@@ -74,7 +81,7 @@ class Simulacion:
                 self.tpm[mantenible][maquina] = IM.muestrear(self.rng)
 
     def validar_configuracion(self) -> None:
-        faltantes = {"TF", "CM", "PQA", "configuraciones_iniciales", "distribucion_configuraciones", "mock_cant_lotes_min", "mock_cant_lotes_max"} - self.cfg.keys()
+        faltantes = {"TF", "CM", "PQA", "configuraciones_iniciales", "cantidad_configuraciones", "cant_lotes_min", "cant_lotes_max", "costos"} - self.cfg.keys()
         if faltantes:
             raise ValueError(f"Faltan parametros obligatorios: {', '.join(sorted(faltantes))}")
         if len(self.cfg["CM"]) != 4 or any(int(x) <= 0 for x in self.cfg["CM"]):
@@ -87,36 +94,96 @@ class Simulacion:
             raise ValueError("TF debe ser mayor que cero.")
         if not 0 <= float(self.cfg["PQA"]) <= 1:
             raise ValueError("PQA debe estar entre 0 y 1.")
-        if not self.cfg["distribucion_configuraciones"]:
-            raise ValueError("distribucion_configuraciones no puede estar vacia.")
-        if int(self.cfg["mock_cant_lotes_min"]) <= 0 or int(self.cfg["mock_cant_lotes_min"]) > int(self.cfg["mock_cant_lotes_max"]):
-            raise ValueError("Los limites mock de CantLotes deben ser enteros positivos y min <= max.")
+        if int(self.cfg["cantidad_configuraciones"]) <= 0:
+            raise ValueError("cantidad_configuraciones debe ser mayor que cero.")
+        if int(self.cfg["cant_lotes_min"]) <= 0 or int(self.cfg["cant_lotes_min"]) > int(self.cfg["cant_lotes_max"]):
+            raise ValueError("Los limites de CantLotes deben ser enteros positivos y min <= max.")
+        costos = self.cfg["costos"]
+        if "CMPxL" not in costos:
+            raise ValueError("costos debe incluir CMPxL.")
+        if "mantenimiento_por_etapa" not in costos:
+            raise ValueError("costos debe incluir mantenimiento_por_etapa.")
+        for clave in ("CTC_por_min_etapa", "CTN_por_min_etapa", "CTP_parado_por_min_etapa", "CFM_por_min_etapa"):
+            if clave not in costos:
+                raise ValueError(f"costos debe incluir {clave}.")
+
+    def _leer_vector_costos(self, clave_vector: str, largo: int) -> list[float]:
+        costos = self.cfg["costos"]
+        valor = costos.get(clave_vector)
+        if valor is None:
+            raise ValueError(f"costos debe incluir {clave_vector}.")
+        if not isinstance(valor, (list, tuple)):
+            raise ValueError(f"{clave_vector} debe ser un vector de longitud {largo}.")
+        if len(valor) != largo:
+            raise ValueError(f"{clave_vector} debe tener {largo} valores.")
+        return [float(x) for x in valor]
 
     def tipo_config(self) -> str:
-        return str(TipoConfig.muestrear(self.rng, self.cfg["distribucion_configuraciones"]))
+        return str(TipoConfig.muestrear(self.rng, self.cfg["cantidad_configuraciones"]))
 
     def cant_lotes(self) -> int:
-        return CantLotes.muestrear(self.rng, int(self.cfg["mock_cant_lotes_min"]), int(self.cfg["mock_cant_lotes_max"]))
+        return CantLotes.muestrear(self.rng, int(self.cfg["cant_lotes_min"]), int(self.cfg["cant_lotes_max"]))
 
     def duracion_impresion(self, lote: Lote) -> float:
         return DI.muestrear(self.rng, lote.paginas)
 
+    def _franja_cara_minutos(self) -> tuple[float, float]:
+        return float(self.cfg["InicioCaro"]) * 60, float(self.cfg["FinCaro"]) * 60
+
+    def _esta_en_franja_cara(self, instante: float) -> bool:
+        inicio, fin = self._franja_cara_minutos()
+        minuto_dia = instante % 1440
+        if inicio < fin:
+            return inicio < minuto_dia <= fin
+        return minuto_dia > inicio or minuto_dia <= fin
+
+    def _solape_franja_cara(self, inicio: float, duracion: float) -> float:
+        fin = inicio + duracion
+        inicio_caro, fin_caro = self._franja_cara_minutos()
+        solape = 0.0
+        dia_inicio = int(math.floor(inicio / 1440))
+        dia_fin = int(math.floor((fin - 1e-12) / 1440))
+        for dia in range(dia_inicio, dia_fin + 1):
+            base = dia * 1440
+            if inicio_caro < fin_caro:
+                ventanas = ((base + inicio_caro, base + fin_caro),)
+            else:
+                ventanas = ((base + inicio_caro, base + 1440), (base, base + fin_caro))
+            for ventana_inicio, ventana_fin in ventanas:
+                solape += max(0.0, min(fin, ventana_fin) - max(inicio, ventana_inicio))
+        return solape
+
     # Reglas de energia de DI/DE/DQA/DEm.
     def aplicar_energia(self, etapa: int, duracion: float) -> float:
-        costos = self.cfg["costos"]
-        hora = (self.t % 1440) / 60
-        inicio, fin = float(self.cfg["InicioCaro"]), float(self.cfg["FinCaro"])
-        en_franga_cara = inicio < hora <= fin
-        if en_franga_cara and not self.cfg["PEFC"]:
-            adicional = (fin - hora) * 60
-            self.costo_ahorrado[etapa] += float(costos["CTC_por_min"]) * adicional
-            self.ctpn += float(costos["CTN_por_min"]) * duracion
-            return duracion + adicional
-        if en_franga_cara:
-            self.ctpc += float(costos["CTC_por_min"]) * duracion
-        else:
-            self.ctpn += float(costos["CTN_por_min"]) * duracion
-        return duracion
+        costo_caro = self.ctc_por_min_etapa[etapa]
+        costo_normal = self.ctn_por_min_etapa[etapa]
+        inicio_ejecucion = self.t
+        demora = 0.0
+
+        if not self.cfg["PEFC"] and self._esta_en_franja_cara(inicio_ejecucion):
+            inicio_caro, fin_caro = self._franja_cara_minutos()
+            minuto_dia = inicio_ejecucion % 1440
+            dia = math.floor(inicio_ejecucion / 1440)
+            if inicio_caro < fin_caro:
+                fin_caro_abs = dia * 1440 + fin_caro
+            elif minuto_dia > inicio_caro:
+                fin_caro_abs = (dia + 1) * 1440 + fin_caro
+            else:
+                fin_caro_abs = dia * 1440 + fin_caro
+            demora = max(0.0, fin_caro_abs - inicio_ejecucion)
+            self.costo_ahorrado[etapa] += costo_caro * min(duracion, demora)
+            inicio_ejecucion += demora
+
+        solape_caro = self._solape_franja_cara(inicio_ejecucion, duracion)
+        if solape_caro > 0:
+            costo = costo_caro * solape_caro
+            self.ctpc += costo
+            self.ctpc_etapa[etapa] += costo
+        if duracion > solape_caro:
+            costo = costo_normal * (duracion - solape_caro)
+            self.ctpn += costo
+            self.ctpn_etapa[etapa] += costo
+        return duracion + demora
 
     def elegir_libre_configurable(self, etapa: int, lote: Lote) -> tuple[int | None, float]:
         candidata = None
@@ -257,7 +324,7 @@ class Simulacion:
         etapa = ETAPA_MANTENIBLE[mantenible]
         if self.tproximo[etapa][maquina] != HV:
             self.tproximo[etapa][maquina] += duracion
-        self.costo_mantenimiento += float(self.cfg["costos"]["mantenimiento_por_etapa"][mantenible])
+        self.costo_mantenimiento += self.costo_mantenimiento_por_etapa[mantenible]
 
     def proximo_evento(self) -> tuple[float, str, int, int]:
         candidatos = [(self.tpll, "llegada", -1, -1)]
@@ -269,7 +336,8 @@ class Simulacion:
                 candidatos.append((reloj, "desperfecto", m, maquina))
             for maquina, reloj in enumerate(self.tpm[m]):
                 candidatos.append((reloj, "mantenimiento", m, maquina))
-        # Orden estable: llegada, impresion, encuadernacion, QA, embalaje, fallo, mantenimiento.
+        # Diferencia conocida con los diagramas: en empates, Python resuelve por orden
+        # de aparicion en la lista de candidatos. Esto ya fue revisado y se acepta asi.
         return min(candidatos, key=lambda x: x[0])
 
     def ejecutar(self) -> dict[str, Any]:
@@ -290,14 +358,32 @@ class Simulacion:
             total = self.fto[etapa] - self.ito[etapa]
             total += sum(self.t - inicio for inicio in self.inicio_ocio[etapa] if inicio != HV)
             parado.append(total)
-        cte = self.ctpc + self.ctpn
+        cte_prod_etapa = [self.ctpc_etapa[e] + self.ctpn_etapa[e] for e in range(4)]
+        cte_prod_caro = sum(self.ctpc_etapa)
+        cte_prod_normal = sum(self.ctpn_etapa)
+        cte_prod = cte_prod_caro + cte_prod_normal
+        cte_parado_etapa = [parado[e] * self.ctp_parado_por_min_etapa[e] for e in range(4)]
+        cte_parado = sum(cte_parado_etapa)
+        costo_fijo_etapa = [self.t * self.cm[e] * self.costo_fijo_por_min_etapa[e] for e in range(4)]
+        costo_fijo_maquinas = sum(costo_fijo_etapa)
+        cte = cte_prod + cte_parado
         costos = self.cfg["costos"]
+        costo_total = ((float(costos["CMPxL"]) * self.ctl) + cte + costo_fijo_maquinas + self.costo_mantenimiento)
         return {
             "TFin": self.t, "CTP": self.ctp, "CTL": self.ctl,
             "CTPFin": self.ctp_fin, "CTLFin": self.ctl_fin,
-            "CTPC": self.ctpc, "CTPN": self.ctpn, "CTE": cte, "$TM": self.costo_mantenimiento,
-            "CostoPromPedido": ((float(costos["CMPxL"]) * self.ctl) + cte + self.costo_mantenimiento) / self.ctp if self.ctp else 0,
-            "CostoPromLote": float(costos["CMPxL"]) + (cte + self.costo_mantenimiento) / self.ctl if self.ctl else 0,
+            "CTPC": self.ctpc, "CTPN": self.ctpn, "CTEProdCaroEtapa": dict(zip(ETAPAS, self.ctpc_etapa)),
+            "CTEProdNormalEtapa": dict(zip(ETAPAS, self.ctpn_etapa)),
+            "CTEProdCaro": cte_prod_caro, "CTEProdNormal": cte_prod_normal, "CTEProdEtapa": dict(zip(ETAPAS, cte_prod_etapa)),
+            "CTEProd": cte_prod,
+            "CTEParadoEtapa": dict(zip(ETAPAS, cte_parado_etapa)),
+            "CTEParado": cte_parado,
+            "CostoFijoMaquinaEtapa": dict(zip(ETAPAS, costo_fijo_etapa)),
+            "CostoFijoMaquinas": costo_fijo_maquinas,
+            "CTE": cte, "$TM": self.costo_mantenimiento,
+            "CostoTotal": costo_total,
+            "CostoPromPedido": costo_total / self.ctp_fin if self.ctp_fin else 0,
+            "CostoPromLote": costo_total / self.ctl_fin if self.ctl_fin else 0,
             "TPPL": self.stpl / self.ctl_fin if self.ctl_fin else 0,
             "TPPP": self.stpp / self.ctp_fin if self.ctp_fin else 0,
             "TiempoParadoEtapa": dict(zip(ETAPAS, parado)),
