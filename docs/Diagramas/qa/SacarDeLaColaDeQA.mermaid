@@ -1,12 +1,12 @@
 flowchart TD
 a0{{SacarDeLaColaDeQA}} --> if{ALG}
-if --> |POR_CONFIGURACION| a2["indice = index_or_null(min(filter(lambda lote: lote.conf == CxM[2][i_qa].lote.conf, CLM[2]), key=lambda lote: lote.ts))"]
-if --> |PRIORIDADES| a3["indice = index_or_null(min(filter(lambda lote: lote.conf == CONFIG_PRIORITARIA, CLM[2]), key=lambda lote: lote.ts))"]
+if --> |POR_CONFIGURACION| a2["indice = index_or_null(min(filter(lambda lote: lote.config == CxM[2][i_qa].config, CLM[2]), key=lambda lote: lote.ts))"]
+if --> |PRIORIDADES| a3["indice = index_or_null(min(filter(lambda lote: lote.config == CONFIG_PRIORITARIA, CLM[2]), key=lambda lote: lote.ts))"]
 if --> |FIFO| a1["indice = null"]
 a2 --> a4
 a3 --> a4
 a1 --> a4{"indice == null"}
 a4 --> |si| b["indice = CLM[2].index(min(CLM[2], key=lambda lote: lote.ts))"]
 a4 --> |no| g
-b --> g["CxM[2][i_qa].lote = CLM[2][indice]"]
+b --> g["CxM[2][i_qa].lote = CLM[2][indice]; CxM[2][i_qa].config = CLM[2][indice].config"]
 g --> h["CLM[2].pop(indice)"] --> fin((fin))

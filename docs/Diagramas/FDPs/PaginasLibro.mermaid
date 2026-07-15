@@ -1,0 +1,10 @@
+%% Distribución normal truncada: N(mu=350, sigma=83.33), limitada a [100, 600].
+%% Los extremos 100 y 600 quedan aproximadamente en mu ± 3 sigma.
+%% Se redondea a número par porque una hoja impresa aporta dos páginas.
+flowchart TD
+    inicio{{PaginasLibro}} --> r1{{R1 ~ U(0,1)}} --> r2{{R2 ~ U(0,1)}}
+    r2 --> z["Z = sqrt(-2 x ln(R1)) x cos(2 x pi x R2)"]
+    z --> x["X = 350 + 83.33 x Z"]
+    x --> rango{"100 <= X <= 600"}
+    rango -->|no| r1
+    rango -->|si| paginas["PaginasLibro = 2 x round(X / 2)"] --> fin((Fin))

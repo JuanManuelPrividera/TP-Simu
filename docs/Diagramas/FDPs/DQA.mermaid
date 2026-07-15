@@ -1,0 +1,8 @@
+%% Se modela QA como inspección óptica de las 100 páginas de un lote de referencia.
+%% Esa referencia de 100 páginas está publicada para RISO Perfect Binder:
+%% https://detako.de/en/perfect-binder-en
+%% Fuente: Ricoh fi-8930, hasta 260 imágenes/minuto:
+%% https://www.ricoh-usa.com/en/products/pd/equipment/scanners/fi-8930-production-scanner
+%% FDP uniforme estrecha centrada en 0.3846 min: E(DQA)=0.3846 y sd=0.0200 min.
+flowchart TD
+    inicio{{DQA}} --> r{{R ~ U(0,1)}} --> a["DQA = 0.35 + (0.4192 - 0.35) x R min"] --> fin((Fin))

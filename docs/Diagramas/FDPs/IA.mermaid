@@ -1,0 +1,5 @@
+%% Fuente: modelo de gestión de trabajos de impresión con intervalo medio entre
+%% trabajos de 0.15 h = 9 min: https://patents.justia.com/patent/20070247659
+%% Se usa una uniforme estrecha para conservar E(IA)=9 min y soporte finito.
+flowchart TD
+    inicio{{IA}} --> r{{R ~ U(0,1)}} --> a["IA = 8.5 + (9.5 - 8.5) x R min"] --> fin((Fin))

@@ -1,0 +1,6 @@
+%% Fuente: estudio de una imprenta digital sobre 180 observaciones diarias;
+%% reporta rechazo promedio de 2-3% por lote. https://doi.org/10.71456/sur.v4i2.1713
+%% p=0.025 es el punto medio aritmético del intervalo publicado. AQA=1 implica reproceso.
+flowchart TD
+    inicio{{AQA}} --> r{{R ~ U(0,1)}} --> fin((Fin))
+    b --> fin

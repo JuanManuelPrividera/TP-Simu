@@ -1,0 +1,5 @@
+%% Alcance: configuración de producción (formato, papel, tapa, color), no categoría de e-commerce.
+%% La cantidad de configuraciones posibles es un control del modelo: cantidad_configuraciones = N.
+%% El modelo genera config_1..config_N con probabilidad uniforme 1/N.
+flowchart TD
+    inicio{{TipoConfig}} --> r{{R ~ U(0,1)}} --> a["TipoConfig = config_1..config_N con prob. 1/N"] --> fin((Fin))

@@ -1,0 +1,10 @@
+%% Un lote del modelo equivale a un ejemplar físico: la BQ-300 admite producción
+%% "book-of-one" y trata bloques de libro individualmente.
+%% Fuente: https://www.horizon.co.jp/products/catalog/e_pdf/e002bi/01bq1_pdf/BQ300_e.pdf
+%% Por lo tanto CantLotes = cantidad de ejemplares del pedido. Las referencias
+%% comerciales sólo indican que POD cubre de 1 a 200 ejemplares, no su frecuencia:
+%% https://econpapers.repec.org/RePEc:mgs:ijmsba:v:2:y:2016:i:10:p:23-33
+%% Para no inventar probabilidades, Femp_copias^-1 se calibra con CopiasPedido de
+%% órdenes reales de la imprenta (incluye reimpresiones y excluye anuladas).
+flowchart TD
+    inicio{{CantLotes}} --> r{{R ~ U(0,1)}} --> a["CantLotes = Femp_copias^-1(R)"] --> fin((Fin))

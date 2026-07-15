@@ -1,0 +1,25 @@
+flowchart TD
+    direction TD
+
+    a[[Resultados]] --> b["TFin = T"]
+    b --> c["i = 0"]
+    c --> d{"i < 4"}
+    d --> |si| e["TiempoParadoEtapa[i] = FTO[i] - ITO[i]"]
+    e --> f["j = 0"]
+    f --> g{"j < CM[i]"}
+    g --> |si| h{"InicioOcio[i][j] != HV"}
+    h --> |si| h1["TiempoParadoEtapa[i] += TFin - InicioOcio[i][j]"] --> h2["j ++"] --> g
+    h --> |no| h2
+    g --> |no| i1["i ++"] --> d
+    d --> |no| r1["CTEProd = CTPC + CTPN; CTEParado = sum(CTP_parado_por_min_etapa[e] x TiempoParadoEtapa[e])"] --> r2["CostoFijoMaquinas = TFin x sum(CFM_por_min_etapa[e] x CM[e])"] --> r3["CostoTotal = (CMPxL x CTL) + CTEProd + CTEParado + CostoFijoMaquinas + $TM"] --> r4{"CTP > 0"}
+    r4 --> |si| r5["CostoPromPedido = CostoTotal / CTPFin"] --> r6
+    r4 --> |no| r7["CostoPromPedido = 0"] --> r8
+    r6{"CTLFin > 0"} --> |si| r9["CostoPromLote = CostoTotal / CTLFin"] --> r11
+    r6 --> |no| r10["CostoPromLote = 0"] --> r11
+    r11{"CTLFin > 0"} --> |si| r12["TPPL = STPL / CTLFin"] --> r14
+    r11 --> |no| r13["TPPL = 0"] --> r14
+    r14{"CTPFin > 0"} --> |si| r15["TPPP = STPP / CTPFin"] --> r17
+    r14 --> |no| r16["TPPP = 0"] --> r17
+    r17{"CantMan > 0"} --> |si| r18["DesperfectosEvitadosPorMantenimiento = DesEv / CantMan"] --> r20
+    r17 --> |no| r19["DesperfectosEvitadosPorMantenimiento = 0"] --> r20
+    r20["CostoAhorradoPorTCaroTotal = sum(CostoAhorradoPorTCaro)"] --> fin((fin))

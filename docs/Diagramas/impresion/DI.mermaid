@@ -2,11 +2,11 @@ flowchart TD
     aa{{DI}} --> a{{R}}
     a --> a1["DI = DuracionImpresion(R)"]
     a1 --> a4["HoraDia = Mod(T,1440)/60"]
-    a4 --> a2{" "}
-    a2 --> |"HoraDia > InicioBarato && HoraDia <= FinBarato"| b[TAdicional = TAB]
-    a2 --> |"HoraDia > InicioMedio && HoraDia <= FinMedio"| b1[TAdicional = TAM]
-    a2 --> |"HoraDia > InicioCaro && HoraDia <= FinCaro"| b2[TAdicional = TAC]
-    b --> c
-    b1 --> c
-    b2 --> c[DI += TAdicional]
+    a4 --> a9["TAdicional = 0"]
+    a9 --> a2{"HoraDia > InicioCaro && HoraDia <= FinCaro"}
+    a2 --> |si| a3{"PEFC == true"} %% Producimo en franja cara
+    a3 --> |no| b2["TEspera = (FinCaro - HoraDia) x 60; TAdicional = min(DI, TEspera); CostoAhorradoPorTCaro[0] += CTC/m x TAdicional"]
+    a3 --> |si| a5["SolapeCaro = minutos de DI dentro de la franja cara; CTPC += CTC/m x SolapeCaro; CTPN += CTN/m x (DI - SolapeCaro)"] --> d
+    a2 --> |no| a6["CTPN += CTN/m x DI"] --> d
+    b2 --> c[DI += TEspera]
     c --> d((Fin))

@@ -1,0 +1,10 @@
+%% Unidad de referencia: un lote = un libro de 100 páginas; la condición de
+%% 100 páginas aparece en la especificación del RISO Perfect Binder:
+%% https://detako.de/en/perfect-binder-en
+%% Fuente: Xerox Versant 280, hasta 80 páginas/minuto de producción:
+%% https://www.xerox.com/en-si/digital-printing/digital-presses/xerox-versant-280
+%% DuracionBaseDI se calcula con los atributos reales del lote. Se aplica una
+%% uniforme estrecha centrada en esa duración, con soporte finito.
+flowchart TD
+    inicio{{DI}} --> base["DuracionBaseDI = CantLibrosLote x (CantPaginas / 80)"] --> r{{R ~ U(0,1)}}
+    r --> d["DI = 0.95 x DuracionBaseDI + 0.10 x DuracionBaseDI x R min"] --> fin((Fin))
