@@ -1,5 +1,5 @@
 %% Fuente: Horizon BQ-300, hasta 500 ciclos (libros) por hora:
 %% https://www.horizon.co.jp/products/catalog/e_pdf/e002bi/01bq1_pdf/BQ300_e.pdf
-%% FDP uniforme estrecha centrada en 0.12 min: E(DE)=0.12 y sd=0.0058 min.
+%% Cada lote contiene 100 libros. La FDP por libro se escala por 100.
 flowchart TD
-    inicio{{DE}} --> r{{R ~ U(0,1)}} --> d["DE = 0.11 + (0.13 - 0.11) x R min"] --> fin((Fin))
+    inicio{{DE}} --> r{{R ~ U(0,1)}} --> d["DE = 100 x (0.11 + (0.13 - 0.11) x R) min"] --> fin((Fin))

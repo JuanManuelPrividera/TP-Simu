@@ -7,22 +7,60 @@ El programa implementa los flujos de `Diagramas/`: llegadas, cuatro etapas produ
 ```bash
 python3 simulacion.py configuracion.json
 python3 simulacion.py configuracion.json --salida resultados.json
+python3 simulacion.py ../config/casos.json --base ../config/caso_base.json --salida resultados-casos.json
 ```
+
+Desde la raíz del repositorio también se puede ejecutar la simulación y crear
+los gráficos de forma integrada:
+
+```bash
+# Ejecuta todos los conjuntos de casos y genera sus gráficos.
+python3 ejecutar_experimentos.py
+
+# Ejecuta únicamente los conjuntos solicitados.
+python3 ejecutar_experimentos.py --casos all_cm impresion_cm im
+
+# Limita cada conjunto a cuatro procesos de simulación en paralelo.
+python3 ejecutar_experimentos.py --trabajadores 4
+
+# Consulta los nombres válidos para --casos.
+python3 ejecutar_experimentos.py --listar-casos
+```
+
+Cada conjunto produce `resultados/<conjunto>.json` y sus gráficos en
+`graficos/<conjunto>/`. Los conjuntos disponibles son `all_cm`,
+`impresion_cm`, `encuadernacion_cm`, `qa_cm`, `embalaje_cm`, `configs`,
+`pefc_all_cm` e `im`.
+
+Cada conjunto genera todos los gráficos disponibles. Para las variables que
+no aparecen en sus casos se usa el valor de `caso_base.json`; por eso algunos
+gráficos pueden tener un único valor en el eje X o dos barras iguales.
+
+Los casos de un conjunto se ejecutan en procesos independientes. Por defecto
+se usan los núcleos disponibles; use `--trabajadores 1` para ejecutar en serie
+o para limitar el uso de CPU.
 
 No requiere dependencias externas. `configuracion.json` contiene todos los parámetros de la corrida:
 
-- `TF`: horizonte de simulación en minutos. Se ejecutan los eventos con instante estrictamente menor que `TF`.
+- `TF`: horizonte de recepción de pedidos en minutos. Al alcanzarlo no se reciben nuevos pedidos y se vacían las colas y operaciones ya iniciadas hasta terminar todos los lotes.
+- `IM`: intervalo fijo entre mantenimientos preventivos, en minutos. Es un parámetro de la configuración de cada caso, no una FDP.
 - `CM`: máquinas de impresión, encuadernación, QA y embalaje, en ese orden.
 - `configuraciones_iniciales`: configuración inicial de cada máquina en el mismo orden que `CM`; use `null` si no tiene una configuración cargada.
 - `ALG`: `FIFO`, `PRIORIDADES` o `POR_CONFIGURACION`.
 - `PQA`: umbral de QA. Para cada lote se genera `AQA ~ U(0,1)` y se reprocesa si `AQA > PQA`. Por ejemplo, `0.975` implica aproximadamente 2,5% de reprocesos.
 - `cantidad_configuraciones`: cantidad de tipos de configuración posibles. `FDP/TipoConfig.py` genera `config_1..config_N` con probabilidad uniforme.
-- `cant_lotes_min` y `cant_lotes_max`: límites enteros de la FDP discreta uniforme de `FDP/CantLotes.py`.
+- `cant_lotes_media` y `cant_lotes_desvio`: media y desvío de la FDP normal discreta truncada de `FDP/CantLotes.py`.
 - `semilla`: permite reproducir una corrida; puede eliminarse para usar una semilla no determinística.
 
-Las unidades de tiempos son minutos. Al comienzo se agenda un desperfecto (`ID`) y mantenimiento preventivo (`IM`) para cada máquina mantenible, como fue definido para completar la inicialización. QA queda excluido.
+Para ejecutar un experimento, el archivo de casos debe contener una lista `cases`. Cada elemento incluye
+`case_id`, una `description` opcional y únicamente los parámetros que sobrescriben a `caso_base.json`, incluido `IM` cuando se quiera evaluar otra frecuencia de mantenimiento.
+El programa combina ambas configuraciones, valida el resultado de cada caso y produce un único JSON con
+`casos`, donde cada elemento contiene su identificador, descripción y las métricas del experimento.
+Si `caso_base.json` está en el mismo directorio que el archivo de casos, `--base` es opcional.
 
-Cada lote equivale a un ejemplar, de modo que se toma `CantLibrosLote = 1`. Las páginas se generan para cada lote con `PaginasLibro`, la FDP definida en los diagramas; ese atributo es el necesario para calcular `DI`.
+Las unidades de tiempos son minutos. Al comienzo se agenda un desperfecto (`ID`) y mantenimiento preventivo a `IM` minutos para cada máquina mantenible; cada mantenimiento posterior conserva ese mismo intervalo configurado. QA queda excluido.
+
+Cada lote equivale siempre a 100 ejemplares (`FDP/constantes.py`). Las páginas se generan una vez por lote con `PaginasLibro`, la FDP definida en los diagramas; los 100 ejemplares del lote se consideran homogéneos y usan esa misma cantidad de páginas. Las duraciones de impresión y QA escalan con las páginas; encuadernación y embalaje escalan con los 100 ejemplares.
 
 ## FDP
 
@@ -30,4 +68,5 @@ Cada variable aleatoria está aislada en un archivo dentro de `FDP/` (por ejempl
 
 ## Nota sobre `TiempoParadoEtapa`
 
-El programa conserva literalmente las asignaciones de `FTO`, `ITO` y la fórmula `FTO - ITO` de `Resultados.mermaid`. Con una corrida que termina mientras una máquina está ocupada, esa fórmula puede producir un valor negativo; es una inconsistencia de los diagramas, no una duración de ociosidad físicamente válida. El resto de los resultados no depende de esa métrica.
+La ociosidad se acumula por intervalos reales de cada máquina, incluyendo el tramo que permanezca abierto
+hasta `TFin`. Por eso `TiempoParadoEtapa` y `TiempoParadoTotal` no pueden resultar negativos.

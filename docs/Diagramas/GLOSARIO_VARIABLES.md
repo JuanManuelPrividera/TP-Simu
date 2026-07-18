@@ -44,7 +44,7 @@ QA no tiene desperfectos ni mantenimiento. Por ello los índices `i_des` e `i_ma
 |---|---|---|
 | `ID` | Intervalo hasta el próximo desperfecto de una máquina mantenible, en minutos. | `mantenimiento/desperfecto.mermaid`, `mantenimiento/mantenimiento.mermaid`. |
 | `DD` | Duración de un desperfecto, en minutos. | `mantenimiento/desperfecto.mermaid`. |
-| `IM` | Intervalo hasta el próximo mantenimiento programado, en minutos. | `mantenimiento/desperfecto.mermaid`, `mantenimiento/mantenimiento.mermaid`. |
+| `IM` | Intervalo fijo hasta el próximo mantenimiento programado, en minutos. Es un parámetro de configuración de cada caso. | `config/caso_base.json`, `docs/simulacion.py`, `mantenimiento/desperfecto.mermaid`, `mantenimiento/mantenimiento.mermaid`. |
 | `DM` | Duración de un mantenimiento, en minutos. | `mantenimiento/mantenimiento.mermaid`. |
 | `TR[i]` | Tiempo de reparación/acumulado de indisponibilidad de la etapa mantenible `i`, en minutos. | `mantenimiento/desperfecto.mermaid`, `mantenimiento/mantenimiento.mermaid`. |
 | `CantMan` | Cantidad de mantenimientos realizados, en mantenimientos. | `ConfigsIniciales.mermaid`, `mantenimiento/mantenimiento.mermaid`, `Resultados.mermaid`. |
@@ -56,19 +56,18 @@ QA no tiene desperfectos ni mantenimiento. Por ello los índices `i_des` e `i_ma
 
 | FDP | Distribución / cálculo | Intervalo de salida | Referencia |
 |---|---|---|---|
-| `IA` | Uniforme estrecha `U(8,5; 9,5)` min; esperanza `9` min. | De `8,5` a `9,5` min. | `FDPs/IA.mermaid` |
+| `IA` | Normal truncada positiva, media `1440` min (1 día) y desvío `504` min (0,35 días). | Positivo, sin máximo fijo. | `FDPs/IA.mermaid` |
 | `TipoConfig` | Uniforme discreta sobre `config_1..config_N`, donde `N = cantidad_configuraciones`. | Conjunto finito de configuraciones posibles; no es numérico. | `FDPs/TipoConfig.mermaid` |
-| `CantLotes` | `Femp_copias⁻¹(R)`: distribución discreta de ejemplares por pedido. Un lote equivale a un ejemplar físico. | Enteros entre la menor y mayor cantidad de ejemplares registrada. | `FDPs/CantLotes.mermaid` |
+| `CantLotes` | Normal discreta truncada, media `20` y desvío `5` lotes. Cada lote equivale a 100 ejemplares físicos. | Enteros entre `5` y `35` lotes. | `FDPs/CantLotes.mermaid` |
 | `PaginasLibro` | Normal truncada, promedio `350` y desvío `83,33`; se rechaza y vuelve a generar si sale del rango. Se redondea al número par más próximo. | Páginas pares entre `100` y `600`. | `FDPs/PaginasLibro.mermaid` |
-| `DI` | Uniforme estrecha centrada en `DuracionBaseDI = CantLibrosLote × CantPaginas / 80`. | Desde `95%` hasta `105%` de `DuracionBaseDI`, en min. | `FDPs/DI.mermaid` |
-| `DE` | Uniforme estrecha `U(0,11; 0,13)` min; esperanza `0,12` min. | De `0,11` a `0,13` min/lote. | `FDPs/DE.mermaid` |
-| `DQA` | Uniforme estrecha `U(0,35; 0,4192)` min; esperanza `0,3846` min. | De `0,35` a `0,4192` min/lote. | `FDPs/DQA.mermaid` |
-| `DEm` | Uniforme estrecha `U(0,05; 0,059)` min; esperanza `0,0545` min. | De `0,05` a `0,059` min/lote. | `FDPs/DEm.mermaid` |
+| `DI` | Uniforme estrecha centrada en `DuracionBaseDI = 100 × CantPaginas / 100`. | Desde `95%` hasta `105%` de `DuracionBaseDI`, en min. |
+| `DE` | Uniforme estrecha `100 × U(0,11; 0,13)` min; esperanza `12` min. | De `11` a `13` min/lote. |
+| `DQA` | Uniforme estrecha `100 × (CantPaginas / 100) × U(0,35; 0,4192)` min. | Escala según las páginas del lote; con 350 pág., esperanza `134,61` min. |
+| `DEm` | Uniforme estrecha `100 × U(0,05; 0,059)` min; esperanza `5,45` min. | De `5` a `5,9` min/lote. |
 | `AQA` | Bernoulli con `p=0,025`: devuelve `1` si el lote es defectuoso y `0` si se aprueba. | `{0,1}`. | `FDPs/AQA.mermaid` |
-| `TConf` | Normal truncada con promedio `0,75` y desvío `0,05` min. | De `0,5` a `1` min. | `FDPs/TConf.mermaid` |
+| `TConf` | Normal truncada con promedio `5` y desvío `0,333` min. | De `3,333` a `6,667` min. | `FDPs/TConf.mermaid` |
 | `ID` | Uniforme estrecha `U(2000; 2209,6)` min; esperanza `2104,8` min. | De `2000` a `2209,6` min. | `FDPs/ID.mermaid` |
 | `DD` | `DD = DM + U(125; 137,2)` min. Así `DD > DM` siempre y su esperanza es `153,6` min. | De `145` a `162,2` min. | `FDPs/DD.mermaid` |
-| `IM` | Uniforme estrecha `U(1451,4; 1571,4)` min; esperanza `1511,4` min. | De `1451,4` a `1571,4` min. | `FDPs/IM.mermaid` |
 | `DM` | Uniforme estrecha `U(20; 25)` min; esperanza `22,5` min. | De `20` a `25` min. | `FDPs/DM.mermaid` |
 
 Los cálculos donde intervienen estas variables están reunidos en [CALCULOS_VARIABLES.md](CALCULOS_VARIABLES.md).

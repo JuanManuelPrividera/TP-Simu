@@ -1,5 +1,5 @@
 %% Fuente: Sparck CVP Everest para libros y media, hasta 1.100 cajas/h:
 %% https://sparcktechnologies.com/industries/books-and-media/
-%% FDP uniforme estrecha centrada en 0.0545 min: E(DEm)=0.0545 y sd=0.0026 min.
+%% Cada lote contiene 100 libros; la FDP por caja se escala por 100.
 flowchart TD
-    inicio{{DEm}} --> r{{R ~ U(0,1)}} --> a["DEm = 0.05 + (0.059 - 0.05) x R min"] --> fin((Fin))
+    inicio{{DEm}} --> r{{R ~ U(0,1)}} --> a["DEm = 100 x (0.05 + (0.059 - 0.05) x R) min"] --> fin((Fin))

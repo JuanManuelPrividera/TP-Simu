@@ -1,5 +1,6 @@
-%% Fuente: modelo de gestión de trabajos de impresión con intervalo medio entre
-%% trabajos de 0.15 h = 9 min: https://patents.justia.com/patent/20070247659
-%% Se usa una uniforme estrecha para conservar E(IA)=9 min y soporte finito.
+%% Intervalos entre pedidos: normal truncada positiva, media 1 día = 1440 min
+%% y desvío 0,35 días = 504 min.
 flowchart TD
-    inicio{{IA}} --> r{{R ~ U(0,1)}} --> a["IA = 8.5 + (9.5 - 8.5) x R min"] --> fin((Fin))
+    inicio{{IA}} --> z{{Z ~ N(0,1)}} --> a["IA = 1440 + 504 x Z min"] --> rango{"IA > 0"}
+    rango -->|no| z
+    rango -->|si| fin((Fin))

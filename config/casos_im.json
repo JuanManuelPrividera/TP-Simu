@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "case_id": "im_6h",
+      "description": "Mantenimiento preventivo muy intensivo: cada 6 horas.",
+      "IM": 360
+    },
+    {
+      "case_id": "im_12h",
+      "description": "Mantenimiento preventivo intensivo: cada 12 horas.",
+      "IM": 720
+    },
+    {
+      "case_id": "im_18h",
+      "description": "Mantenimiento preventivo frecuente: cada 18 horas.",
+      "IM": 1080
+    },
+    {
+      "case_id": "im_24h",
+      "description": "Mantenimiento preventivo diario: cada 24 horas.",
+      "IM": 1440
+    },
+    {
+      "case_id": "im_30h",
+      "description": "Mantenimiento preventivo moderadamente espaciado: cada 30 horas.",
+      "IM": 1800
+    },
+    {
+      "case_id": "im_base_2104_8min",
+      "description": "Escenario base: mantenimiento preventivo cada 2104.8 minutos (35.08 horas).",
+      "IM": 2104.8
+    },
+    {
+      "case_id": "im_36h",
+      "description": "Mantenimiento preventivo espaciado: cada 36 horas.",
+      "IM": 2160
+    },
+    {
+      "case_id": "im_48h",
+      "description": "Mantenimiento preventivo muy espaciado: cada 48 horas.",
+      "IM": 2880
+    },
+    {
+      "case_id": "im_72h",
+      "description": "Mantenimiento preventivo de baja frecuencia: cada 72 horas.",
+      "IM": 4320
+    },
+    {
+      "case_id": "im_96h",
+      "description": "Mantenimiento preventivo muy poco frecuente: cada 96 horas.",
+      "IM": 5760
+    }
+  ]
+}

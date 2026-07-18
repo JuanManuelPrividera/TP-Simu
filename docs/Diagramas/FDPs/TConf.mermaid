@@ -1,11 +1,9 @@
-%% Fuente: Xerox Versant 280: cambio entre color y blanco/negro tarda 30-60 segundos.
-%% https://download.support.xerox.com/pub/docs/VERSANT_280/userdocs/any-os/en_GB/Xerox_Versant_280_press_ug_en-US.pdf
-%% Normal truncada con promedio 0.75 y desvío 0.05 en [0.5, 1] min:
-%% E(TConf)=0.75 min por simetría y la desviación es aproximadamente 0.05 min.
-%% Conserva los extremos publicados y concentra la masa alrededor de 45 segundos.
+%% Calibración del modelo: normal truncada con promedio 5 min y desvío 0,333 min
+%% en [3,333; 6,667] min. Conserva el coeficiente de variación de la calibración
+%% anterior y concentra la masa alrededor de 5 minutos.
 flowchart TD
     inicio{{TConf}} --> r1{{R1 ~ U(0,1)}} --> r2{{R2 ~ U(0,1)}}
     r2 --> z["Z = sqrt(-2 x ln(R1)) x cos(2 x pi x R2)"]
-    z --> x["X = 0.75 + 0.05 x Z min"] --> rango{"0.5 <= X <= 1"}
+    z --> x["X = 5 + 0.333 x Z min"] --> rango{"3.333 <= X <= 6.667"}
     rango -->|no| r1
     rango -->|si| t["TConf = X"] --> fin((Fin))

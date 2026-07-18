@@ -54,18 +54,19 @@ El modelo es estocástico: parte de sus entradas se generan con números pseudoa
 
 | Variable | Interpretación | Distribución o regla | Unidad / rango relevante |
 |---|---|---|---|
-| `IA` | intervalo entre arribos | uniforme `U(8,5; 9,5)` | min; esperanza 9 |
+| `IA` | intervalo entre arribos | normal truncada positiva, media 1440 y desvío 504 | min; media 1 día y desvío 0,35 días |
 | `CantLotes` | lotes por pedido | inversa de distribución empírica de copias | entero observado |
 | `TipoConfig` | formato/configuración de producto | inversa de distribución empírica | categoría |
 | `PaginasLibro` | páginas del libro | normal truncada, media 350 y desvío 83,33; redondeo par | 100 a 600 páginas |
-| `DI` | duración de impresión | uniforme ±5 % sobre `CantLibrosLote × CantPaginas / 80` | min |
+| `DI` | duración de impresión | uniforme ±5 % sobre `CantLibrosLote × CantPaginas / 100` | min |
 | `DE` | duración de encuadernación | `U(0,11; 0,13)` | min/lote |
 | `DQA` | duración de control de calidad | `U(0,35; 0,4192)` | min/lote |
 | `DEm` | duración de embalaje | `U(0,05; 0,059)` | min/lote |
 | `AQA` | resultado de QA | Bernoulli con `p = 0,025` de defecto | 0 aprueba; 1 defectuoso |
-| `TConf` | preparación por cambio de configuración | normal truncada, media 0,75 y desvío 0,05 | 0,5 a 1 min |
+| `TConf` | preparación por cambio de configuración | normal truncada, media 5 y desvío 0,333 | 3,333 a 6,667 min |
 | `ID` / `DD` | intervalo y duración de desperfecto | `U(2000; 2209,6)` / `DM + U(125; 137,2)` | min |
-| `IM` / `DM` | intervalo y duración de mantenimiento | `U(1451,4;1571,4)` / `U(20;25)` | min |
+| `IM` | intervalo entre mantenimientos preventivos | parámetro fijo de configuración por caso | min |
+| `DM` | duración de mantenimiento | `U(20;25)` | min |
 
 La definición de `DD` garantiza que el desperfecto dure más que el mantenimiento, lo cual hace consistente la hipótesis operativa de que una intervención preventiva es más breve que una reparación correctiva. La probabilidad de defecto se modela por `AQA`; el umbral `PQA` se conserva como parámetro de control de la regla de aceptación. En la lógica vigente, un resultado superior a ese umbral dispara el reproceso. Para la Bernoulli documentada, el resultado 1 representa defecto y 0 aprobación, por lo que con `PQA = 0,025` el caso defectuoso se reenvía a impresión.
 
