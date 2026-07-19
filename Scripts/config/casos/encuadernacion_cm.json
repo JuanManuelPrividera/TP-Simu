@@ -1,0 +1,1765 @@
+{
+  "cases": [
+    {
+      "case_id": "fifo_encuadernacion_cm_1",
+      "description": "FIFO: encuadernacion con 1 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        1,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_2",
+      "description": "FIFO: encuadernacion con 2 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        2,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_3",
+      "description": "FIFO: encuadernacion con 3 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        3,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_4",
+      "description": "FIFO: encuadernacion con 4 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        4,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_5",
+      "description": "FIFO: encuadernacion con 5 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_6",
+      "description": "FIFO: encuadernacion con 6 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        6,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_8",
+      "description": "FIFO: encuadernacion con 8 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        8,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_10",
+      "description": "FIFO: encuadernacion con 10 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        10,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_12",
+      "description": "FIFO: encuadernacion con 12 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        12,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_14",
+      "description": "FIFO: encuadernacion con 14 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        14,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_16",
+      "description": "FIFO: encuadernacion con 16 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        16,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_18",
+      "description": "FIFO: encuadernacion con 18 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        18,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_20",
+      "description": "FIFO: encuadernacion con 20 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        20,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_1",
+      "description": "PRIORIDADES: encuadernacion con 1 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        1,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_2",
+      "description": "PRIORIDADES: encuadernacion con 2 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        2,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_3",
+      "description": "PRIORIDADES: encuadernacion con 3 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        3,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_4",
+      "description": "PRIORIDADES: encuadernacion con 4 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        4,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_5",
+      "description": "PRIORIDADES: encuadernacion con 5 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_6",
+      "description": "PRIORIDADES: encuadernacion con 6 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        6,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_8",
+      "description": "PRIORIDADES: encuadernacion con 8 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        8,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_10",
+      "description": "PRIORIDADES: encuadernacion con 10 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        10,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_12",
+      "description": "PRIORIDADES: encuadernacion con 12 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        12,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_14",
+      "description": "PRIORIDADES: encuadernacion con 14 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        14,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_16",
+      "description": "PRIORIDADES: encuadernacion con 16 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        16,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_18",
+      "description": "PRIORIDADES: encuadernacion con 18 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        18,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_20",
+      "description": "PRIORIDADES: encuadernacion con 20 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        20,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_1",
+      "description": "POR_CONFIGURACION: encuadernacion con 1 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        1,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_2",
+      "description": "POR_CONFIGURACION: encuadernacion con 2 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        2,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_3",
+      "description": "POR_CONFIGURACION: encuadernacion con 3 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        3,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_4",
+      "description": "POR_CONFIGURACION: encuadernacion con 4 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        4,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_5",
+      "description": "POR_CONFIGURACION: encuadernacion con 5 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_6",
+      "description": "POR_CONFIGURACION: encuadernacion con 6 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        6,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_8",
+      "description": "POR_CONFIGURACION: encuadernacion con 8 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        8,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_10",
+      "description": "POR_CONFIGURACION: encuadernacion con 10 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        10,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_12",
+      "description": "POR_CONFIGURACION: encuadernacion con 12 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        12,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_14",
+      "description": "POR_CONFIGURACION: encuadernacion con 14 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        14,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_16",
+      "description": "POR_CONFIGURACION: encuadernacion con 16 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        16,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_18",
+      "description": "POR_CONFIGURACION: encuadernacion con 18 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        18,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_20",
+      "description": "POR_CONFIGURACION: encuadernacion con 20 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        20,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    }
+  ]
+}

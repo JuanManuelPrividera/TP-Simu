@@ -1,0 +1,3046 @@
+{
+  "casos": [
+    {
+      "case_id": "fifo_all_cm_1",
+      "description": "FIFO: todas las etapas con 1 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4343.435209617016,
+        "CTLFin": 14545,
+        "TFin": 6341096.661397279,
+        "TiempoParadoTotal": 16208723.392755086,
+        "TiempoParadoEtapa": {
+          "impresion": 257.999353534542,
+          "encuadernacion": 5962193.272111165,
+          "qa": 4152181.1338530616,
+          "embalaje": 6094090.987437324
+        },
+        "CTE": 49712461.11586211,
+        "CTEEtapa": {
+          "impresion": 32034843.01620253,
+          "encuadernacion": 6910038.1526615955,
+          "qa": 5666708.8793912735,
+          "embalaje": 5100871.067606702
+        },
+        "TPPL": 2653534.2290703673,
+        "TPPP": 2904605.6071691792,
+        "PermanenciaPromEtapa": {
+          "impresion": 2586130.8783471882,
+          "encuadernacion": 25.440490405747283,
+          "qa": 147.19465441874223,
+          "embalaje": 17.052594530014197
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5941317.261640679,
+          "encuadernacion": 109950.28929937458,
+          "qa": 718374.1055827312,
+          "embalaje": 40870.890221968155
+        },
+        "CostoAhorradoPorTCaroTotal": 6810512.546744753,
+        "DesperfectosEvitadosPorMantenimiento": 0.6405808033188761,
+        "CantDesperfectos": 8687,
+        "CantLotesReProcesados": 378,
+        "SumTConf": 388869.0780370739,
+        "SumTConfEtapa": {
+          "impresion": 129627.314017679,
+          "encuadernacion": 129754.08691683495,
+          "qa": 0.0,
+          "embalaje": 129487.67710256092
+        },
+        "CantCambiosConfiguracion": 7772,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 2592,
+          "encuadernacion": 2592,
+          "qa": 0,
+          "embalaje": 2588
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 1944485.0271004923,
+        "CTEConfiguracion": 1944485.0271004923,
+        "CTEConfiguracionEtapa": {
+          "impresion": 777763.884106075,
+          "encuadernacion": 648770.4345841736,
+          "qa": 0.0,
+          "embalaje": 517950.7084102437
+        },
+        "CostoManoObraConfiguracion": 972242.5135502461,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 388881.9420530375,
+          "encuadernacion": 324385.2172920868,
+          "qa": 0.0,
+          "embalaje": 258975.35420512184
+        },
+        "CostoConfiguracion": 2916727.5406507384,
+        "TiempoProduccionPromLote": 513.6274543381581,
+        "DuracionVaciamiento": 5304296.661397279,
+        "CantLotesEnColaAlTF": 12191,
+        "CantLotesEnProduccionAlTF": 1,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_2",
+      "description": "FIFO: todas las etapas con 2 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4465.596380076589,
+        "CTLFin": 14331,
+        "TFin": 3192562.8464960093,
+        "TiempoParadoTotal": 16338293.898544809,
+        "TiempoParadoEtapa": {
+          "impresion": 855.1430305493996,
+          "encuadernacion": 5992620.7836827105,
+          "qa": 4215854.474579688,
+          "embalaje": 6128963.497251861
+        },
+        "CTE": 50163712.44035665,
+        "CTEEtapa": {
+          "impresion": 32366622.143546518,
+          "encuadernacion": 6987451.76736551,
+          "qa": 5647335.644300161,
+          "embalaje": 5162302.885144464
+        },
+        "TPPL": 1082001.582567891,
+        "TPPP": 1184311.0830608115,
+        "PermanenciaPromEtapa": {
+          "impresion": 1056158.1187359004,
+          "encuadernacion": 26.742591241698094,
+          "qa": 147.8894214547714,
+          "embalaje": 17.87952982134451
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5893038.239552987,
+          "encuadernacion": 108626.46784019317,
+          "qa": 730028.402184744,
+          "embalaje": 38027.57761788878
+        },
+        "CostoAhorradoPorTCaroTotal": 6769720.687195812,
+        "DesperfectosEvitadosPorMantenimiento": 0.6372677800713079,
+        "CantDesperfectos": 8721,
+        "CantLotesReProcesados": 348,
+        "SumTConf": 526205.8930933478,
+        "SumTConfEtapa": {
+          "impresion": 243566.5776617577,
+          "encuadernacion": 142717.88206174987,
+          "qa": 0.0,
+          "embalaje": 139921.4333698419
+        },
+        "CantCambiosConfiguracion": 10512,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 4866,
+          "encuadernacion": 2854,
+          "qa": 0,
+          "embalaje": 2792
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 2734674.609758663,
+        "CTEConfiguracion": 2734674.609758663,
+        "CTEConfiguracionEtapa": {
+          "impresion": 1461399.465970545,
+          "encuadernacion": 713589.4103087505,
+          "qa": 0.0,
+          "embalaje": 559685.7334793676
+        },
+        "CostoManoObraConfiguracion": 1367337.3048793315,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 730699.7329852725,
+          "encuadernacion": 356794.70515437523,
+          "qa": 0.0,
+          "embalaje": 279842.8667396838
+        },
+        "CostoConfiguracion": 4102011.9146379945,
+        "TiempoProduccionPromLote": 515.345143807409,
+        "DuracionVaciamiento": 2155762.8464960093,
+        "CantLotesEnColaAlTF": 9675,
+        "CantLotesEnProduccionAlTF": 2,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_3",
+      "description": "FIFO: todas las etapas con 3 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4553.801472383934,
+        "CTLFin": 14564,
+        "TFin": 2211952.385875098,
+        "TiempoParadoTotal": 17093460.236108515,
+        "TiempoParadoEtapa": {
+          "impresion": 1607.5181560861683,
+          "encuadernacion": 6248562.34485412,
+          "qa": 4436382.610335192,
+          "embalaje": 6406907.762763116
+        },
+        "CTE": 51854270.59200483,
+        "CTEEtapa": {
+          "impresion": 33580372.65872148,
+          "encuadernacion": 7189810.23144508,
+          "qa": 5809071.8361141775,
+          "embalaje": 5275015.865724095
+        },
+        "TPPL": 580345.9555946627,
+        "TPPP": 637739.7746706562,
+        "PermanenciaPromEtapa": {
+          "impresion": 564946.6677172272,
+          "encuadernacion": 25.895614654395647,
+          "qa": 147.09084609384482,
+          "embalaje": 15.720227606577513
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6046623.589619454,
+          "encuadernacion": 106218.2548312321,
+          "qa": 701197.6878629976,
+          "embalaje": 36088.633915485
+        },
+        "CostoAhorradoPorTCaroTotal": 6890128.166229169,
+        "DesperfectosEvitadosPorMantenimiento": 0.6309097421203438,
+        "CantDesperfectos": 8983,
+        "CantLotesReProcesados": 392,
+        "SumTConf": 602861.2235742704,
+        "SumTConfEtapa": {
+          "impresion": 350977.66792322474,
+          "encuadernacion": 133727.84243292004,
+          "qa": 0.0,
+          "embalaje": 118155.7132181281
+        },
+        "CantCambiosConfiguracion": 12056,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 7026,
+          "encuadernacion": 2671,
+          "qa": 0,
+          "embalaje": 2359
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3247128.072576461,
+        "CTEConfiguracion": 3247128.072576461,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2105866.007539349,
+          "encuadernacion": 668639.2121645992,
+          "qa": 0.0,
+          "embalaje": 472622.8528725124
+        },
+        "CostoManoObraConfiguracion": 1623564.0362882304,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1052933.0037696746,
+          "encuadernacion": 334319.6060822996,
+          "qa": 0.0,
+          "embalaje": 236311.4264362562
+        },
+        "CostoConfiguracion": 4870692.108864691,
+        "TiempoProduccionPromLote": 516.4532382133556,
+        "DuracionVaciamiento": 1175152.385875098,
+        "CantLotesEnColaAlTF": 7744,
+        "CantLotesEnProduccionAlTF": 4,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_4",
+      "description": "FIFO: todas las etapas con 4 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4610.68461137513,
+        "CTLFin": 14332,
+        "TFin": 1657635.2850700817,
+        "TiempoParadoTotal": 17167346.97025237,
+        "TiempoParadoEtapa": {
+          "impresion": 2866.5146758137043,
+          "encuadernacion": 6269414.029988998,
+          "qa": 4463986.811740498,
+          "embalaje": 6431079.613847059
+        },
+        "CTE": 51547939.64697068,
+        "CTEEtapa": {
+          "impresion": 33519264.25809672,
+          "encuadernacion": 7094059.998600209,
+          "qa": 5746329.098968936,
+          "embalaje": 5188286.291304815
+        },
+        "TPPL": 310664.8834417983,
+        "TPPP": 337202.3681802119,
+        "PermanenciaPromEtapa": {
+          "impresion": 302866.99597415334,
+          "encuadernacion": 24.579846875260568,
+          "qa": 147.46909875395548,
+          "embalaje": 13.917215073490105
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5980424.871668043,
+          "encuadernacion": 101492.77177230177,
+          "qa": 715698.0262652696,
+          "embalaje": 24537.51920764746
+        },
+        "CostoAhorradoPorTCaroTotal": 6822153.1889132615,
+        "DesperfectosEvitadosPorMantenimiento": 0.6446265938069217,
+        "CantDesperfectos": 9252,
+        "CantLotesReProcesados": 360,
+        "SumTConf": 644830.5956105118,
+        "SumTConfEtapa": {
+          "impresion": 437395.98972606583,
+          "encuadernacion": 113893.6500325105,
+          "qa": 0.0,
+          "embalaje": 93540.95585193527
+        },
+        "CantCambiosConfiguracion": 12885,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 8740,
+          "encuadernacion": 2277,
+          "qa": 0,
+          "embalaje": 1868
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3568008.011926681,
+        "CTEConfiguracion": 3568008.011926681,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2624375.938356387,
+          "encuadernacion": 569468.2501625528,
+          "qa": 0.0,
+          "embalaje": 374163.8234077411
+        },
+        "CostoManoObraConfiguracion": 1784004.0059633404,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1312187.9691781935,
+          "encuadernacion": 284734.1250812764,
+          "qa": 0.0,
+          "embalaje": 187081.91170387054
+        },
+        "CostoConfiguracion": 5352012.017890021,
+        "TiempoProduccionPromLote": 515.1795281064061,
+        "DuracionVaciamiento": 620835.2850700817,
+        "CantLotesEnColaAlTF": 5391,
+        "CantLotesEnProduccionAlTF": 5,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_5",
+      "description": "FIFO: todas las etapas con 5 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4666.9571574532,
+        "CTLFin": 14329,
+        "TFin": 1336533.9030486352,
+        "TiempoParadoTotal": 17304239.366023898,
+        "TiempoParadoEtapa": {
+          "impresion": 3089.6317046755926,
+          "encuadernacion": 6308990.797685236,
+          "qa": 4512061.059222657,
+          "embalaje": 6480097.877411331
+        },
+        "CTE": 52063963.96629621,
+        "CTEEtapa": {
+          "impresion": 33883349.07226175,
+          "encuadernacion": 7190092.98443062,
+          "qa": 5766386.626841122,
+          "embalaje": 5224135.2827627165
+        },
+        "TPPL": 152544.45010323025,
+        "TPPP": 167131.58945463944,
+        "PermanenciaPromEtapa": {
+          "impresion": 148639.10715039007,
+          "encuadernacion": 25.442821376589873,
+          "qa": 147.7911388316558,
+          "embalaje": 14.13717899587291
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5980141.200332207,
+          "encuadernacion": 100761.50964485652,
+          "qa": 735085.3434639187,
+          "embalaje": 34188.201178309755
+        },
+        "CostoAhorradoPorTCaroTotal": 6850176.254619292,
+        "DesperfectosEvitadosPorMantenimiento": 0.6321961620469083,
+        "CantDesperfectos": 9072,
+        "CantLotesReProcesados": 358,
+        "SumTConf": 714900.5897564384,
+        "SumTConfEtapa": {
+          "impresion": 494854.92784441257,
+          "encuadernacion": 126112.08897613284,
+          "qa": 0.0,
+          "embalaje": 93933.57293589215
+        },
+        "CantCambiosConfiguracion": 14289,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 9891,
+          "encuadernacion": 2518,
+          "qa": 0,
+          "embalaje": 1880
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3975424.3036907236,
+        "CTEConfiguracion": 3975424.3036907236,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2969129.567066491,
+          "encuadernacion": 630560.4448806639,
+          "qa": 0.0,
+          "embalaje": 375734.2917435686
+        },
+        "CostoManoObraConfiguracion": 1987712.1518453618,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1484564.7835332456,
+          "encuadernacion": 315280.22244033194,
+          "qa": 0.0,
+          "embalaje": 187867.1458717843
+        },
+        "CostoConfiguracion": 5963136.455536085,
+        "TiempoProduccionPromLote": 515.52846423516,
+        "DuracionVaciamiento": 299733.9030486352,
+        "CantLotesEnColaAlTF": 3211,
+        "CantLotesEnProduccionAlTF": 7,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_6",
+      "description": "FIFO: todas las etapas con 6 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4660.182536441956,
+        "CTLFin": 14472,
+        "TFin": 1132855.6625160123,
+        "TiempoParadoTotal": 17745278.02368178,
+        "TiempoParadoEtapa": {
+          "impresion": 9706.022715339908,
+          "encuadernacion": 6495181.980127702,
+          "qa": 4619557.718466068,
+          "embalaje": 6620832.302372668
+        },
+        "CTE": 52517022.67140844,
+        "CTEEtapa": {
+          "impresion": 34363036.852160506,
+          "encuadernacion": 7071253.286892975,
+          "qa": 5838098.294326965,
+          "embalaje": 5244634.238027986
+        },
+        "TPPL": 50794.75082226123,
+        "TPPP": 55395.470349229494,
+        "PermanenciaPromEtapa": {
+          "impresion": 49442.811122954015,
+          "encuadernacion": 20.382880718806184,
+          "qa": 146.99448201903752,
+          "embalaje": 12.182260414827512
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6048944.285324048,
+          "encuadernacion": 70209.14625263626,
+          "qa": 703366.3844529212,
+          "embalaje": 19213.287766834714
+        },
+        "CostoAhorradoPorTCaroTotal": 6841733.10379644,
+        "DesperfectosEvitadosPorMantenimiento": 0.626770538243626,
+        "CantDesperfectos": 9369,
+        "CantLotesReProcesados": 342,
+        "SumTConf": 680086.0618555839,
+        "SumTConfEtapa": {
+          "impresion": 539099.4861877648,
+          "encuadernacion": 67353.42445944861,
+          "qa": 0.0,
+          "embalaje": 73633.15120836992
+        },
+        "CantCambiosConfiguracion": 13602,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 10782,
+          "encuadernacion": 1350,
+          "qa": 0,
+          "embalaje": 1470
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3865896.6442573215,
+        "CTEConfiguracion": 3865896.6442573215,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3234596.9171265992,
+          "encuadernacion": 336767.12229724275,
+          "qa": 0.0,
+          "embalaje": 294532.6048334797
+        },
+        "CostoManoObraConfiguracion": 1932948.3221286607,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1617298.4585632996,
+          "encuadernacion": 168383.56114862137,
+          "qa": 0.0,
+          "embalaje": 147266.30241673984
+        },
+        "CostoConfiguracion": 5798844.966385982,
+        "TiempoProduccionPromLote": 513.9743979686924,
+        "DuracionVaciamiento": 96055.66251601232,
+        "CantLotesEnColaAlTF": 1228,
+        "CantLotesEnProduccionAlTF": 8,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_8",
+      "description": "FIFO: todas las etapas con 8 maquinas.",
+      "resultados": {
+        "CostoPromLote": 5152.352004985122,
+        "CTLFin": 14340,
+        "TFin": 1037416.6124813639,
+        "TiempoParadoTotal": 23738982.414096374,
+        "TiempoParadoEtapa": {
+          "impresion": 1529508.7385646203,
+          "encuadernacion": 7947079.485148603,
+          "qa": 6141047.499248082,
+          "embalaje": 8121346.691135069
+        },
+        "CTE": 57088305.11097102,
+        "CTEEtapa": {
+          "impresion": 35799854.77151707,
+          "encuadernacion": 8588060.179597905,
+          "qa": 6419676.34232682,
+          "embalaje": 6280713.817529231
+        },
+        "TPPL": 807.3340755182,
+        "TPPP": 1042.1789561974917,
+        "PermanenciaPromEtapa": {
+          "impresion": 604.6286387939585,
+          "encuadernacion": 23.96118731394422,
+          "qa": 146.81214887441857,
+          "embalaje": 12.411869505988355
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5967390.298100824,
+          "encuadernacion": 85274.15464910767,
+          "qa": 682279.0561838271,
+          "embalaje": 26857.767969898257
+        },
+        "CostoAhorradoPorTCaroTotal": 6761801.276903656,
+        "DesperfectosEvitadosPorMantenimiento": 0.638783823101542,
+        "CantDesperfectos": 11605,
+        "CantLotesReProcesados": 361,
+        "SumTConf": 742136.4755206975,
+        "SumTConfEtapa": {
+          "impresion": 560687.1910124365,
+          "encuadernacion": 110645.90723671752,
+          "qa": 0.0,
+          "embalaje": 70803.37727154192
+        },
+        "CantCambiosConfiguracion": 14850,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 11221,
+          "encuadernacion": 2211,
+          "qa": 0,
+          "embalaje": 1418
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 4200566.191344349,
+        "CTEConfiguracion": 4200566.191344349,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3364123.146074594,
+          "encuadernacion": 553229.5361835873,
+          "qa": 0.0,
+          "embalaje": 283213.5090861677
+        },
+        "CostoManoObraConfiguracion": 2100283.0956721744,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1682061.573037297,
+          "encuadernacion": 276614.76809179364,
+          "qa": 0.0,
+          "embalaje": 141606.75454308384
+        },
+        "CostoConfiguracion": 6300849.287016523,
+        "TiempoProduccionPromLote": 515.153211063111,
+        "DuracionVaciamiento": 616.6124813639326,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 14,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_10",
+      "description": "FIFO: todas las etapas con 10 maquinas.",
+      "resultados": {
+        "CostoPromLote": 5723.723009372567,
+        "CTLFin": 14457,
+        "TFin": 1037539.8315112768,
+        "TiempoParadoTotal": 31993222.966610778,
+        "TiempoParadoEtapa": {
+          "impresion": 3573680.981896214,
+          "encuadernacion": 9980645.014295585,
+          "qa": 8209045.7957021445,
+          "embalaje": 10229851.174716834
+        },
+        "CTE": 63483268.87486429,
+        "CTEEtapa": {
+          "impresion": 37979736.151397355,
+          "encuadernacion": 10580037.686837241,
+          "qa": 7269433.511389309,
+          "embalaje": 7654061.525240383
+        },
+        "TPPL": 685.258396618572,
+        "TPPP": 898.2932596555686,
+        "PermanenciaPromEtapa": {
+          "impresion": 485.60920478120653,
+          "encuadernacion": 26.62394960660691,
+          "qa": 146.10862071967506,
+          "embalaje": 10.06758943044432
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5971300.41200328,
+          "encuadernacion": 106373.52551218506,
+          "qa": 668968.8205248091,
+          "embalaje": 14782.227639437382
+        },
+        "CostoAhorradoPorTCaroTotal": 6761424.985679711,
+        "DesperfectosEvitadosPorMantenimiento": 0.6357676825761932,
+        "CantDesperfectos": 14231,
+        "CantLotesReProcesados": 370,
+        "SumTConf": 736555.2673126546,
+        "SumTConfEtapa": {
+          "impresion": 550566.116590679,
+          "encuadernacion": 141479.57910102856,
+          "qa": 0.0,
+          "embalaje": 44509.57162094863
+        },
+        "CantCambiosConfiguracion": 14727,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 11006,
+          "encuadernacion": 2831,
+          "qa": 0,
+          "embalaje": 890
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 4188832.881533004,
+        "CTEConfiguracion": 4188832.881533004,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3303396.6995440666,
+          "encuadernacion": 707397.8955051429,
+          "qa": 0.0,
+          "embalaje": 178038.2864837945
+        },
+        "CostoManoObraConfiguracion": 2094416.440766502,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1651698.3497720333,
+          "encuadernacion": 353698.94775257143,
+          "qa": 0.0,
+          "embalaje": 89019.14324189725
+        },
+        "CostoConfiguracion": 6283249.322299506,
+        "TiempoProduccionPromLote": 514.1784407567752,
+        "DuracionVaciamiento": 739.8315112767741,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 8,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_12",
+      "description": "FIFO: todas las etapas con 12 maquinas.",
+      "resultados": {
+        "CostoPromLote": 6290.416567940278,
+        "CTLFin": 14550,
+        "TFin": 1037504.8728432595,
+        "TiempoParadoTotal": 40245451.57065484,
+        "TiempoParadoEtapa": {
+          "impresion": 5610057.846217409,
+          "encuadernacion": 12093543.933852594,
+          "qa": 10271342.580441399,
+          "embalaje": 12270507.210143436
+        },
+        "CTE": 69890166.54391563,
+        "CTEEtapa": {
+          "impresion": 40192177.79714333,
+          "encuadernacion": 12343136.189387856,
+          "qa": 8139159.9265871085,
+          "embalaje": 9215692.630797317
+        },
+        "TPPL": 666.0920240365581,
+        "TPPP": 879.1362847589019,
+        "PermanenciaPromEtapa": {
+          "impresion": 466.9605281983801,
+          "encuadernacion": 23.861491216551457,
+          "qa": 145.8212899857932,
+          "embalaje": 12.340293056748434
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6196788.165345611,
+          "encuadernacion": 90911.29094995122,
+          "qa": 629076.1331107583,
+          "embalaje": 20502.05791990794
+        },
+        "CostoAhorradoPorTCaroTotal": 6937277.647326228,
+        "DesperfectosEvitadosPorMantenimiento": 0.6232562583604051,
+        "CantDesperfectos": 16865,
+        "CantLotesReProcesados": 391,
+        "SumTConf": 712761.3629304072,
+        "SumTConfEtapa": {
+          "impresion": 523067.8342710711,
+          "encuadernacion": 112445.12331688672,
+          "qa": 0.0,
+          "embalaje": 77248.40534245393
+        },
+        "CantCambiosConfiguracion": 14267,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 10466,
+          "encuadernacion": 2252,
+          "qa": 0,
+          "embalaje": 1549
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 4009626.243580684,
+        "CTEConfiguracion": 4009626.243580684,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3138407.005626435,
+          "encuadernacion": 562225.6165844335,
+          "qa": 0.0,
+          "embalaje": 308993.6213698157
+        },
+        "CostoManoObraConfiguracion": 2004813.121790342,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1569203.5028132175,
+          "encuadernacion": 281112.80829221674,
+          "qa": 0.0,
+          "embalaje": 154496.81068490786
+        },
+        "CostoConfiguracion": 6014439.365371026,
+        "TiempoProduccionPromLote": 516.4680734344238,
+        "DuracionVaciamiento": 704.8728432594799,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 6,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_14",
+      "description": "FIFO: todas las etapas con 14 maquinas.",
+      "resultados": {
+        "CostoPromLote": 6908.320106788259,
+        "CTLFin": 14284,
+        "TFin": 1037819.2238853108,
+        "TiempoParadoTotal": 48889290.48352045,
+        "TiempoParadoEtapa": {
+          "impresion": 7918214.815865442,
+          "encuadernacion": 14180138.960477063,
+          "qa": 12401013.910020448,
+          "embalaje": 14389922.797157492
+        },
+        "CTE": 74991507.50238872,
+        "CTEEtapa": {
+          "impresion": 41373525.11772585,
+          "encuadernacion": 14169856.112459065,
+          "qa": 8893980.659304548,
+          "embalaje": 10554145.612899248
+        },
+        "TPPL": 647.5018454818439,
+        "TPPP": 856.8669613249795,
+        "PermanenciaPromEtapa": {
+          "impresion": 453.0699340940527,
+          "encuadernacion": 23.866241300627383,
+          "qa": 145.41608419579822,
+          "embalaje": 9.769415936493163
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6005328.639971226,
+          "encuadernacion": 93305.80494701001,
+          "qa": 622479.0000013622,
+          "embalaje": 10709.635909356555
+        },
+        "CostoAhorradoPorTCaroTotal": 6731823.080828955,
+        "DesperfectosEvitadosPorMantenimiento": 0.6333443489755453,
+        "CantDesperfectos": 19924,
+        "CantLotesReProcesados": 353,
+        "SumTConf": 610597.363737334,
+        "SumTConfEtapa": {
+          "impresion": 462246.0234356445,
+          "encuadernacion": 105907.12190079872,
+          "qa": 0.0,
+          "embalaje": 42444.21840089014
+        },
+        "CantCambiosConfiguracion": 12215,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 9248,
+          "encuadernacion": 2118,
+          "qa": 0,
+          "embalaje": 849
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3472788.623721426,
+        "CTEConfiguracion": 3472788.623721426,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2773476.1406138716,
+          "encuadernacion": 529535.6095039938,
+          "qa": 0.0,
+          "embalaje": 169776.87360356055
+        },
+        "CostoManoObraConfiguracion": 1736394.311860713,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1386738.0703069358,
+          "encuadernacion": 264767.8047519969,
+          "qa": 0.0,
+          "embalaje": 84888.43680178028
+        },
+        "CostoConfiguracion": 5209182.935582139,
+        "TiempoProduccionPromLote": 513.4361073613226,
+        "DuracionVaciamiento": 1019.2238853108138,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 7,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_16",
+      "description": "FIFO: todas las etapas con 16 maquinas.",
+      "resultados": {
+        "CostoPromLote": 7458.6940706984,
+        "CTLFin": 14403,
+        "TFin": 1037332.6748621463,
+        "TiempoParadoTotal": 57093658.388970174,
+        "TiempoParadoEtapa": {
+          "impresion": 9955322.45213876,
+          "encuadernacion": 16257436.731307667,
+          "qa": 14430964.035118008,
+          "embalaje": 16449935.170405738
+        },
+        "CTE": 81418249.62991199,
+        "CTEEtapa": {
+          "impresion": 43589791.62863852,
+          "encuadernacion": 16037922.59888685,
+          "qa": 9763310.510862648,
+          "embalaje": 12027224.891523974
+        },
+        "TPPL": 645.8100631524306,
+        "TPPP": 854.34673157519,
+        "PermanenciaPromEtapa": {
+          "impresion": 449.7037058129553,
+          "encuadernacion": 22.991684129520195,
+          "qa": 146.54391954788062,
+          "embalaje": 10.2331200019854
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6107383.451276086,
+          "encuadernacion": 76932.21495324848,
+          "qa": 660092.6269971472,
+          "embalaje": 15820.170202099656
+        },
+        "CostoAhorradoPorTCaroTotal": 6860228.463428582,
+        "DesperfectosEvitadosPorMantenimiento": 0.6348412353197043,
+        "CantDesperfectos": 22875,
+        "CantLotesReProcesados": 380,
+        "SumTConf": 571177.875810355,
+        "SumTConfEtapa": {
+          "impresion": 417814.6402060271,
+          "encuadernacion": 103823.48169253828,
+          "qa": 0.0,
+          "embalaje": 49539.75391178756
+        },
+        "CantCambiosConfiguracion": 11427,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 8357,
+          "encuadernacion": 2077,
+          "qa": 0,
+          "embalaje": 993
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3224164.2653459986,
+        "CTEConfiguracion": 3224164.2653459986,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2506887.8412361564,
+          "encuadernacion": 519117.4084626918,
+          "qa": 0.0,
+          "embalaje": 198159.01564715023
+        },
+        "CostoManoObraConfiguracion": 1612082.1326729993,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1253443.9206180782,
+          "encuadernacion": 259558.7042313459,
+          "qa": 0.0,
+          "embalaje": 99079.50782357511
+        },
+        "CostoConfiguracion": 4836246.398018998,
+        "TiempoProduccionPromLote": 516.5134285599772,
+        "DuracionVaciamiento": 532.6748621462611,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 11,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_18",
+      "description": "FIFO: todas las etapas con 18 maquinas.",
+      "resultados": {
+        "CostoPromLote": 7984.192676511152,
+        "CTLFin": 14568,
+        "TFin": 1037300.4843143465,
+        "TiempoParadoTotal": 65311221.57772712,
+        "TiempoParadoEtapa": {
+          "impresion": 11992571.841746908,
+          "encuadernacion": 18335821.912731662,
+          "qa": 16492684.715226367,
+          "embalaje": 18490143.10802218
+        },
+        "CTE": 87863723.69506821,
+        "CTEEtapa": {
+          "impresion": 45790035.777604625,
+          "encuadernacion": 17873355.057358794,
+          "qa": 10632732.126043422,
+          "embalaje": 13567600.73406137
+        },
+        "TPPL": 643.5633603270977,
+        "TPPP": 851.5903105889347,
+        "PermanenciaPromEtapa": {
+          "impresion": 446.9026972804409,
+          "encuadernacion": 22.451783296083242,
+          "qa": 145.76329714537087,
+          "embalaje": 12.442724439596983
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6123209.74383374,
+          "encuadernacion": 83369.10122392383,
+          "qa": 620595.1087733264,
+          "embalaje": 26156.948345103436
+        },
+        "CostoAhorradoPorTCaroTotal": 6853330.902176094,
+        "DesperfectosEvitadosPorMantenimiento": 0.6338387055675883,
+        "CantDesperfectos": 25463,
+        "CantLotesReProcesados": 379,
+        "SumTConf": 558309.852478459,
+        "SumTConfEtapa": {
+          "impresion": 386730.8138498934,
+          "encuadernacion": 94851.08799658512,
+          "qa": 0.0,
+          "embalaje": 76727.95063198158
+        },
+        "CantCambiosConfiguracion": 11158,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 7724,
+          "encuadernacion": 1897,
+          "qa": 0,
+          "embalaje": 1537
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3101552.125610211,
+        "CTEConfiguracion": 3101552.125610211,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2320384.8830993585,
+          "encuadernacion": 474255.4399829262,
+          "qa": 0.0,
+          "embalaje": 306911.80252792634
+        },
+        "CostoManoObraConfiguracion": 1550776.0628051055,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1160192.4415496793,
+          "encuadernacion": 237127.7199914631,
+          "qa": 0.0,
+          "embalaje": 153455.90126396317
+        },
+        "CostoConfiguracion": 4652328.188415317,
+        "TiempoProduccionPromLote": 516.3905910396564,
+        "DuracionVaciamiento": 500.4843143464532,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 10,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "fifo_all_cm_20",
+      "description": "FIFO: todas las etapas con 20 maquinas.",
+      "resultados": {
+        "CostoPromLote": 8605.638001960786,
+        "CTLFin": 14424,
+        "TFin": 1037438.4116425117,
+        "TiempoParadoTotal": 73787364.56257676,
+        "TiempoParadoEtapa": {
+          "impresion": 14208075.058871241,
+          "encuadernacion": 20421505.838011052,
+          "qa": 18581718.968791362,
+          "embalaje": 20576064.696903095
+        },
+        "CTE": 93485743.94314978,
+        "CTEEtapa": {
+          "impresion": 47386148.190181,
+          "encuadernacion": 19688596.507721823,
+          "qa": 11421509.181874242,
+          "embalaje": 14989490.063372698
+        },
+        "TPPL": 638.3934414461444,
+        "TPPP": 850.4136537883012,
+        "PermanenciaPromEtapa": {
+          "impresion": 442.2399976048944,
+          "encuadernacion": 22.1257788411316,
+          "qa": 146.51134230673486,
+          "embalaje": 11.973345531551898
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5857198.2521616565,
+          "encuadernacion": 74013.66210428975,
+          "qa": 668370.4802652017,
+          "embalaje": 22541.066974702324
+        },
+        "CostoAhorradoPorTCaroTotal": 6622123.46150585,
+        "DesperfectosEvitadosPorMantenimiento": 0.639355581127733,
+        "CantDesperfectos": 28372,
+        "CantLotesReProcesados": 367,
+        "SumTConf": 494912.6994008196,
+        "SumTConfEtapa": {
+          "impresion": 342597.6042790908,
+          "encuadernacion": 84377.8991182666,
+          "qa": 0.0,
+          "embalaje": 67937.19600346196
+        },
+        "CantCambiosConfiguracion": 9892,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 6843,
+          "encuadernacion": 1691,
+          "qa": 0,
+          "embalaje": 1358
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 2749223.905279728,
+        "CTEConfiguracion": 2749223.905279728,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2055585.6256745472,
+          "encuadernacion": 421889.4955913333,
+          "qa": 0.0,
+          "embalaje": 271748.7840138478
+        },
+        "CostoManoObraConfiguracion": 1374611.952639864,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1027792.8128372736,
+          "encuadernacion": 210944.74779566666,
+          "qa": 0.0,
+          "embalaje": 135874.3920069239
+        },
+        "CostoConfiguracion": 4123835.8579195924,
+        "TiempoProduccionPromLote": 515.6396559611647,
+        "DuracionVaciamiento": 638.4116425117245,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 16,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_1",
+      "description": "PRIORIDADES: todas las etapas con 1 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4310.546574765007,
+        "CTLFin": 14414,
+        "TFin": 6270775.111769265,
+        "TiempoParadoTotal": 16095072.129522327,
+        "TiempoParadoEtapa": {
+          "impresion": 289.731169430539,
+          "encuadernacion": 5933300.877115902,
+          "qa": 4097802.7938688733,
+          "embalaje": 6063678.727368121
+        },
+        "CTE": 49038447.34907515,
+        "CTEEtapa": {
+          "impresion": 31745428.79541932,
+          "encuadernacion": 6712567.557306724,
+          "qa": 5634461.65899238,
+          "embalaje": 4945989.337356733
+        },
+        "TPPL": 2606202.015038936,
+        "TPPP": 2805157.809124322,
+        "PermanenciaPromEtapa": {
+          "impresion": 2542167.8465328296,
+          "encuadernacion": 22.85231979090376,
+          "qa": 147.4513006971699,
+          "embalaje": 14.384494647896593
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5893792.606184868,
+          "encuadernacion": 91672.47006460054,
+          "qa": 674950.8617814775,
+          "embalaje": 33806.12172965753
+        },
+        "CostoAhorradoPorTCaroTotal": 6694222.059760604,
+        "DesperfectosEvitadosPorMantenimiento": 0.625141991669822,
+        "CantDesperfectos": 8449,
+        "CantLotesReProcesados": 362,
+        "SumTConf": 291079.981722184,
+        "SumTConfEtapa": {
+          "impresion": 97051.13007018111,
+          "encuadernacion": 97252.03743075709,
+          "qa": 0.0,
+          "embalaje": 96776.81422124614
+        },
+        "CantCambiosConfiguracion": 5825,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 1944,
+          "encuadernacion": 1944,
+          "qa": 0,
+          "embalaje": 1937
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 1455674.224459856,
+        "CTEConfiguracion": 1455674.224459856,
+        "CTEConfiguracionEtapa": {
+          "impresion": 582306.780421087,
+          "encuadernacion": 486260.1871537845,
+          "qa": 0.0,
+          "embalaje": 387107.25688498456
+        },
+        "CostoManoObraConfiguracion": 727837.112229928,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 291153.3902105435,
+          "encuadernacion": 243130.09357689225,
+          "qa": 0.0,
+          "embalaje": 193553.62844249228
+        },
+        "CostoConfiguracion": 2183511.336689784,
+        "TiempoProduccionPromLote": 516.6726592437077,
+        "DuracionVaciamiento": 5233975.111769265,
+        "CantLotesEnColaAlTF": 12008,
+        "CantLotesEnProduccionAlTF": 2,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_2",
+      "description": "PRIORIDADES: todas las etapas con 2 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4415.645901361253,
+        "CTLFin": 14249,
+        "TFin": 3158308.107070217,
+        "TiempoParadoTotal": 16221648.331042428,
+        "TiempoParadoEtapa": {
+          "impresion": 648.8273808266968,
+          "encuadernacion": 5952296.535755396,
+          "qa": 4176349.1968301674,
+          "embalaje": 6092353.7710760385
+        },
+        "CTE": 49399657.30658399,
+        "CTEEtapa": {
+          "impresion": 31957267.949393593,
+          "encuadernacion": 6819943.736646326,
+          "qa": 5602474.98378669,
+          "embalaje": 5019970.6367573915
+        },
+        "TPPL": 1060172.5015675921,
+        "TPPP": 1137572.3253974211,
+        "PermanenciaPromEtapa": {
+          "impresion": 1031741.7150679292,
+          "encuadernacion": 24.893656520325763,
+          "qa": 146.33874734328066,
+          "embalaje": 15.744037968918654
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5893936.576683529,
+          "encuadernacion": 98063.1628541954,
+          "qa": 670850.1851925324,
+          "embalaje": 42536.167283251816
+        },
+        "CostoAhorradoPorTCaroTotal": 6705386.092013508,
+        "DesperfectosEvitadosPorMantenimiento": 0.6406574721330058,
+        "CantDesperfectos": 8570,
+        "CantLotesReProcesados": 390,
+        "SumTConf": 442910.5337828767,
+        "SumTConfEtapa": {
+          "impresion": 214814.56212954276,
+          "encuadernacion": 116936.97473950146,
+          "qa": 0.0,
+          "embalaje": 111158.99691383276
+        },
+        "CantCambiosConfiguracion": 8854,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 4293,
+          "encuadernacion": 2336,
+          "qa": 0,
+          "embalaje": 2225
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 2318208.2341301013,
+        "CTEConfiguracion": 2318208.2341301013,
+        "CTEConfiguracionEtapa": {
+          "impresion": 1288887.3727772615,
+          "encuadernacion": 584684.8736975085,
+          "qa": 0.0,
+          "embalaje": 444635.98765533103
+        },
+        "CostoManoObraConfiguracion": 1159104.1170650506,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 644443.6863886308,
+          "encuadernacion": 292342.43684875424,
+          "qa": 0.0,
+          "embalaje": 222317.99382766552
+        },
+        "CostoConfiguracion": 3477312.351195152,
+        "TiempoProduccionPromLote": 514.4618166812363,
+        "DuracionVaciamiento": 2121508.107070217,
+        "CantLotesEnColaAlTF": 9572,
+        "CantLotesEnProduccionAlTF": 2,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_3",
+      "description": "PRIORIDADES: todas las etapas con 3 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4522.776823193503,
+        "CTLFin": 14369,
+        "TFin": 2170948.582453318,
+        "TiempoParadoTotal": 16801385.34280734,
+        "TiempoParadoEtapa": {
+          "impresion": 1490.008623176328,
+          "encuadernacion": 6147441.101151547,
+          "qa": 4349301.182979196,
+          "embalaje": 6303153.050053422
+        },
+        "CTE": 50860772.01355985,
+        "CTEEtapa": {
+          "impresion": 33014052.143958967,
+          "encuadernacion": 7007251.328664457,
+          "qa": 5714277.438878464,
+          "embalaje": 5125191.102057961
+        },
+        "TPPL": 568522.1458873453,
+        "TPPP": 622050.2156419042,
+        "PermanenciaPromEtapa": {
+          "impresion": 552789.2369505187,
+          "encuadernacion": 24.73462710407195,
+          "qa": 146.49830377936948,
+          "embalaje": 14.593409235610551
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5990828.260100727,
+          "encuadernacion": 92396.51590909377,
+          "qa": 677577.037816384,
+          "embalaje": 32523.25866513269
+        },
+        "CostoAhorradoPorTCaroTotal": 6793325.072491338,
+        "DesperfectosEvitadosPorMantenimiento": 0.6359933345676727,
+        "CantDesperfectos": 8915,
+        "CantLotesReProcesados": 404,
+        "SumTConf": 552671.6229898381,
+        "SumTConfEtapa": {
+          "impresion": 335124.34097674186,
+          "encuadernacion": 117605.07444645351,
+          "qa": 0.0,
+          "embalaje": 99942.20756664673
+        },
+        "CantCambiosConfiguracion": 11052,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 6709,
+          "encuadernacion": 2354,
+          "qa": 0,
+          "embalaje": 1989
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 2998540.24835929,
+        "CTEConfiguracion": 2998540.24835929,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2010746.0458604349,
+          "encuadernacion": 588025.3722322682,
+          "qa": 0.0,
+          "embalaje": 399768.8302665869
+        },
+        "CostoManoObraConfiguracion": 1499270.124179645,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1005373.0229302174,
+          "encuadernacion": 294012.6861161341,
+          "qa": 0.0,
+          "embalaje": 199884.41513329346
+        },
+        "CostoConfiguracion": 4497810.372538935,
+        "TiempoProduccionPromLote": 515.6835832943771,
+        "DuracionVaciamiento": 1134148.582453318,
+        "CantLotesEnColaAlTF": 7531,
+        "CantLotesEnProduccionAlTF": 3,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_4",
+      "description": "PRIORIDADES: todas las etapas con 4 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4580.193824555771,
+        "CTLFin": 14322,
+        "TFin": 1650771.8683325436,
+        "TiempoParadoTotal": 17132395.399374127,
+        "TiempoParadoEtapa": {
+          "impresion": 3696.3792602943495,
+          "encuadernacion": 6263758.776554615,
+          "qa": 4445800.170010991,
+          "embalaje": 6419140.073548228
+        },
+        "CTE": 51219162.50201056,
+        "CTEEtapa": {
+          "impresion": 33375807.621115904,
+          "encuadernacion": 6994432.22476136,
+          "qa": 5728267.233645633,
+          "embalaje": 5120655.422487666
+        },
+        "TPPL": 312640.53949239105,
+        "TPPP": 338403.3697164065,
+        "PermanenciaPromEtapa": {
+          "impresion": 304709.0473525631,
+          "encuadernacion": 23.105590138607777,
+          "qa": 146.9059712486469,
+          "embalaje": 12.84369499943868
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6016378.692347154,
+          "encuadernacion": 80829.65287103105,
+          "qa": 701493.5951754306,
+          "embalaje": 26902.886446402572
+        },
+        "CostoAhorradoPorTCaroTotal": 6825604.826840018,
+        "DesperfectosEvitadosPorMantenimiento": 0.6388837892417845,
+        "CantDesperfectos": 9203,
+        "CantLotesReProcesados": 364,
+        "SumTConf": 598926.8379540124,
+        "SumTConfEtapa": {
+          "impresion": 425023.8567019971,
+          "encuadernacion": 95148.14734098266,
+          "qa": 0.0,
+          "embalaje": 78754.83391103179
+        },
+        "CantCambiosConfiguracion": 11978,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 8499,
+          "encuadernacion": 1905,
+          "qa": 0,
+          "embalaje": 1574
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3340903.2125610434,
+        "CTEConfiguracion": 3340903.2125610434,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2550143.140212003,
+          "encuadernacion": 475740.73670491314,
+          "qa": 0.0,
+          "embalaje": 315019.33564412716
+        },
+        "CostoManoObraConfiguracion": 1670451.6062805217,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1275071.5701060016,
+          "encuadernacion": 237870.36835245657,
+          "qa": 0.0,
+          "embalaje": 157509.66782206358
+        },
+        "CostoConfiguracion": 5011354.818841565,
+        "TiempoProduccionPromLote": 514.3338565213853,
+        "DuracionVaciamiento": 613971.8683325436,
+        "CantLotesEnColaAlTF": 5362,
+        "CantLotesEnProduccionAlTF": 6,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_5",
+      "description": "PRIORIDADES: todas las etapas con 5 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4635.5042245657405,
+        "CTLFin": 14443,
+        "TFin": 1343038.596243961,
+        "TiempoParadoTotal": 17439789.721360467,
+        "TiempoParadoEtapa": {
+          "impresion": 2418.8005027352833,
+          "encuadernacion": 6384863.8871086445,
+          "qa": 4535488.204284754,
+          "embalaje": 6517018.829464332
+        },
+        "CTE": 52171811.529015556,
+        "CTEEtapa": {
+          "impresion": 34056172.51098326,
+          "encuadernacion": 7090797.114922815,
+          "qa": 5800466.700932813,
+          "embalaje": 5224375.202176657
+        },
+        "TPPL": 152231.53846583478,
+        "TPPP": 165128.52076899173,
+        "PermanenciaPromEtapa": {
+          "impresion": 148336.38726709769,
+          "encuadernacion": 22.313502709481295,
+          "qa": 147.23924034615987,
+          "embalaje": 13.721121079795388
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6037250.560277787,
+          "encuadernacion": 83515.54994914625,
+          "qa": 716072.4926050246,
+          "embalaje": 31484.08660155805
+        },
+        "CostoAhorradoPorTCaroTotal": 6868322.689433516,
+        "DesperfectosEvitadosPorMantenimiento": 0.6322003577817531,
+        "CantDesperfectos": 9150,
+        "CantLotesReProcesados": 361,
+        "SumTConf": 673994.9320728318,
+        "SumTConfEtapa": {
+          "impresion": 495924.35108649544,
+          "encuadernacion": 91158.28174894348,
+          "qa": 0.0,
+          "embalaje": 86912.29923739437
+        },
+        "CantCambiosConfiguracion": 13476,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 9919,
+          "encuadernacion": 1822,
+          "qa": 0,
+          "embalaje": 1735
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3778986.7122132904,
+        "CTEConfiguracion": 3778986.7122132904,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2975546.1065189955,
+          "encuadernacion": 455791.4087447176,
+          "qa": 0.0,
+          "embalaje": 347649.1969495775
+        },
+        "CostoManoObraConfiguracion": 1889493.3561066452,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1487773.0532594977,
+          "encuadernacion": 227895.7043723588,
+          "qa": 0.0,
+          "embalaje": 173824.59847478874
+        },
+        "CostoConfiguracion": 5668480.068319935,
+        "TiempoProduccionPromLote": 514.3852263825378,
+        "DuracionVaciamiento": 306238.596243961,
+        "CantLotesEnColaAlTF": 3274,
+        "CantLotesEnProduccionAlTF": 6,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_6",
+      "description": "PRIORIDADES: todas las etapas con 6 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4686.677360351892,
+        "CTLFin": 14362,
+        "TFin": 1124203.6784266527,
+        "TiempoParadoTotal": 17526397.935323592,
+        "TiempoParadoEtapa": {
+          "impresion": 6893.782989145186,
+          "encuadernacion": 6398765.827333534,
+          "qa": 4584597.333454121,
+          "embalaje": 6536140.991546791
+        },
+        "CTE": 52370926.82480603,
+        "CTEEtapa": {
+          "impresion": 34156989.54789506,
+          "encuadernacion": 7137406.726541172,
+          "qa": 5800961.867344539,
+          "embalaje": 5275568.683025256
+        },
+        "TPPL": 45974.81658477618,
+        "TPPP": 50698.00166626144,
+        "PermanenciaPromEtapa": {
+          "impresion": 44660.021307471456,
+          "encuadernacion": 23.530035535613074,
+          "qa": 146.7416963532851,
+          "embalaje": 14.557936151867318
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6004077.219432458,
+          "encuadernacion": 102233.01814122476,
+          "qa": 682697.5650958134,
+          "embalaje": 28895.058443216105
+        },
+        "CostoAhorradoPorTCaroTotal": 6817902.861112713,
+        "DesperfectosEvitadosPorMantenimiento": 0.6439232409381663,
+        "CantDesperfectos": 9177,
+        "CantLotesReProcesados": 362,
+        "SumTConf": 729612.143216243,
+        "SumTConfEtapa": {
+          "impresion": 533809.8311678262,
+          "encuadernacion": 99032.26575926856,
+          "qa": 0.0,
+          "embalaje": 96770.04628914935
+        },
+        "CantCambiosConfiguracion": 14609,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 10689,
+          "encuadernacion": 1984,
+          "qa": 0,
+          "embalaje": 1936
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 4085100.5009599067,
+        "CTEConfiguracion": 4085100.5009599067,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3202858.9870069674,
+          "encuadernacion": 495161.3287963418,
+          "qa": 0.0,
+          "embalaje": 387080.1851565974
+        },
+        "CostoManoObraConfiguracion": 2042550.2504799534,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1601429.4935034837,
+          "encuadernacion": 247580.6643981709,
+          "qa": 0.0,
+          "embalaje": 193540.0925782987
+        },
+        "CostoConfiguracion": 6127650.75143986,
+        "TiempoProduccionPromLote": 514.9981162006177,
+        "DuracionVaciamiento": 87403.67842665268,
+        "CantLotesEnColaAlTF": 1101,
+        "CantLotesEnProduccionAlTF": 9,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_8",
+      "description": "PRIORIDADES: todas las etapas con 8 maquinas.",
+      "resultados": {
+        "CostoPromLote": 5107.400545315153,
+        "CTLFin": 14585,
+        "TFin": 1037302.657054627,
+        "TiempoParadoTotal": 23577028.977824487,
+        "TiempoParadoEtapa": {
+          "impresion": 1411554.7154579274,
+          "encuadernacion": 7945239.058746841,
+          "qa": 6100959.041220701,
+          "embalaje": 8119276.162399019
+        },
+        "CTE": 57596487.16768497,
+        "CTEEtapa": {
+          "impresion": 36265632.1724686,
+          "encuadernacion": 8562107.509267535,
+          "qa": 6474869.796294548,
+          "embalaje": 6293877.689654285
+        },
+        "TPPL": 800.1014516713005,
+        "TPPP": 1043.7514037610404,
+        "PermanenciaPromEtapa": {
+          "impresion": 597.0141689382519,
+          "encuadernacion": 23.586362874995352,
+          "qa": 146.7518508892952,
+          "embalaje": 12.282831267602045
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6028231.507079687,
+          "encuadernacion": 94053.17003861688,
+          "qa": 691489.0064760719,
+          "embalaje": 23711.59005045702
+        },
+        "CostoAhorradoPorTCaroTotal": 6837485.273644833,
+        "DesperfectosEvitadosPorMantenimiento": 0.6266149870801033,
+        "CantDesperfectos": 11297,
+        "CantLotesReProcesados": 389,
+        "SumTConf": 742333.6347711681,
+        "SumTConfEtapa": {
+          "impresion": 566591.7320490283,
+          "encuadernacion": 102636.92977265184,
+          "qa": 0.0,
+          "embalaje": 73104.97294948844
+        },
+        "CantCambiosConfiguracion": 14851,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 11339,
+          "encuadernacion": 2051,
+          "qa": 0,
+          "embalaje": 1461
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 4205154.932955336,
+        "CTEConfiguracion": 4205154.932955336,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3399550.3922941224,
+          "encuadernacion": 513184.64886325947,
+          "qa": 0.0,
+          "embalaje": 292419.89179795375
+        },
+        "CostoManoObraConfiguracion": 2102577.466477668,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1699775.1961470612,
+          "encuadernacion": 256592.32443162974,
+          "qa": 0.0,
+          "embalaje": 146209.94589897688
+        },
+        "CostoConfiguracion": 6307732.399433004,
+        "TiempoProduccionPromLote": 515.515730538672,
+        "DuracionVaciamiento": 502.65705462696496,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 8,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_10",
+      "description": "PRIORIDADES: todas las etapas con 10 maquinas.",
+      "resultados": {
+        "CostoPromLote": 5727.428928414893,
+        "CTLFin": 14361,
+        "TFin": 1037500.63719108,
+        "TiempoParadoTotal": 32102741.17108851,
+        "TiempoParadoEtapa": {
+          "impresion": 3616947.477563031,
+          "encuadernacion": 10026925.811063986,
+          "qa": 8225238.648179425,
+          "embalaje": 10233629.234282065
+        },
+        "CTE": 63151046.27546805,
+        "CTEEtapa": {
+          "impresion": 37813955.693991475,
+          "encuadernacion": 10441198.56010508,
+          "qa": 7256624.681917189,
+          "embalaje": 7639267.339454312
+        },
+        "TPPL": 681.6400063824786,
+        "TPPP": 897.604082426275,
+        "PermanenciaPromEtapa": {
+          "impresion": 487.14360628546484,
+          "encuadernacion": 23.716056472495573,
+          "qa": 146.47187597815594,
+          "embalaje": 9.84451901878338
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5902618.806548941,
+          "encuadernacion": 77759.50572129703,
+          "qa": 641368.8836886823,
+          "embalaje": 19430.38999841952
+        },
+        "CostoAhorradoPorTCaroTotal": 6641177.58595734,
+        "DesperfectosEvitadosPorMantenimiento": 0.6334614936502388,
+        "CantDesperfectos": 14446,
+        "CantLotesReProcesados": 316,
+        "SumTConf": 691091.7345468549,
+        "SumTConfEtapa": {
+          "impresion": 543198.6207676878,
+          "encuadernacion": 107223.57026097248,
+          "qa": 0.0,
+          "embalaje": 40669.54351819454
+        },
+        "CantCambiosConfiguracion": 13822,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 10856,
+          "encuadernacion": 2149,
+          "qa": 0,
+          "embalaje": 817
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3957987.7499837647,
+        "CTEConfiguracion": 3957987.7499837647,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3259191.724606125,
+          "encuadernacion": 536117.8513048613,
+          "qa": 0.0,
+          "embalaje": 162678.17407277817
+        },
+        "CostoManoObraConfiguracion": 1978993.8749918824,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1629595.8623030626,
+          "encuadernacion": 268058.9256524306,
+          "qa": 0.0,
+          "embalaje": 81339.08703638909
+        },
+        "CostoConfiguracion": 5936981.624975647,
+        "TiempoProduccionPromLote": 514.8665852708236,
+        "DuracionVaciamiento": 700.6371910800226,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 15,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_12",
+      "description": "PRIORIDADES: todas las etapas con 12 maquinas.",
+      "resultados": {
+        "CostoPromLote": 6334.539120467259,
+        "CTLFin": 14243,
+        "TFin": 1037274.3154687302,
+        "TiempoParadoTotal": 40543056.10531292,
+        "TiempoParadoEtapa": {
+          "impresion": 5790725.0259306645,
+          "encuadernacion": 12128851.414244,
+          "qa": 10321689.787852839,
+          "embalaje": 12301789.877285417
+        },
+        "CTE": 68889077.22887143,
+        "CTEEtapa": {
+          "impresion": 39530097.84293072,
+          "encuadernacion": 12187174.451962478,
+          "qa": 8067987.030176554,
+          "embalaje": 9103817.90380169
+        },
+        "TPPL": 655.8984766822987,
+        "TPPP": 867.7813082314635,
+        "PermanenciaPromEtapa": {
+          "impresion": 462.14617246554013,
+          "encuadernacion": 21.794563779395077,
+          "qa": 145.47957003435175,
+          "embalaje": 10.215678462357369
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5997523.383355728,
+          "encuadernacion": 73224.20992563864,
+          "qa": 600753.8398370213,
+          "embalaje": 10911.705460969202
+        },
+        "CostoAhorradoPorTCaroTotal": 6682413.138579357,
+        "DesperfectosEvitadosPorMantenimiento": 0.6313429988553987,
+        "CantDesperfectos": 16956,
+        "CantLotesReProcesados": 368,
+        "SumTConf": 630804.079880844,
+        "SumTConfEtapa": {
+          "impresion": 506385.94176856853,
+          "encuadernacion": 78925.97501494494,
+          "qa": 0.0,
+          "embalaje": 45492.163097334145
+        },
+        "CantCambiosConfiguracion": 12622,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 10128,
+          "encuadernacion": 1581,
+          "qa": 0,
+          "embalaje": 913
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3614914.1780754765,
+        "CTEConfiguracion": 3614914.1780754765,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3038315.650611414,
+          "encuadernacion": 394629.8750747257,
+          "qa": 0.0,
+          "embalaje": 181968.65238933658
+        },
+        "CostoManoObraConfiguracion": 1807457.0890377383,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1519157.825305707,
+          "encuadernacion": 197314.93753736286,
+          "qa": 0.0,
+          "embalaje": 90984.32619466829
+        },
+        "CostoConfiguracion": 5422371.267113214,
+        "TiempoProduccionPromLote": 515.3031779628132,
+        "DuracionVaciamiento": 474.31546873017214,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 6,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_14",
+      "description": "PRIORIDADES: todas las etapas con 14 maquinas.",
+      "resultados": {
+        "CostoPromLote": 6908.320106788259,
+        "CTLFin": 14284,
+        "TFin": 1037819.2238853108,
+        "TiempoParadoTotal": 48889290.48352045,
+        "TiempoParadoEtapa": {
+          "impresion": 7918214.815865442,
+          "encuadernacion": 14180138.960477063,
+          "qa": 12401013.910020448,
+          "embalaje": 14389922.797157492
+        },
+        "CTE": 74991507.50238872,
+        "CTEEtapa": {
+          "impresion": 41373525.11772585,
+          "encuadernacion": 14169856.112459065,
+          "qa": 8893980.659304548,
+          "embalaje": 10554145.612899248
+        },
+        "TPPL": 647.5018454818439,
+        "TPPP": 856.8669613249795,
+        "PermanenciaPromEtapa": {
+          "impresion": 453.0699340940527,
+          "encuadernacion": 23.866241300627383,
+          "qa": 145.41608419579822,
+          "embalaje": 9.769415936493163
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6005328.639971226,
+          "encuadernacion": 93305.80494701001,
+          "qa": 622479.0000013622,
+          "embalaje": 10709.635909356555
+        },
+        "CostoAhorradoPorTCaroTotal": 6731823.080828955,
+        "DesperfectosEvitadosPorMantenimiento": 0.6333443489755453,
+        "CantDesperfectos": 19924,
+        "CantLotesReProcesados": 353,
+        "SumTConf": 610597.363737334,
+        "SumTConfEtapa": {
+          "impresion": 462246.0234356445,
+          "encuadernacion": 105907.12190079872,
+          "qa": 0.0,
+          "embalaje": 42444.21840089014
+        },
+        "CantCambiosConfiguracion": 12215,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 9248,
+          "encuadernacion": 2118,
+          "qa": 0,
+          "embalaje": 849
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3472788.623721426,
+        "CTEConfiguracion": 3472788.623721426,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2773476.1406138716,
+          "encuadernacion": 529535.6095039938,
+          "qa": 0.0,
+          "embalaje": 169776.87360356055
+        },
+        "CostoManoObraConfiguracion": 1736394.311860713,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1386738.0703069358,
+          "encuadernacion": 264767.8047519969,
+          "qa": 0.0,
+          "embalaje": 84888.43680178028
+        },
+        "CostoConfiguracion": 5209182.935582139,
+        "TiempoProduccionPromLote": 513.4361073613226,
+        "DuracionVaciamiento": 1019.2238853108138,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 7,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_16",
+      "description": "PRIORIDADES: todas las etapas con 16 maquinas.",
+      "resultados": {
+        "CostoPromLote": 7458.6940706984,
+        "CTLFin": 14403,
+        "TFin": 1037332.6748621463,
+        "TiempoParadoTotal": 57093658.388970174,
+        "TiempoParadoEtapa": {
+          "impresion": 9955322.45213876,
+          "encuadernacion": 16257436.731307667,
+          "qa": 14430964.035118008,
+          "embalaje": 16449935.170405738
+        },
+        "CTE": 81418249.62991199,
+        "CTEEtapa": {
+          "impresion": 43589791.62863852,
+          "encuadernacion": 16037922.59888685,
+          "qa": 9763310.510862648,
+          "embalaje": 12027224.891523974
+        },
+        "TPPL": 645.8100631524306,
+        "TPPP": 854.34673157519,
+        "PermanenciaPromEtapa": {
+          "impresion": 449.7037058129553,
+          "encuadernacion": 22.991684129520195,
+          "qa": 146.54391954788062,
+          "embalaje": 10.2331200019854
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6107383.451276086,
+          "encuadernacion": 76932.21495324848,
+          "qa": 660092.6269971472,
+          "embalaje": 15820.170202099656
+        },
+        "CostoAhorradoPorTCaroTotal": 6860228.463428582,
+        "DesperfectosEvitadosPorMantenimiento": 0.6348412353197043,
+        "CantDesperfectos": 22875,
+        "CantLotesReProcesados": 380,
+        "SumTConf": 571177.875810355,
+        "SumTConfEtapa": {
+          "impresion": 417814.6402060271,
+          "encuadernacion": 103823.48169253828,
+          "qa": 0.0,
+          "embalaje": 49539.75391178756
+        },
+        "CantCambiosConfiguracion": 11427,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 8357,
+          "encuadernacion": 2077,
+          "qa": 0,
+          "embalaje": 993
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3224164.2653459986,
+        "CTEConfiguracion": 3224164.2653459986,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2506887.8412361564,
+          "encuadernacion": 519117.4084626918,
+          "qa": 0.0,
+          "embalaje": 198159.01564715023
+        },
+        "CostoManoObraConfiguracion": 1612082.1326729993,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1253443.9206180782,
+          "encuadernacion": 259558.7042313459,
+          "qa": 0.0,
+          "embalaje": 99079.50782357511
+        },
+        "CostoConfiguracion": 4836246.398018998,
+        "TiempoProduccionPromLote": 516.5134285599772,
+        "DuracionVaciamiento": 532.6748621462611,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 11,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_18",
+      "description": "PRIORIDADES: todas las etapas con 18 maquinas.",
+      "resultados": {
+        "CostoPromLote": 7984.192676511152,
+        "CTLFin": 14568,
+        "TFin": 1037300.4843143465,
+        "TiempoParadoTotal": 65311221.57772712,
+        "TiempoParadoEtapa": {
+          "impresion": 11992571.841746908,
+          "encuadernacion": 18335821.912731662,
+          "qa": 16492684.715226367,
+          "embalaje": 18490143.10802218
+        },
+        "CTE": 87863723.69506821,
+        "CTEEtapa": {
+          "impresion": 45790035.777604625,
+          "encuadernacion": 17873355.057358794,
+          "qa": 10632732.126043422,
+          "embalaje": 13567600.73406137
+        },
+        "TPPL": 643.5633603270977,
+        "TPPP": 851.5903105889347,
+        "PermanenciaPromEtapa": {
+          "impresion": 446.9026972804409,
+          "encuadernacion": 22.451783296083242,
+          "qa": 145.76329714537087,
+          "embalaje": 12.442724439596983
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6123209.74383374,
+          "encuadernacion": 83369.10122392383,
+          "qa": 620595.1087733264,
+          "embalaje": 26156.948345103436
+        },
+        "CostoAhorradoPorTCaroTotal": 6853330.902176094,
+        "DesperfectosEvitadosPorMantenimiento": 0.6338387055675883,
+        "CantDesperfectos": 25463,
+        "CantLotesReProcesados": 379,
+        "SumTConf": 558309.852478459,
+        "SumTConfEtapa": {
+          "impresion": 386730.8138498934,
+          "encuadernacion": 94851.08799658512,
+          "qa": 0.0,
+          "embalaje": 76727.95063198158
+        },
+        "CantCambiosConfiguracion": 11158,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 7724,
+          "encuadernacion": 1897,
+          "qa": 0,
+          "embalaje": 1537
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3101552.125610211,
+        "CTEConfiguracion": 3101552.125610211,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2320384.8830993585,
+          "encuadernacion": 474255.4399829262,
+          "qa": 0.0,
+          "embalaje": 306911.80252792634
+        },
+        "CostoManoObraConfiguracion": 1550776.0628051055,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1160192.4415496793,
+          "encuadernacion": 237127.7199914631,
+          "qa": 0.0,
+          "embalaje": 153455.90126396317
+        },
+        "CostoConfiguracion": 4652328.188415317,
+        "TiempoProduccionPromLote": 516.3905910396564,
+        "DuracionVaciamiento": 500.4843143464532,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 10,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "prioridades_all_cm_20",
+      "description": "PRIORIDADES: todas las etapas con 20 maquinas.",
+      "resultados": {
+        "CostoPromLote": 8605.638001960786,
+        "CTLFin": 14424,
+        "TFin": 1037438.4116425117,
+        "TiempoParadoTotal": 73787364.56257676,
+        "TiempoParadoEtapa": {
+          "impresion": 14208075.058871241,
+          "encuadernacion": 20421505.838011052,
+          "qa": 18581718.968791362,
+          "embalaje": 20576064.696903095
+        },
+        "CTE": 93485743.94314978,
+        "CTEEtapa": {
+          "impresion": 47386148.190181,
+          "encuadernacion": 19688596.507721823,
+          "qa": 11421509.181874242,
+          "embalaje": 14989490.063372698
+        },
+        "TPPL": 638.3934414461444,
+        "TPPP": 850.4136537883012,
+        "PermanenciaPromEtapa": {
+          "impresion": 442.2399976048944,
+          "encuadernacion": 22.1257788411316,
+          "qa": 146.51134230673486,
+          "embalaje": 11.973345531551898
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5857198.2521616565,
+          "encuadernacion": 74013.66210428975,
+          "qa": 668370.4802652017,
+          "embalaje": 22541.066974702324
+        },
+        "CostoAhorradoPorTCaroTotal": 6622123.46150585,
+        "DesperfectosEvitadosPorMantenimiento": 0.639355581127733,
+        "CantDesperfectos": 28372,
+        "CantLotesReProcesados": 367,
+        "SumTConf": 494912.6994008196,
+        "SumTConfEtapa": {
+          "impresion": 342597.6042790908,
+          "encuadernacion": 84377.8991182666,
+          "qa": 0.0,
+          "embalaje": 67937.19600346196
+        },
+        "CantCambiosConfiguracion": 9892,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 6843,
+          "encuadernacion": 1691,
+          "qa": 0,
+          "embalaje": 1358
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 2749223.905279728,
+        "CTEConfiguracion": 2749223.905279728,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2055585.6256745472,
+          "encuadernacion": 421889.4955913333,
+          "qa": 0.0,
+          "embalaje": 271748.7840138478
+        },
+        "CostoManoObraConfiguracion": 1374611.952639864,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1027792.8128372736,
+          "encuadernacion": 210944.74779566666,
+          "qa": 0.0,
+          "embalaje": 135874.3920069239
+        },
+        "CostoConfiguracion": 4123835.8579195924,
+        "TiempoProduccionPromLote": 515.6396559611647,
+        "DuracionVaciamiento": 638.4116425117245,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 16,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_1",
+      "description": "POR_CONFIGURACION: todas las etapas con 1 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4117.3526210030805,
+        "CTLFin": 14484,
+        "TFin": 6140472.335195831,
+        "TiempoParadoTotal": 15925533.503701173,
+        "TiempoParadoEtapa": {
+          "impresion": 285.0817543035373,
+          "encuadernacion": 5915405.282720185,
+          "qa": 3961303.8938300125,
+          "embalaje": 6048539.245396673
+        },
+        "CTE": 47404575.85341557,
+        "CTEEtapa": {
+          "impresion": 31072610.577325456,
+          "encuadernacion": 6215054.816900178,
+          "qa": 5566226.1868477315,
+          "embalaje": 4550684.272342209
+        },
+        "TPPL": 2548630.0228220425,
+        "TPPP": 2609756.236843589,
+        "PermanenciaPromEtapa": {
+          "impresion": 2487489.4468063805,
+          "encuadernacion": 15.183892847305104,
+          "qa": 147.17563215074043,
+          "embalaje": 6.358492347909333
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5858275.738995816,
+          "encuadernacion": 40445.33046896921,
+          "qa": 727737.699490834,
+          "embalaje": 2394.4301389521497
+        },
+        "CostoAhorradoPorTCaroTotal": 6628853.199094571,
+        "DesperfectosEvitadosPorMantenimiento": 0.6320754716981132,
+        "CantDesperfectos": 8462,
+        "CantLotesReProcesados": 355,
+        "SumTConf": 759.0155626143678,
+        "SumTConfEtapa": {
+          "impresion": 257.64524222555247,
+          "encuadernacion": 255.7617399347863,
+          "qa": 0.0,
+          "embalaje": 245.6085804540291
+        },
+        "CantCambiosConfiguracion": 15,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 5,
+          "encuadernacion": 5,
+          "qa": 0,
+          "embalaje": 5
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3807.1144748433626,
+        "CTEConfiguracion": 3807.1144748433626,
+        "CTEConfiguracionEtapa": {
+          "impresion": 1545.8714533533148,
+          "encuadernacion": 1278.8086996739316,
+          "qa": 0.0,
+          "embalaje": 982.4343218161164
+        },
+        "CostoManoObraConfiguracion": 1903.5572374216813,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 772.9357266766574,
+          "encuadernacion": 639.4043498369658,
+          "qa": 0.0,
+          "embalaje": 491.2171609080582
+        },
+        "CostoConfiguracion": 5710.671712265044,
+        "TiempoProduccionPromLote": 512.7194785732717,
+        "DuracionVaciamiento": 5103672.335195831,
+        "CantLotesEnColaAlTF": 12032,
+        "CantLotesEnProduccionAlTF": 1,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_2",
+      "description": "POR_CONFIGURACION: todas las etapas con 2 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4150.736798133391,
+        "CTLFin": 14155,
+        "TFin": 3030578.9205221585,
+        "TiempoParadoTotal": 15723402.935135135,
+        "TiempoParadoEtapa": {
+          "impresion": 1008.0469975443557,
+          "encuadernacion": 5839888.358657228,
+          "qa": 3915094.43232721,
+          "embalaje": 5967412.097153153
+        },
+        "CTE": 46726102.99906947,
+        "CTEEtapa": {
+          "impresion": 30613472.49808355,
+          "encuadernacion": 6133041.371920417,
+          "qa": 5489525.196917529,
+          "embalaje": 4490063.9321479695
+        },
+        "TPPL": 994854.4049634066,
+        "TPPP": 1030233.8873527643,
+        "PermanenciaPromEtapa": {
+          "impresion": 968542.4861525022,
+          "encuadernacion": 15.221124192548476,
+          "qa": 147.68949290822061,
+          "embalaje": 6.623060210161262
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5782832.666148632,
+          "encuadernacion": 40565.001366146214,
+          "qa": 710943.0975036987,
+          "embalaje": 2907.1822435172758
+        },
+        "CostoAhorradoPorTCaroTotal": 6537247.947261994,
+        "DesperfectosEvitadosPorMantenimiento": 0.6360564500099384,
+        "CantDesperfectos": 8386,
+        "CantLotesReProcesados": 382,
+        "SumTConf": 2606.3852746211405,
+        "SumTConfEtapa": {
+          "impresion": 602.6547280778699,
+          "encuadernacion": 950.4402696640382,
+          "qa": 0.0,
+          "embalaje": 1053.2902768792324
+        },
+        "CantCambiosConfiguracion": 52,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 12,
+          "encuadernacion": 19,
+          "qa": 0,
+          "embalaje": 21
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 12581.290824304338,
+        "CTEConfiguracion": 12581.290824304338,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3615.92836846722,
+          "encuadernacion": 4752.20134832019,
+          "qa": 0.0,
+          "embalaje": 4213.161107516929
+        },
+        "CostoManoObraConfiguracion": 6290.645412152169,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1807.96418423361,
+          "encuadernacion": 2376.100674160095,
+          "qa": 0.0,
+          "embalaje": 2106.5805537584647
+        },
+        "CostoConfiguracion": 18871.93623645651,
+        "TiempoProduccionPromLote": 516.7687722426064,
+        "DuracionVaciamiento": 1993778.9205221585,
+        "CantLotesEnColaAlTF": 9267,
+        "CantLotesEnProduccionAlTF": 3,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_3",
+      "description": "POR_CONFIGURACION: todas las etapas con 3 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4143.401715665458,
+        "CTLFin": 14419,
+        "TFin": 2049262.1220250023,
+        "TiempoParadoTotal": 15943206.83482309,
+        "TiempoParadoEtapa": {
+          "impresion": 1336.3385845311723,
+          "encuadernacion": 5911269.929185131,
+          "qa": 3981887.733797198,
+          "embalaje": 6048712.83325623
+        },
+        "CTE": 47488511.86787115,
+        "CTEEtapa": {
+          "impresion": 31091310.883608386,
+          "encuadernacion": 6254356.427313725,
+          "qa": 5575212.319920929,
+          "embalaje": 4567632.23702811
+        },
+        "TPPL": 507495.9665061834,
+        "TPPP": 523430.3718904409,
+        "PermanenciaPromEtapa": {
+          "impresion": 495132.16402402316,
+          "encuadernacion": 16.008964186399083,
+          "qa": 146.6197233001413,
+          "embalaje": 6.871040489545051
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5849006.340957876,
+          "encuadernacion": 46654.31317621476,
+          "qa": 671706.8263334776,
+          "embalaje": 3216.519682990815
+        },
+        "CostoAhorradoPorTCaroTotal": 6570584.0001505595,
+        "DesperfectosEvitadosPorMantenimiento": 0.6338829996073813,
+        "CantDesperfectos": 8543,
+        "CantLotesReProcesados": 355,
+        "SumTConf": 16597.621814519785,
+        "SumTConfEtapa": {
+          "impresion": 2299.943737649429,
+          "encuadernacion": 9513.197127294723,
+          "qa": 0.0,
+          "embalaje": 4784.480949575637
+        },
+        "CantCambiosConfiguracion": 332,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 46,
+          "encuadernacion": 190,
+          "qa": 0,
+          "embalaje": 96
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 80503.57186067279,
+        "CTEConfiguracion": 80503.57186067279,
+        "CTEConfiguracionEtapa": {
+          "impresion": 13799.66242589657,
+          "encuadernacion": 47565.98563647367,
+          "qa": 0.0,
+          "embalaje": 19137.92379830255
+        },
+        "CostoManoObraConfiguracion": 40251.785930336395,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 6899.831212948285,
+          "encuadernacion": 23782.992818236835,
+          "qa": 0.0,
+          "embalaje": 9568.961899151274
+        },
+        "CostoConfiguracion": 120755.35779100918,
+        "TiempoProduccionPromLote": 515.0509346836624,
+        "DuracionVaciamiento": 1012462.1220250023,
+        "CantLotesEnColaAlTF": 7106,
+        "CantLotesEnProduccionAlTF": 4,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_4",
+      "description": "POR_CONFIGURACION: todas las etapas con 4 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4160.848678413369,
+        "CTLFin": 14264,
+        "TFin": 1522154.690563005,
+        "TiempoParadoTotal": 15769664.95083333,
+        "TiempoParadoEtapa": {
+          "impresion": 2100.0357102846965,
+          "encuadernacion": 5858217.054073709,
+          "qa": 3925898.7699264493,
+          "embalaje": 5983449.091122886
+        },
+        "CTE": 47194688.70480597,
+        "CTEEtapa": {
+          "impresion": 30921357.284905083,
+          "encuadernacion": 6204181.62683739,
+          "qa": 5529424.583945657,
+          "embalaje": 4539725.209117846
+        },
+        "TPPL": 242946.29099206836,
+        "TPPP": 250875.22261914084,
+        "PermanenciaPromEtapa": {
+          "impresion": 236487.57306424115,
+          "encuadernacion": 15.734597294155092,
+          "qa": 147.70135572384444,
+          "embalaje": 7.373084066820382
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5811244.432503653,
+          "encuadernacion": 40199.06398237986,
+          "qa": 708118.4006308662,
+          "embalaje": 5547.049490985123
+        },
+        "CostoAhorradoPorTCaroTotal": 6565108.946607884,
+        "DesperfectosEvitadosPorMantenimiento": 0.6441874142325035,
+        "CantDesperfectos": 8230,
+        "CantLotesReProcesados": 379,
+        "SumTConf": 24245.22027979048,
+        "SumTConfEtapa": {
+          "impresion": 3573.6436477473194,
+          "encuadernacion": 10566.119020752067,
+          "qa": 0.0,
+          "embalaje": 10105.457611291084
+        },
+        "CantCambiosConfiguracion": 486,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 72,
+          "encuadernacion": 211,
+          "qa": 0,
+          "embalaje": 203
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 114694.28743540865,
+        "CTEConfiguracion": 114694.28743540865,
+        "CTEConfiguracionEtapa": {
+          "impresion": 21441.861886483923,
+          "encuadernacion": 52830.595103760395,
+          "qa": 0.0,
+          "embalaje": 40421.830445164334
+        },
+        "CostoManoObraConfiguracion": 57347.143717704326,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 10720.930943241961,
+          "encuadernacion": 26415.297551880198,
+          "qa": 0.0,
+          "embalaje": 20210.915222582167
+        },
+        "CostoConfiguracion": 172041.43115311296,
+        "TiempoProduccionPromLote": 517.5744409848144,
+        "DuracionVaciamiento": 485354.69056300493,
+        "CantLotesEnColaAlTF": 4538,
+        "CantLotesEnProduccionAlTF": 7,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_5",
+      "description": "POR_CONFIGURACION: todas las etapas con 5 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4149.493962720768,
+        "CTLFin": 14198,
+        "TFin": 1210157.1904101032,
+        "TiempoParadoTotal": 15669614.642741062,
+        "TiempoParadoEtapa": {
+          "impresion": 3500.1674596817234,
+          "encuadernacion": 5807395.758754706,
+          "qa": 3911989.360371362,
+          "embalaje": 5946729.356155312
+        },
+        "CTE": 46804674.00754878,
+        "CTEEtapa": {
+          "impresion": 30631077.831476677,
+          "encuadernacion": 6180714.954297918,
+          "qa": 5483703.311763763,
+          "embalaje": 4509177.910010419
+        },
+        "TPPL": 83277.82211543428,
+        "TPPP": 86200.8778255541,
+        "PermanenciaPromEtapa": {
+          "impresion": 81047.68768345262,
+          "encuadernacion": 16.71865594832952,
+          "qa": 146.9181419176517,
+          "embalaje": 7.328961536500276
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5751118.427394146,
+          "encuadernacion": 53932.82700700728,
+          "qa": 691475.0596480449,
+          "embalaje": 5524.698319328698
+        },
+        "CostoAhorradoPorTCaroTotal": 6502051.012368527,
+        "DesperfectosEvitadosPorMantenimiento": 0.6375571911676945,
+        "CantDesperfectos": 8410,
+        "CantLotesReProcesados": 360,
+        "SumTConf": 33503.32085369284,
+        "SumTConfEtapa": {
+          "impresion": 8069.135929225117,
+          "encuadernacion": 16160.495742049034,
+          "qa": 0.0,
+          "embalaje": 9273.689182418688
+        },
+        "CantCambiosConfiguracion": 670,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 161,
+          "encuadernacion": 323,
+          "qa": 0,
+          "embalaje": 186
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 166312.0510152707,
+        "CTEConfiguracion": 166312.0510152707,
+        "CTEConfiguracionEtapa": {
+          "impresion": 48414.815575350694,
+          "encuadernacion": 80802.47871024524,
+          "qa": 0.0,
+          "embalaje": 37094.75672967475
+        },
+        "CostoManoObraConfiguracion": 83156.02550763535,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 24207.407787675347,
+          "encuadernacion": 40401.23935512262,
+          "qa": 0.0,
+          "embalaje": 18547.378364837376
+        },
+        "CostoConfiguracion": 249468.07652290605,
+        "TiempoProduccionPromLote": 514.7186459183806,
+        "DuracionVaciamiento": 173357.19041010318,
+        "CantLotesEnColaAlTF": 2026,
+        "CantLotesEnProduccionAlTF": 7,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_6",
+      "description": "POR_CONFIGURACION: todas las etapas con 6 maquinas.",
+      "resultados": {
+        "CostoPromLote": 4302.659768552775,
+        "CTLFin": 14307,
+        "TFin": 1043045.4522794208,
+        "TiempoParadoTotal": 16191877.566378206,
+        "TiempoParadoEtapa": {
+          "impresion": 15143.96651618507,
+          "encuadernacion": 5967277.127367863,
+          "qa": 4104111.827369987,
+          "embalaje": 6105344.64512417
+        },
+        "CTE": 48556259.20986575,
+        "CTEEtapa": {
+          "impresion": 31629451.56487248,
+          "encuadernacion": 6546361.612459883,
+          "qa": 5583451.341554816,
+          "embalaje": 4796994.69097857
+        },
+        "TPPL": 4084.5123670108064,
+        "TPPP": 4514.926304206381,
+        "PermanenciaPromEtapa": {
+          "impresion": 3809.455921719086,
+          "encuadernacion": 19.852339085049895,
+          "qa": 146.96342471034995,
+          "embalaje": 10.689038131846532
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5828829.867219105,
+          "encuadernacion": 72027.42956911176,
+          "qa": 706928.1974738395,
+          "embalaje": 19895.63961242202
+        },
+        "CostoAhorradoPorTCaroTotal": 6627681.133874479,
+        "DesperfectosEvitadosPorMantenimiento": 0.6331877729257642,
+        "CantDesperfectos": 8533,
+        "CantLotesReProcesados": 351,
+        "SumTConf": 256501.76840186157,
+        "SumTConfEtapa": {
+          "impresion": 144473.91851006658,
+          "encuadernacion": 59200.58828931579,
+          "qa": 0.0,
+          "embalaje": 52827.261602480256
+        },
+        "CantCambiosConfiguracion": 5133,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 2898,
+          "encuadernacion": 1183,
+          "qa": 0,
+          "embalaje": 1052
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 1374155.4989168996,
+        "CTEConfiguracion": 1374155.4989168996,
+        "CTEConfiguracionEtapa": {
+          "impresion": 866843.5110603998,
+          "encuadernacion": 296002.9414465787,
+          "qa": 0.0,
+          "embalaje": 211309.04640992102
+        },
+        "CostoManoObraConfiguracion": 687077.7494584498,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 433421.7555301999,
+          "encuadernacion": 148001.47072328936,
+          "qa": 0.0,
+          "embalaje": 105654.52320496051
+        },
+        "CostoConfiguracion": 2061233.2483753492,
+        "TiempoProduccionPromLote": 513.694597239671,
+        "DuracionVaciamiento": 6245.452279420802,
+        "CantLotesEnColaAlTF": 75,
+        "CantLotesEnProduccionAlTF": 8,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_8",
+      "description": "POR_CONFIGURACION: todas las etapas con 8 maquinas.",
+      "resultados": {
+        "CostoPromLote": 5126.697309224761,
+        "CTLFin": 14517,
+        "TFin": 1038208.2071514061,
+        "TiempoParadoTotal": 23665501.380396094,
+        "TiempoParadoEtapa": {
+          "impresion": 1478194.736719037,
+          "encuadernacion": 7930840.456155829,
+          "qa": 6122291.47413217,
+          "embalaje": 8134174.713389059
+        },
+        "CTE": 57539867.09549523,
+        "CTEEtapa": {
+          "impresion": 36148060.57040115,
+          "encuadernacion": 8652791.489526983,
+          "qa": 6468083.8451531585,
+          "embalaje": 6270931.190413943
+        },
+        "TPPL": 780.8592425937126,
+        "TPPP": 1012.0911343051312,
+        "PermanenciaPromEtapa": {
+          "impresion": 577.6643372785743,
+          "encuadernacion": 25.15943086692273,
+          "qa": 146.55485186461834,
+          "embalaje": 11.813111787712074
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5949498.151005632,
+          "encuadernacion": 99218.62392984111,
+          "qa": 673463.9219734679,
+          "embalaje": 21273.70043328646
+        },
+        "CostoAhorradoPorTCaroTotal": 6743454.397342227,
+        "DesperfectosEvitadosPorMantenimiento": 0.6361282899467856,
+        "CantDesperfectos": 11335,
+        "CantLotesReProcesados": 381,
+        "SumTConf": 745122.5453743902,
+        "SumTConfEtapa": {
+          "impresion": 555791.919156857,
+          "encuadernacion": 124243.58508635045,
+          "qa": 0.0,
+          "embalaje": 65087.04113118093
+        },
+        "CantCambiosConfiguracion": 14892,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 11113,
+          "encuadernacion": 2480,
+          "qa": 0,
+          "embalaje": 1299
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 4216317.604897612,
+        "CTEConfiguracion": 4216317.604897612,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3334751.5149411364,
+          "encuadernacion": 621217.9254317515,
+          "qa": 0.0,
+          "embalaje": 260348.16452472372
+        },
+        "CostoManoObraConfiguracion": 2108158.802448806,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1667375.7574705682,
+          "encuadernacion": 310608.96271587576,
+          "qa": 0.0,
+          "embalaje": 130174.08226236186
+        },
+        "CostoConfiguracion": 6324476.407346418,
+        "TiempoProduccionPromLote": 515.9489765939169,
+        "DuracionVaciamiento": 1408.2071514060954,
+        "CantLotesEnColaAlTF": 12,
+        "CantLotesEnProduccionAlTF": 9,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_10",
+      "description": "POR_CONFIGURACION: todas las etapas con 10 maquinas.",
+      "resultados": {
+        "CostoPromLote": 5710.817200098354,
+        "CTLFin": 14473,
+        "TFin": 1037297.9358445388,
+        "TiempoParadoTotal": 31987369.191340823,
+        "TiempoParadoEtapa": {
+          "impresion": 3561077.8366791513,
+          "encuadernacion": 9983826.297166653,
+          "qa": 8204490.408786756,
+          "embalaje": 10237974.648708263
+        },
+        "CTE": 63438645.61233656,
+        "CTEEtapa": {
+          "impresion": 37978638.18152651,
+          "encuadernacion": 10554294.57704002,
+          "qa": 7272572.939187998,
+          "embalaje": 7633139.91458203
+        },
+        "TPPL": 685.994697605337,
+        "TPPP": 906.4398926444725,
+        "PermanenciaPromEtapa": {
+          "impresion": 487.15778211589816,
+          "encuadernacion": 26.200300362132126,
+          "qa": 145.9966976138606,
+          "embalaje": 9.328039089140557
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5960203.36482102,
+          "encuadernacion": 111409.17072857088,
+          "qa": 667834.1525062941,
+          "embalaje": 15077.77514716404
+        },
+        "CostoAhorradoPorTCaroTotal": 6754524.463203048,
+        "DesperfectosEvitadosPorMantenimiento": 0.6306608133086876,
+        "CantDesperfectos": 14239,
+        "CantLotesReProcesados": 380,
+        "SumTConf": 717218.8462642486,
+        "SumTConfEtapa": {
+          "impresion": 543906.508060213,
+          "encuadernacion": 135538.3954610935,
+          "qa": 0.0,
+          "embalaje": 37773.942742942054
+        },
+        "CantCambiosConfiguracion": 14343,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 10884,
+          "encuadernacion": 2706,
+          "qa": 0,
+          "embalaje": 753
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 4092226.7966385237,
+        "CTEConfiguracion": 4092226.7966385237,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3263439.0483612884,
+          "encuadernacion": 677691.977305467,
+          "qa": 0.0,
+          "embalaje": 151095.77097176822
+        },
+        "CostoManoObraConfiguracion": 2046113.3983192618,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1631719.5241806442,
+          "encuadernacion": 338845.9886527335,
+          "qa": 0.0,
+          "embalaje": 75547.88548588411
+        },
+        "CostoConfiguracion": 6138340.194957785,
+        "TiempoProduccionPromLote": 514.3950249489785,
+        "DuracionVaciamiento": 497.9358445388498,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 9,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_12",
+      "description": "POR_CONFIGURACION: todas las etapas con 12 maquinas.",
+      "resultados": {
+        "CostoPromLote": 6293.900343504094,
+        "CTLFin": 14500,
+        "TFin": 1037225.606801103,
+        "TiempoParadoTotal": 40266089.41931695,
+        "TiempoParadoEtapa": {
+          "impresion": 5640583.427679051,
+          "encuadernacion": 12066996.977129625,
+          "qa": 10267900.732723024,
+          "embalaje": 12290608.281785246
+        },
+        "CTE": 69683988.74816404,
+        "CTEEtapa": {
+          "impresion": 40013835.622463346,
+          "encuadernacion": 12401508.323215853,
+          "qa": 8121005.511971222,
+          "embalaje": 9147639.290513631
+        },
+        "TPPL": 665.2033920502785,
+        "TPPP": 879.4310243396927,
+        "PermanenciaPromEtapa": {
+          "impresion": 465.2815072185253,
+          "encuadernacion": 25.490756208622003,
+          "qa": 146.26789399101787,
+          "embalaje": 10.765448263999199
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6162243.579157327,
+          "encuadernacion": 101727.67317275156,
+          "qa": 663503.9161353506,
+          "embalaje": 15572.388034785168
+        },
+        "CostoAhorradoPorTCaroTotal": 6943047.556500215,
+        "DesperfectosEvitadosPorMantenimiento": 0.636485580147552,
+        "CantDesperfectos": 17088,
+        "CantLotesReProcesados": 396,
+        "SumTConf": 698072.0369701397,
+        "SumTConfEtapa": {
+          "impresion": 511597.9339863708,
+          "encuadernacion": 129443.15804956546,
+          "qa": 0.0,
+          "embalaje": 57030.94493419697
+        },
+        "CantCambiosConfiguracion": 13963,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 10232,
+          "encuadernacion": 2590,
+          "qa": 0,
+          "embalaje": 1141
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3944927.173902835,
+        "CTEConfiguracion": 3944927.173902835,
+        "CTEConfiguracionEtapa": {
+          "impresion": 3069587.60391822,
+          "encuadernacion": 647215.7902478275,
+          "qa": 0.0,
+          "embalaje": 228123.77973678787
+        },
+        "CostoManoObraConfiguracion": 1972463.5869514176,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1534793.80195911,
+          "encuadernacion": 323607.89512391377,
+          "qa": 0.0,
+          "embalaje": 114061.88986839393
+        },
+        "CostoConfiguracion": 5917390.760854253,
+        "TiempoProduccionPromLote": 516.0014841616631,
+        "DuracionVaciamiento": 425.6068011029856,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 8,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_14",
+      "description": "POR_CONFIGURACION: todas las etapas con 14 maquinas.",
+      "resultados": {
+        "CostoPromLote": 6907.2897454921895,
+        "CTLFin": 14310,
+        "TFin": 1037310.486145304,
+        "TiempoParadoTotal": 48800525.460978426,
+        "TiempoParadoEtapa": {
+          "impresion": 7870750.651821788,
+          "encuadernacion": 14166428.808680125,
+          "qa": 12383271.62257505,
+          "embalaje": 14380074.377901461
+        },
+        "CTE": 75136504.42292593,
+        "CTEEtapa": {
+          "impresion": 41492962.14223881,
+          "encuadernacion": 14183411.974630583,
+          "qa": 8905924.242390953,
+          "embalaje": 10554206.063665586
+        },
+        "TPPL": 650.6568094001888,
+        "TPPP": 864.6977147079892,
+        "PermanenciaPromEtapa": {
+          "impresion": 454.3595679173881,
+          "encuadernacion": 24.231889798073283,
+          "qa": 145.63420366688368,
+          "embalaje": 9.94216828321366
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6075613.410547627,
+          "encuadernacion": 94513.3577768426,
+          "qa": 626987.3654617186,
+          "embalaje": 13567.38045944186
+        },
+        "CostoAhorradoPorTCaroTotal": 6810681.51424563,
+        "DesperfectosEvitadosPorMantenimiento": 0.6347394540942928,
+        "CantDesperfectos": 19999,
+        "CantLotesReProcesados": 378,
+        "SumTConf": 619138.1490014081,
+        "SumTConfEtapa": {
+          "impresion": 464607.7779070543,
+          "encuadernacion": 110487.22564289582,
+          "qa": 0.0,
+          "embalaje": 44043.14545146045
+        },
+        "CantCambiosConfiguracion": 12389,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 9296,
+          "encuadernacion": 2211,
+          "qa": 0,
+          "embalaje": 882
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3516255.3774626525,
+        "CTEConfiguracion": 3516255.3774626525,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2787646.667442331,
+          "encuadernacion": 552436.1282144798,
+          "qa": 0.0,
+          "embalaje": 176172.5818058418
+        },
+        "CostoManoObraConfiguracion": 1758127.6887313263,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1393823.3337211655,
+          "encuadernacion": 276218.0641072399,
+          "qa": 0.0,
+          "embalaje": 88086.2909029209
+        },
+        "CostoConfiguracion": 5274383.066193979,
+        "TiempoProduccionPromLote": 514.9989707823839,
+        "DuracionVaciamiento": 510.4861453040503,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 8,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_16",
+      "description": "POR_CONFIGURACION: todas las etapas con 16 maquinas.",
+      "resultados": {
+        "CostoPromLote": 7458.6940706984,
+        "CTLFin": 14403,
+        "TFin": 1037332.6748621463,
+        "TiempoParadoTotal": 57093658.388970174,
+        "TiempoParadoEtapa": {
+          "impresion": 9955322.45213876,
+          "encuadernacion": 16257436.731307667,
+          "qa": 14430964.035118008,
+          "embalaje": 16449935.170405738
+        },
+        "CTE": 81418249.62991199,
+        "CTEEtapa": {
+          "impresion": 43589791.62863852,
+          "encuadernacion": 16037922.59888685,
+          "qa": 9763310.510862648,
+          "embalaje": 12027224.891523974
+        },
+        "TPPL": 645.8100631524306,
+        "TPPP": 854.34673157519,
+        "PermanenciaPromEtapa": {
+          "impresion": 449.7037058129553,
+          "encuadernacion": 22.991684129520195,
+          "qa": 146.54391954788062,
+          "embalaje": 10.2331200019854
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6107383.451276086,
+          "encuadernacion": 76932.21495324848,
+          "qa": 660092.6269971472,
+          "embalaje": 15820.170202099656
+        },
+        "CostoAhorradoPorTCaroTotal": 6860228.463428582,
+        "DesperfectosEvitadosPorMantenimiento": 0.6348412353197043,
+        "CantDesperfectos": 22875,
+        "CantLotesReProcesados": 380,
+        "SumTConf": 571177.875810355,
+        "SumTConfEtapa": {
+          "impresion": 417814.6402060271,
+          "encuadernacion": 103823.48169253828,
+          "qa": 0.0,
+          "embalaje": 49539.75391178756
+        },
+        "CantCambiosConfiguracion": 11427,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 8357,
+          "encuadernacion": 2077,
+          "qa": 0,
+          "embalaje": 993
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3224164.2653459986,
+        "CTEConfiguracion": 3224164.2653459986,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2506887.8412361564,
+          "encuadernacion": 519117.4084626918,
+          "qa": 0.0,
+          "embalaje": 198159.01564715023
+        },
+        "CostoManoObraConfiguracion": 1612082.1326729993,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1253443.9206180782,
+          "encuadernacion": 259558.7042313459,
+          "qa": 0.0,
+          "embalaje": 99079.50782357511
+        },
+        "CostoConfiguracion": 4836246.398018998,
+        "TiempoProduccionPromLote": 516.5134285599772,
+        "DuracionVaciamiento": 532.6748621462611,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 11,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_18",
+      "description": "POR_CONFIGURACION: todas las etapas con 18 maquinas.",
+      "resultados": {
+        "CostoPromLote": 7984.192676511152,
+        "CTLFin": 14568,
+        "TFin": 1037300.4843143465,
+        "TiempoParadoTotal": 65311221.57772712,
+        "TiempoParadoEtapa": {
+          "impresion": 11992571.841746908,
+          "encuadernacion": 18335821.912731662,
+          "qa": 16492684.715226367,
+          "embalaje": 18490143.10802218
+        },
+        "CTE": 87863723.69506821,
+        "CTEEtapa": {
+          "impresion": 45790035.777604625,
+          "encuadernacion": 17873355.057358794,
+          "qa": 10632732.126043422,
+          "embalaje": 13567600.73406137
+        },
+        "TPPL": 643.5633603270977,
+        "TPPP": 851.5903105889347,
+        "PermanenciaPromEtapa": {
+          "impresion": 446.9026972804409,
+          "encuadernacion": 22.451783296083242,
+          "qa": 145.76329714537087,
+          "embalaje": 12.442724439596983
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 6123209.74383374,
+          "encuadernacion": 83369.10122392383,
+          "qa": 620595.1087733264,
+          "embalaje": 26156.948345103436
+        },
+        "CostoAhorradoPorTCaroTotal": 6853330.902176094,
+        "DesperfectosEvitadosPorMantenimiento": 0.6338387055675883,
+        "CantDesperfectos": 25463,
+        "CantLotesReProcesados": 379,
+        "SumTConf": 558309.852478459,
+        "SumTConfEtapa": {
+          "impresion": 386730.8138498934,
+          "encuadernacion": 94851.08799658512,
+          "qa": 0.0,
+          "embalaje": 76727.95063198158
+        },
+        "CantCambiosConfiguracion": 11158,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 7724,
+          "encuadernacion": 1897,
+          "qa": 0,
+          "embalaje": 1537
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 3101552.125610211,
+        "CTEConfiguracion": 3101552.125610211,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2320384.8830993585,
+          "encuadernacion": 474255.4399829262,
+          "qa": 0.0,
+          "embalaje": 306911.80252792634
+        },
+        "CostoManoObraConfiguracion": 1550776.0628051055,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1160192.4415496793,
+          "encuadernacion": 237127.7199914631,
+          "qa": 0.0,
+          "embalaje": 153455.90126396317
+        },
+        "CostoConfiguracion": 4652328.188415317,
+        "TiempoProduccionPromLote": 516.3905910396564,
+        "DuracionVaciamiento": 500.4843143464532,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 10,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    },
+    {
+      "case_id": "por_configuracion_all_cm_20",
+      "description": "POR_CONFIGURACION: todas las etapas con 20 maquinas.",
+      "resultados": {
+        "CostoPromLote": 8605.638001960786,
+        "CTLFin": 14424,
+        "TFin": 1037438.4116425117,
+        "TiempoParadoTotal": 73787364.56257676,
+        "TiempoParadoEtapa": {
+          "impresion": 14208075.058871241,
+          "encuadernacion": 20421505.838011052,
+          "qa": 18581718.968791362,
+          "embalaje": 20576064.696903095
+        },
+        "CTE": 93485743.94314978,
+        "CTEEtapa": {
+          "impresion": 47386148.190181,
+          "encuadernacion": 19688596.507721823,
+          "qa": 11421509.181874242,
+          "embalaje": 14989490.063372698
+        },
+        "TPPL": 638.3934414461444,
+        "TPPP": 850.4136537883012,
+        "PermanenciaPromEtapa": {
+          "impresion": 442.2399976048944,
+          "encuadernacion": 22.1257788411316,
+          "qa": 146.51134230673486,
+          "embalaje": 11.973345531551898
+        },
+        "CostoAhorradoPorTCaro": {
+          "impresion": 5857198.2521616565,
+          "encuadernacion": 74013.66210428975,
+          "qa": 668370.4802652017,
+          "embalaje": 22541.066974702324
+        },
+        "CostoAhorradoPorTCaroTotal": 6622123.46150585,
+        "DesperfectosEvitadosPorMantenimiento": 0.639355581127733,
+        "CantDesperfectos": 28372,
+        "CantLotesReProcesados": 367,
+        "SumTConf": 494912.6994008196,
+        "SumTConfEtapa": {
+          "impresion": 342597.6042790908,
+          "encuadernacion": 84377.8991182666,
+          "qa": 0.0,
+          "embalaje": 67937.19600346196
+        },
+        "CantCambiosConfiguracion": 9892,
+        "CantCambiosConfiguracionEtapa": {
+          "impresion": 6843,
+          "encuadernacion": 1691,
+          "qa": 0,
+          "embalaje": 1358
+        },
+        "CTEConfiguracionCaro": 0.0,
+        "CTEConfiguracionNormal": 2749223.905279728,
+        "CTEConfiguracion": 2749223.905279728,
+        "CTEConfiguracionEtapa": {
+          "impresion": 2055585.6256745472,
+          "encuadernacion": 421889.4955913333,
+          "qa": 0.0,
+          "embalaje": 271748.7840138478
+        },
+        "CostoManoObraConfiguracion": 1374611.952639864,
+        "CostoManoObraConfiguracionEtapa": {
+          "impresion": 1027792.8128372736,
+          "encuadernacion": 210944.74779566666,
+          "qa": 0.0,
+          "embalaje": 135874.3920069239
+        },
+        "CostoConfiguracion": 4123835.8579195924,
+        "TiempoProduccionPromLote": 515.6396559611647,
+        "DuracionVaciamiento": 638.4116425117245,
+        "CantLotesEnColaAlTF": 0,
+        "CantLotesEnProduccionAlTF": 16,
+        "CantLotesEnColaAlFinal": 0,
+        "CantLotesEnProduccionAlFinal": 0
+      }
+    }
+  ]
+}

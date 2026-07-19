@@ -1,0 +1,2308 @@
+{
+  "cases": [
+    {
+      "case_id": "fifo_no_pefc_all_cm_5",
+      "description": "FIFO: PEFC=false y todas las etapas con 5 máquinas (referencia para comparar horario caro).",
+      "ALG": "FIFO",
+      "PEFC": false,
+      "CM": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [null, null, null, null, null],
+        [null, null, null, null, null],
+        [null, null, null, null, null],
+        [null, null, null, null, null]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_1",
+      "description": "FIFO: PEFC=true y todas las etapas con 1 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "configuraciones_iniciales": [
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_2",
+      "description": "FIFO: PEFC=true y todas las etapas con 2 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_3",
+      "description": "FIFO: PEFC=true y todas las etapas con 3 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_4",
+      "description": "FIFO: PEFC=true y todas las etapas con 4 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_5",
+      "description": "FIFO: PEFC=true y todas las etapas con 5 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_6",
+      "description": "FIFO: PEFC=true y todas las etapas con 6 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_8",
+      "description": "FIFO: PEFC=true y todas las etapas con 8 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_10",
+      "description": "FIFO: PEFC=true y todas las etapas con 10 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_12",
+      "description": "FIFO: PEFC=true y todas las etapas con 12 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_14",
+      "description": "FIFO: PEFC=true y todas las etapas con 14 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        14,
+        14,
+        14,
+        14
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_16",
+      "description": "FIFO: PEFC=true y todas las etapas con 16 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_18",
+      "description": "FIFO: PEFC=true y todas las etapas con 18 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        18,
+        18,
+        18,
+        18
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_20",
+      "description": "FIFO: PEFC=true y todas las etapas con 20 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_1",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 1 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "configuraciones_iniciales": [
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_2",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 2 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_3",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 3 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_4",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 4 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_5",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 5 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_6",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 6 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_8",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 8 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_10",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 10 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_12",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 12 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_14",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 14 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        14,
+        14,
+        14,
+        14
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_16",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 16 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_18",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 18 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        18,
+        18,
+        18,
+        18
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_20",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 20 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_1",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 1 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "configuraciones_iniciales": [
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ],
+        [
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_2",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 2 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_3",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 3 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_4",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 4 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        4,
+        4,
+        4,
+        4
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_5",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 5 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        5,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_6",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 6 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_8",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 8 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_10",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 10 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_12",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 12 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_14",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 14 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        14,
+        14,
+        14,
+        14
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_16",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 16 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        16,
+        16,
+        16,
+        16
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_18",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 18 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        18,
+        18,
+        18,
+        18
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_20",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 20 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    }
+  ]
+}

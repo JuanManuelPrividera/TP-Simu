@@ -13,10 +13,6 @@ build/
 .ruff_cache/
 .mypy_cache/
 results/
-*.json
-!config/*.json
-!config/casos/
-!config/casos/*.json
 .DS_Store
 Thumbs.db
 *.tmp

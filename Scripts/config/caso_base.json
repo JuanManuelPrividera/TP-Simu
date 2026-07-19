@@ -1,0 +1,88 @@
+{
+  "TF": 1036800,
+  "IM": 2104.8,
+  "semilla": 7391845629038174261,
+  "CM": [
+    5,
+    5,
+    5,
+    5
+  ],
+  "configuraciones_iniciales": [
+    [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ],
+  "ALG": "FIFO",
+  "CONFIG_PRIORITARIA": "config_1",
+  "PQA": 0.025,
+  "PEFC": false,
+  "InicioCaro": 18,
+  "FinCaro": 20,
+  "cantidad_configuraciones": 5,
+  "cant_lotes_media": 5,
+  "cant_lotes_desvio": 1.5,
+  "costos": {
+    "CMPxL": 350,
+    "CTC_por_min_etapa": [
+      12,
+      10,
+      4,
+      8
+    ],
+    "CTN_por_min_etapa": [
+      6,
+      5,
+      2,
+      4
+    ],
+    "CTP_parado_por_min_etapa": [
+      1.0,
+      0.9,
+      0.4,
+      0.7
+    ],
+    "CFM_por_min_etapa": [
+      0.35,
+      0.3,
+      0.15,
+      0.25
+    ],
+    "CMO_configuracion_por_min_etapa": [
+      3.0,
+      2.5,
+      0.0,
+      2.0
+    ],
+    "mantenimiento_por_etapa": [
+      180,
+      140,
+      100
+    ]
+  }
+}
