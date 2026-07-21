@@ -13,9 +13,9 @@
 | :---: | ----- |
 | Metodologia | Evento a Evento |
 | Clasificacion de variables | |
-| Datos | IA (intervalo de arribo), CantLotes (cantidad de lotes por pedido), TipoConfig (configuracion del pedido, uniforme discreta sobre `cantidad_configuraciones` valores), PD (probabilidad de defectos), DI (duracion de impresion), DE (duracion de encuadernacion), DQA (duracion de QA), DEm (duracion de embalaje), AQA (resultado del analisis de QA), TConf (tiempo de configuracion), ID (intervalo entre desperfectos), DD (duracion de desperfecto), DM (duracion de mantenimiento) |
-| Control | ALG (politica de secuenciacion: FIFO, PRIORIDADES o POR_CONFIGURACION), CONFIG_PRIORITARIA, PQA (umbral de QA), PEFC (permite trabajar en franja cara), cantidad_configuraciones (cantidad de tipos de configuracion posibles), cant_lotes_media/cant_lotes_desvio (parámetros de CantLotes), CM[4] (cantidad de maquinas por etapa), InicioCaro, FinCaro, IM (intervalo fijo entre mantenimientos, en minutos, configurable por caso), CMPxL (costo de materia prima por lote), CTC_por_min_etapa[4] (costo por minuto caro por etapa), CTN_por_min_etapa[4] (costo por minuto normal por etapa), CTP_parado_por_min_etapa[4] (costo por minuto en parado por etapa), CFM_por_min_etapa[4] (costo fijo por minuto por etapa), CMO_configuracion_por_min_etapa[4] (mano de obra por minuto de preparación), $M[3] (costo de mantenimiento por etapa mantenible). |
-| Resultado | CostoTotal, CostoPromPedido, CostoPromLote, CTEProd, CTEConfiguracion, CostoManoObraConfiguracion, CostoConfiguracion, CTEParado, CostoFijoMaquinas, TPPL, TPPP, TiempoParadoEtapa[4], DesperfectosEvitadosPorMantenimiento, CostoAhorradoPorTCaro[4], CostoAhorradoPorTCaroTotal, SumTConf, SumTConfEtapa[4], CantCambiosConfiguracion, CantLotesReProcesados |
+| Datos | IA (intervalo de arribo), CantLotes (cantidad de lotes por pedido), TipoConfig (configuracion del pedido, uniforme discreta sobre `cantidad_configuraciones` valores), EstadoLote (Bernoulli parametrizada por PD), DI (duracion de impresion), DE (duracion de encuadernacion), DQA (duracion de QA), DEm (duracion de embalaje), AQA (resultado uniforme del analisis de QA), TConf (tiempo de configuracion), ID (intervalo entre desperfectos), DD (duracion de desperfecto), DM (duracion de mantenimiento) |
+| Control | ALG (politica de secuenciacion: FIFO, PRIORIDADES o POR_CONFIGURACION), CONFIG_PRIORITARIA, PD (probabilidad real de defecto), PQA (probabilidad de detectar un defecto real), PEFC (permite trabajar en franja cara), cantidad_configuraciones (cantidad de tipos de configuracion posibles), cant_lotes_media/cant_lotes_desvio (parámetros de CantLotes), CM[4] (cantidad de maquinas por etapa), InicioCaro, FinCaro, IM (intervalo fijo entre mantenimientos, en minutos, configurable por caso), CMPxL (costo de materia prima por lote), CTC_por_min_etapa[4] (costo por minuto caro por etapa), CTN_por_min_etapa[4] (costo por minuto normal por etapa), CTP_parado_por_min_etapa[4] (costo por minuto en parado por etapa), CFM_por_min_etapa[4] (costo fijo por minuto por etapa), CMO_configuracion_por_min_etapa[4] (mano de obra por minuto de preparación), $M[3] (costo de mantenimiento por etapa mantenible). |
+| Resultado | CostoTotal, CostoPromPedido, CostoPromLote, CostoDefectosNoDetectados, CTEProd, CTEConfiguracion, CostoManoObraConfiguracion, CostoConfiguracion, CTEParado, CostoFijoMaquinas, TPPL, TPPP, TiempoParadoEtapa[4], DesperfectosEvitadosPorMantenimiento, CostoAhorradoPorTCaro[4], CostoAhorradoPorTCaroTotal, SumTConf, SumTConfEtapa[4], CantCambiosConfiguracion, CantLotesReProcesados, CantLotesDefectuososNoDetectados |
 | Estado | CLM[4], CxM[4][CM] (maquina con atributos lote y config)|
 
 | TEF | TPLL, TPI[CM[0]], TPE[CM[1]], TPQA[CM[2]], TPEm[CM[3]], TPD[3][CM[i]], TPM[3][CM[i]] |
@@ -32,7 +32,7 @@
 |  |  | QA\[j\] | TPQA\[j\] \= HV |
 | QA\[i\] | \- | QA\[i\] | CLM\[2\].size() \> 0 |
 |  |  | Embalaje\[j\] | TPEM\[j\] \= HV ^ SD\[2\] \> 0 |
-|  |  | Impresión\[j\] | TPI\[j\] \= HV ^  AQA \> PQA |
+|  |  | Impresión\[j\] | TPI\[j\] \= HV ^ lote defectuoso ^ AQA < PQA |
 | Embalaje\[i\] | \- | Embalaje\[i\] | CLM\[3\].size() \> 0 ^ SD\[2\] \> 0 |
 |  |  | Despacho | CLTA \>= CPTD |
 | Mantenimiento\[i\]\[CM\[j\]\] | Mantenimiento\[i\]\[CM\[j\]\] | \- | \- |
@@ -47,7 +47,8 @@
 
 | Variables resultado y formulas | |
 | :---: | ----- |
-| CostoTotal | `CMPxL × CTL + CTEProd + CTEParado + CostoFijoMaquinas + $TM`. |
+| CostoTotal | `CostoBase + CostoDefectosNoDetectados`, donde `CostoBase = CMPxL × CTL + CTEProd + CTEConfiguracion + CostoManoObraConfiguracion + CTEParado + CostoFijoMaquinas + $TM`. |
+| CostoDefectosNoDetectados | Si CTLFin > 0, `3 × CantLotesDefectuososNoDetectados × (CostoBase / CTLFin)`; si no, 0. |
 | CostoPromPedido | Si CTPFin > 0 entonces `CostoTotal / CTPFin`; si no, 0. |
 | CostoPromLote | Si CTLFin > 0 entonces `CostoTotal / CTLFin`; si no, 0. |
 | TPPL | Si CTLFin > 0 entonces `STPL / CTLFin`; si no, 0. STPL acumula `T - lote.t_inicio` al finalizar embalaje. |

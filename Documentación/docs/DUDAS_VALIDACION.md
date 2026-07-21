@@ -6,7 +6,7 @@ Estas dudas salen de comparar `Docu.md` con los diagramas Mermaid. No implican c
 
 2. La llegada de pedidos debe competir como evento con `TPLL`? En `Docu.md` aparece `TPLL`, pero `Init.mermaid` no calcula un menor para llegada y `EsLlegadaMenor.mermaid` compara `TPI`, igual que impresion.
 
-3. Como se decide si un lote reprueba QA? `Docu.md` define `PD` como probabilidad de defectos, `PQA` como politica QA y `AQA` como resultado del analisis; en `qa.mermaid` se usa `PQA < AQA` como condicion de reproceso.
+3. Resuelto: `EstadoLote` determina el defecto real con probabilidad `PD`; si el lote es defectuoso, QA lo detecta cuando `AQA < PQA`. Los defectos detectados se reprocesan y los no detectados se penalizan.
 
 4. La variable para despachar es `LRD` o `CPTD`? `Docu.md` define `LRD`, pero la tabla de eventos usa `CLTA >= CPTD`, y no hay diagrama especifico de despacho.
 

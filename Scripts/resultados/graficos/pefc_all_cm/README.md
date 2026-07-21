@@ -1,9 +1,9 @@
 # Gráficos generados
 
-Casos: `C:\Users\tomas\Desktop\Simu\TP-Simu\Scripts\config\casos\pefc_all_cm.json`
-Resultados: `C:\Users\tomas\Desktop\Simu\TP-Simu\Scripts\resultados\pefc_all_cm.json`
+Casos: `/home/juanma/Facultad/Simulacion/Scripts/config/casos/pefc_all_cm.json`
+Resultados: `/home/juanma/Facultad/Simulacion/Scripts/resultados/pefc_all_cm.json`
 Formato: `SVG`
 
-No hay gráficos definidos para este conjunto.
+- `6.0_costo_maquinas.svg`
 
 `resultados_usados.json` conserva los datos usados.

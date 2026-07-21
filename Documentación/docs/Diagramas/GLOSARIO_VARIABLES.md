@@ -36,7 +36,9 @@ Este glosario fija unidades propuestas para interpretar los diagramas. El costo 
 | `$TM` | Costo total de mantenimiento acumulado, en moneda. Es un componente del costo de producción total. | `ConfigsIniciales.mermaid`, `mantenimiento/mantenimiento.mermaid`, `Resultados.mermaid`. |
 | `$M[i]` | Costo de ejecutar un mantenimiento de la etapa mantenible `i`, en moneda/mantenimiento. | `mantenimiento/mantenimiento.mermaid`. |
 | `CMPxL` | Costo de materia prima por lote, en moneda/lote. | `Resultados.mermaid`. |
-| `CostoTotal` | Costo total: `CMPxL × CTL + CTEProd + CTEConfiguracion + CostoManoObraConfiguracion + CTEParado + CostoFijoMaquinas + $TM`, en moneda. | `Resultados.mermaid`, `Docu.md`. |
+| `CostoDefectosNoDetectados` | Penalización de tres costos promedio base por cada defecto que QA no detecta, en moneda. | `Resultados.mermaid`, `Docu.md`. |
+| `CantLotesDefectuososNoDetectados` | Cantidad de lotes realmente defectuosos que QA aprobó y envió a embalaje. | `qa/QA.mermaid`, `Docu.md`. |
+| `CostoTotal` | Costo base de producción más `CostoDefectosNoDetectados`, en moneda. | `Resultados.mermaid`, `Docu.md`. |
 | `CostoPromPedido` | Costo total de producción distribuido por pedido finalizado: `CostoTotal / CTPFin`, en moneda/pedido. | `Resultados.mermaid`, `Docu.md`. |
 | `CostoPromLote` | Costo total de producción distribuido por lote finalizado: `CostoTotal / CTLFin`, en moneda/lote. | `Resultados.mermaid`, `Docu.md`. |
 
@@ -68,7 +70,8 @@ QA no tiene desperfectos ni mantenimiento. Por ello los índices `i_des` e `i_ma
 | `DE` | Uniforme estrecha `100 × U(0,11; 0,13)` min; esperanza `12` min. | De `11` a `13` min/lote. |
 | `DQA` | Uniforme estrecha `100 × (CantPaginas / 100) × U(0,35; 0,4192)` min. | Escala según las páginas del lote; con 350 pág., esperanza `134,61` min. |
 | `DEm` | Uniforme estrecha `100 × U(0,05; 0,059)` min; esperanza `5,45` min. | De `5` a `5,9` min/lote. |
-| `AQA` | Bernoulli con `p=0,025`: devuelve `1` si el lote es defectuoso y `0` si se aprueba. | `{0,1}`. | `FDPs/AQA.mermaid` |
+| `EstadoLote` | Bernoulli parametrizada por `PD`: determina el estado real después de cada paso por impresión. | `{correcto, defectuoso}`. | `FDPs/EstadoLote.mermaid` |
+| `AQA` | Uniforme continua usada para detectar un defecto real cuando `AQA < PQA`. | `[0,1)`. | `FDPs/AQA.mermaid` |
 | `TConf` | Normal truncada con promedio `5` y desvío `0,333` min. | De `3,333` a `6,667` min. | `FDPs/TConf.mermaid` |
 | `ID` | Uniforme estrecha `U(2000; 2209,6)` min; esperanza `2104,8` min. | De `2000` a `2209,6` min. | `FDPs/ID.mermaid` |
 | `DD` | `DD = DM + U(125; 137,2)` min. Así `DD > DM` siempre y su esperanza es `153,6` min. | De `145` a `162,2` min. | `FDPs/DD.mermaid` |

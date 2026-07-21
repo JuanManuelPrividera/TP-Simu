@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import math
 import shutil
 import subprocess
 import sys
@@ -23,7 +24,7 @@ RAIZ = Path(__file__).resolve().parent
 sys.path.insert(0, str(RAIZ))
 from simulacion import combinar_configuracion, cargar_json  # noqa: E402
 
-COLORES = ("#2563eb", "#dc2626", "#16a34a", "#9333ea")
+COLORES = ("#2563eb", "#dc2626", "#16a34a", "#9333ea", "#ea580c", "#0891b2")
 ALGORITMOS = {
     "FIFO": "FIFO",
     "PRIORIDADES": "Prioridades",
@@ -100,6 +101,7 @@ def grafico_lineas(ruta: Path, titulo: str, eje_x: str, eje_y: str,
         px = posicion_x(x)
         svg += [f"<line x1='{px:.1f}' y1='{abajo}' x2='{px:.1f}' y2='{abajo + 7}' stroke='#111827'/>",
                 texto(px, abajo + 30, etiqueta_numero(x), 14)]
+    leyenda_en_dos_filas = len(series) > 4
     for indice, (nombre, puntos) in enumerate(series.items()):
         color = COLORES[indice % len(COLORES)]
         puntos = sorted(puntos)
@@ -107,26 +109,43 @@ def grafico_lineas(ruta: Path, titulo: str, eje_x: str, eje_y: str,
         svg.append(f"<path d='{d}' fill='none' stroke='{color}' stroke-width='3.5'/>")
         for x, y in puntos:
             svg.append(f"<circle cx='{posicion_x(x):.1f}' cy='{posicion_y(y):.1f}' r='5' fill='{color}'/>")
-        lx = 160 + indice * 260
-        svg += [f"<line x1='{lx}' y1='625' x2='{lx + 28}' y2='625' stroke='{color}' stroke-width='4'/>",
-                texto(lx + 38, 631, nombre, 15, "start")]
+        columna = indice % 3 if leyenda_en_dos_filas else indice
+        fila = indice // 3 if leyenda_en_dos_filas else 0
+        lx = 160 + columna * 320
+        ly = 610 + fila * 32 if leyenda_en_dos_filas else 625
+        svg += [f"<line x1='{lx}' y1='{ly}' x2='{lx + 28}' y2='{ly}' stroke='{color}' stroke-width='4'/>",
+                texto(lx + 38, ly + 6, nombre, 15, "start")]
     svg += [texto((izq + der) / 2, 685, eje_x, 18),
             f"<text x='32' y='330' transform='rotate(-90 32 330)' text-anchor='middle' fill='#111827' font-family='Arial, sans-serif' font-size='18'>{html.escape(eje_y)}</text>"]
     guardar_svg(ruta, svg, formato)
 
 
-def grafico_barras(ruta: Path, titulo: str, eje_y: str, etiquetas: list[str], valores: list[float], formato: str = "svg") -> None:
+def grafico_barras(
+    ruta: Path, titulo: str, eje_y: str, etiquetas: list[str], valores: list[float],
+    formato: str = "svg", escala_logaritmica: bool = False,
+) -> None:
     izq, der, arriba, abajo = 130, 1120, 80, 570
-    ymin, ymax = escala(valores, incluir_cero=True)
-    py = lambda y: abajo - (y - ymin) * (abajo - arriba) / (ymax - ymin)
+    if escala_logaritmica:
+        if any(valor <= 0 for valor in valores):
+            raise ValueError("La escala logarítmica requiere valores positivos.")
+        ymin = math.floor(math.log10(min(valores)))
+        ymax = math.ceil(math.log10(max(valores)))
+        if ymin == ymax:
+            ymax += 1
+        py = lambda y: abajo - (math.log10(y) - ymin) * (abajo - arriba) / (ymax - ymin)
+        marcas = [10 ** (ymin + (ymax - ymin) * i / 5) for i in range(6)]
+    else:
+        ymin, ymax = escala(valores, incluir_cero=True)
+        py = lambda y: abajo - (y - ymin) * (abajo - arriba) / (ymax - ymin)
+        marcas = [ymin + (ymax - ymin) * i / 5 for i in range(6)]
     svg = [texto(600, 38, titulo, 25), f"<line x1='{izq}' y1='{abajo}' x2='{der}' y2='{abajo}' stroke='#111827' stroke-width='2'/>", f"<line x1='{izq}' y1='{arriba}' x2='{izq}' y2='{abajo}' stroke='#111827' stroke-width='2'/>"]
-    for i in range(6):
-        valor = ymin + (ymax - ymin) * i / 5
+    for valor in marcas:
         y = py(valor)
         svg += [f"<line x1='{izq}' y1='{y:.1f}' x2='{der}' y2='{y:.1f}' stroke='#d1d5db'/>", texto(izq - 12, y + 6, etiqueta_numero(valor), 14, "end")]
-    ancho, separacion = 210, 180
+    separacion = 45
+    ancho = (der - izq - separacion * (len(valores) - 1)) / len(valores)
     inicio = (izq + der - (len(valores) * ancho + (len(valores) - 1) * separacion)) / 2
-    base = py(0)
+    base = abajo if escala_logaritmica else py(0)
     for i, (etiqueta, valor) in enumerate(zip(etiquetas, valores)):
         x, y = inicio + i * (ancho + separacion), py(valor)
         svg += [f"<rect x='{x:.1f}' y='{min(y, base):.1f}' width='{ancho}' height='{abs(base-y):.1f}' fill='{COLORES[i]}'/>", texto(x + ancho / 2, abajo + 30, etiqueta, 15), texto(x + ancho / 2, y - 10, etiqueta_numero(valor), 14)]
@@ -187,6 +206,21 @@ def por_algoritmo(casos: list[dict[str, Any]], x: Callable[[dict[str, Any]], flo
     for caso in casos:
         alg = ALGORITMOS[caso["configuracion"]["ALG"]]
         resultado.setdefault(alg, []).append((x(caso), float(caso["resultados"][metrica])))
+    return resultado
+
+
+def por_pefc_fifo(casos: list[dict[str, Any]], x: Callable[[dict[str, Any]],
+                  float], metrica: str) -> dict[str, list[tuple[float, float]]]:
+    """Agrupa los casos FIFO según trabajen o no en la franja cara."""
+    resultado: dict[str, list[tuple[float, float]]] = {}
+    for caso in casos:
+        configuracion = caso["configuracion"]
+        if configuracion["ALG"] != "FIFO":
+            continue
+        politica = "PEFC=true" if configuracion["PEFC"] else "PEFC=false"
+        resultado.setdefault(politica, []).append(
+            (x(caso), float(caso["resultados"][metrica]))
+        )
     return resultado
 
 
@@ -277,6 +311,76 @@ def principal(archivo_casos: Path, archivo_resultados: Path, salida: Path, forma
         efectividad = [float(c["resultados"]["DesperfectosEvitadosPorMantenimiento"]) for c in casos]
         grafico_lineas(salida / "5.0_costo_mantenimiento.svg", "Costo promedio por lote según intervalo entre mantenimientos", "Intervalo entre mantenimientos (minutos)", "Costo promedio por lote", {"Costo promedio por lote": list(zip(xs, costos))}, formato)
         grafico_lineas(salida / "5.1_desperfectos_evitados_mantenimiento.svg", "Desperfectos evitados por mantenimiento", "Intervalo entre mantenimientos (minutos)", "Desperfectos evitados por mantenimiento", {"Desperfectos evitados por mantenimiento": list(zip(xs, efectividad))}, formato)
+
+    if conjunto == "pefc_all_cm":
+        etiqueta_x = "Cantidad de máquinas (igual en todas las etapas)"
+        x_maquinas = lambda c: c["configuracion"]["CM"][0]
+        grafico_lineas(salida / "6.0_costo_maquinas.svg", "Costo promedio por lote", etiqueta_x,
+                        "Costo promedio por lote",
+                        por_pefc_fifo(casos, x_maquinas, "CostoPromLote"), formato)
+
+    if conjunto == "rechazos_qa":
+        x_pqa = lambda c: float(c["configuracion"]["PQA"])
+        tasa_reproceso = lambda c: (
+            float(c["resultados"]["CantLotesReProcesados"])
+            / float(c["resultados"]["CTLFin"])
+            if float(c["resultados"]["CTLFin"]) else 0.0
+        )
+        tasa_no_detectados = lambda c: (
+            float(c["resultados"]["CantLotesDefectuososNoDetectados"])
+            / float(c["resultados"]["CTLFin"])
+            if float(c["resultados"]["CTLFin"]) else 0.0
+        )
+        grafico_lineas(
+            salida / "7.0_reprocesamiento_qa.svg",
+            "Reprocesamientos promedio por lote según detección de QA",
+            "Probabilidad de detección de defectos (PQA)",
+            "Reprocesamientos por lote terminado",
+            {"Reprocesamientos por lote": [(x_pqa(caso), tasa_reproceso(caso)) for caso in casos]},
+            formato,
+        )
+        grafico_lineas(
+            salida / "7.1_costo_promedio_lote_qa.svg",
+            "Costo promedio por lote según detección de QA",
+            "Probabilidad de detección de defectos (PQA)",
+            "Costo promedio por lote",
+            {"Costo promedio por lote": [
+                (x_pqa(caso), float(caso["resultados"]["CostoPromLote"]))
+                for caso in casos
+            ]},
+            formato,
+        )
+        grafico_lineas(
+            salida / "7.2_defectuosos_no_detectados_qa.svg",
+            "Defectuosos no detectados según detección de QA",
+            "Probabilidad de detección de defectos (PQA)",
+            "Defectuosos no detectados por lote terminado",
+            {"Defectuosos no detectados por lote": [
+                (x_pqa(caso), tasa_no_detectados(caso))
+                for caso in casos
+            ]},
+            formato,
+        )
+
+    if conjunto == "escenarios_representativos":
+        etiquetas = ["Pesimista", "Equilibrado", "Sobredimensionado", "Costo mínimo"]
+        grafico_barras(
+            salida / "8.0_tiempo_promedio_lote_escenarios.svg",
+            "Tiempo promedio por lote en los escenarios representativos",
+            "Tiempo promedio por lote (minutos)",
+            etiquetas,
+            [float(caso["resultados"]["TPPL"]) for caso in casos],
+            formato,
+            escala_logaritmica=True,
+        )
+        grafico_barras(
+            salida / "8.1_costo_promedio_lote_escenarios.svg",
+            "Costo promedio por lote en los escenarios representativos",
+            "Costo promedio por lote (u.m./lote)",
+            etiquetas,
+            [float(caso["resultados"]["CostoPromLote"]) for caso in casos],
+            formato,
+        )
 
     generados = sorted(ruta.name for ruta in salida.glob(f"*.{formato}"))
     listado = "\n".join(f"- `{nombre}`" for nombre in generados) or "No hay gráficos definidos para este conjunto."

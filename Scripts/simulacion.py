@@ -19,12 +19,23 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from FDP import AQA, CantLotes, DD, DE, DEm, DI, DM, DQA, IA, ID, PaginasLibro, TConf, TipoConfig
+from FDP import AQA, CantLotes, DD, DE, DEm, DI, DM, DQA, EstadoLote, IA, ID, PaginasLibro, TConf, TipoConfig
 
 HV = math.inf
 ETAPAS = ("impresion", "encuadernacion", "qa", "embalaje")
 # Indices de mantenimiento: impresion, encuadernacion y embalaje.
 ETAPA_MANTENIBLE = (0, 1, 3)
+
+
+def calcular_costo_defectos_no_detectados(
+    costo_base: float, lotes_finalizados: int, cantidad_no_detectados: int,
+) -> float:
+    """Penaliza cada defecto escapado como tres lotes al costo promedio base."""
+    if not lotes_finalizados:
+        return 0.0
+    return 3 * cantidad_no_detectados * (costo_base / lotes_finalizados)
+
+
 RESULTADOS_EXPERIMENTO = (
     "CostoPromLote",
     "CTLFin",
@@ -41,6 +52,8 @@ RESULTADOS_EXPERIMENTO = (
     "DesperfectosEvitadosPorMantenimiento",
     "CantDesperfectos",
     "CantLotesReProcesados",
+    "CantLotesDefectuososNoDetectados",
+    "CostoDefectosNoDetectados",
     "SumTConf",
     "SumTConfEtapa",
     "CantCambiosConfiguracion",
@@ -67,6 +80,7 @@ class Lote:
     pedido_id: int
     t_inicio: float
     paginas: int
+    defectuoso: bool | None = None
     ts: float = 0.0
     # Instante en que el lote ingresa a la etapa actual, incluyendo su espera
     # en cola, preparación, producción e interrupciones.
@@ -91,7 +105,11 @@ class Simulacion:
         self.ctn_por_min_etapa = self._leer_vector_costos("CTN_por_min_etapa", 4)
         self.ctp_parado_por_min_etapa = self._leer_vector_costos("CTP_parado_por_min_etapa", 4)
         self.costo_fijo_por_min_etapa = self._leer_vector_costos("CFM_por_min_etapa", 4)
-        self.costo_mano_obra_config_por_min_etapa = self._leer_vector_costos("CMO_configuracion_por_min_etapa", 4)
+        # Las configuraciones de experimentos existentes no incluían este
+        # componente. En ese caso se preserva su comportamiento histórico.
+        self.costo_mano_obra_config_por_min_etapa = self._leer_vector_costos_opcional(
+            "CMO_configuracion_por_min_etapa", 4, valor_predeterminado=0.0
+        )
         self.costo_mantenimiento_por_etapa = self._leer_vector_costos("mantenimiento_por_etapa", 3)
         self.t = 0.0
         self.tpll = 0.0
@@ -111,6 +129,7 @@ class Simulacion:
 
         self.ctp = self.ctl = self.ctl_fin = self.ctp_fin = 0
         self.cant_man = self.des_ev = self.cant_desperfectos = self.reprocesados = 0
+        self.defectuosos_no_detectados = 0
         self.ctpc = self.ctpn = self.costo_mantenimiento = 0.0
         self.ctpc_etapa = [0.0] * 4
         self.ctpn_etapa = [0.0] * 4
@@ -136,7 +155,7 @@ class Simulacion:
                 self.tpm[mantenible][maquina] = self.im
 
     def validar_configuracion(self) -> None:
-        faltantes = {"TF", "IM", "CM", "PQA", "configuraciones_iniciales", "cantidad_configuraciones", "cant_lotes_media", "cant_lotes_desvio", "costos"} - self.cfg.keys()
+        faltantes = {"TF", "IM", "CM", "PD", "PQA", "configuraciones_iniciales", "cantidad_configuraciones", "cant_lotes_media", "cant_lotes_desvio", "costos"} - self.cfg.keys()
         if faltantes:
             raise ValueError(f"Faltan parametros obligatorios: {', '.join(sorted(faltantes))}")
         if len(self.cfg["CM"]) != 4 or any(int(x) <= 0 for x in self.cfg["CM"]):
@@ -151,6 +170,10 @@ class Simulacion:
             raise ValueError("IM debe ser un intervalo finito mayor que cero, expresado en minutos.")
         if not 0 <= float(self.cfg["PQA"]) <= 1:
             raise ValueError("PQA debe estar entre 0 y 1.")
+        if not 0 <= float(self.cfg["PD"]) <= 1:
+            raise ValueError("PD debe estar entre 0 y 1.")
+        if float(self.cfg["PD"]) == 1 and float(self.cfg["PQA"]) == 1:
+            raise ValueError("PD y PQA no pueden ser ambos 1: todos los lotes se reprocesarían indefinidamente.")
         if self.cfg.get("ALG") not in {"FIFO", "PRIORIDADES", "POR_CONFIGURACION"}:
             raise ValueError("ALG debe ser FIFO, PRIORIDADES o POR_CONFIGURACION.")
         if int(self.cfg["cantidad_configuraciones"]) <= 0:
@@ -171,7 +194,7 @@ class Simulacion:
             raise ValueError("costos debe incluir CMPxL.")
         if "mantenimiento_por_etapa" not in costos:
             raise ValueError("costos debe incluir mantenimiento_por_etapa.")
-        for clave in ("CTC_por_min_etapa", "CTN_por_min_etapa", "CTP_parado_por_min_etapa", "CFM_por_min_etapa", "CMO_configuracion_por_min_etapa"):
+        for clave in ("CTC_por_min_etapa", "CTN_por_min_etapa", "CTP_parado_por_min_etapa", "CFM_por_min_etapa"):
             if clave not in costos:
                 raise ValueError(f"costos debe incluir {clave}.")
 
@@ -185,6 +208,13 @@ class Simulacion:
         if len(valor) != largo:
             raise ValueError(f"{clave_vector} debe tener {largo} valores.")
         return [float(x) for x in valor]
+
+    def _leer_vector_costos_opcional(
+        self, clave_vector: str, largo: int, valor_predeterminado: float
+    ) -> list[float]:
+        if clave_vector not in self.cfg["costos"]:
+            return [valor_predeterminado] * largo
+        return self._leer_vector_costos(clave_vector, largo)
 
     def tipo_config(self) -> str:
         return str(TipoConfig.muestrear(self.rng, self.cfg["cantidad_configuraciones"]))
@@ -307,7 +337,7 @@ class Simulacion:
         elif etapa == 1:
             duracion_produccion = DE.muestrear(self.rng)
         elif etapa == 2:
-            duracion_produccion = DQA.muestrear(self.rng, lote.paginas)
+            duracion_produccion = DQA.muestrear(self.rng, lote.paginas) * float(self.cfg["PQA"])
         else:
             duracion_produccion = DEm.muestrear(self.rng)
         duracion_configuracion = 0.0
@@ -385,16 +415,22 @@ class Simulacion:
         self.sum_permanencia_etapa[etapa] += self.t - lote.t_entrada_etapa
         self.cant_pasajes_etapa[etapa] += 1
         if etapa == 0:
+            lote.defectuoso = EstadoLote.muestrear(self.rng, float(self.cfg["PD"]))
             self.enviar_a_etapa(1, lote)
         elif etapa == 1:
             self.enviar_a_etapa(2, lote)
         elif etapa == 2:
-            # AQA es una muestra uniforme U(0,1), generada para cada lote.
+            if lote.defectuoso is None:
+                raise RuntimeError("El lote llegó a QA sin un estado real de calidad.")
+            # PQA mide la probabilidad de detectar un defecto real. Los lotes
+            # correctos siempre se aprueban; no se modelan falsos positivos.
             aqa = AQA.muestrear(self.rng)
-            if float(self.cfg["PQA"]) < aqa:
+            if lote.defectuoso and aqa < float(self.cfg["PQA"]):
                 self.reprocesados += 1
                 self.enviar_a_etapa(0, lote)
             else:
+                if lote.defectuoso:
+                    self.defectuosos_no_detectados += 1
                 self.enviar_a_etapa(3, lote)
         else:
             self.ttfp += self.t
@@ -519,7 +555,11 @@ class Simulacion:
         costo_fijo_maquinas = sum(costo_fijo_etapa)
         cte = cte_prod + cte_config + cte_parado
         costos = self.cfg["costos"]
-        costo_total = ((float(costos["CMPxL"]) * self.ctl) + cte + costo_mano_obra_config + costo_fijo_maquinas + self.costo_mantenimiento)
+        costo_base = ((float(costos["CMPxL"]) * self.ctl) + cte + costo_mano_obra_config + costo_fijo_maquinas + self.costo_mantenimiento)
+        costo_defectos_no_detectados = calcular_costo_defectos_no_detectados(
+            costo_base, self.ctl_fin, self.defectuosos_no_detectados
+        )
+        costo_total = costo_base + costo_defectos_no_detectados
         return {
             "TF": self.tf, "TFin": self.t, "DuracionVaciamiento": self.t - self.tf,
             "CTP": self.ctp, "CTL": self.ctl,
@@ -546,6 +586,7 @@ class Simulacion:
             "CostoFijoMaquinaEtapa": dict(zip(ETAPAS, costo_fijo_etapa)),
             "CostoFijoMaquinas": costo_fijo_maquinas,
             "CTE": cte, "$TM": self.costo_mantenimiento,
+            "CostoDefectosNoDetectados": costo_defectos_no_detectados,
             "CostoTotal": costo_total,
             "CostoPromPedido": costo_total / self.ctp_fin if self.ctp_fin else 0,
             "CostoPromLote": costo_total / self.ctl_fin if self.ctl_fin else 0,
@@ -567,6 +608,7 @@ class Simulacion:
             "CantCambiosConfiguracion": sum(self.cant_cambios_config_etapa),
             "CantCambiosConfiguracionEtapa": dict(zip(ETAPAS, self.cant_cambios_config_etapa)),
             "CantLotesReProcesados": self.reprocesados,
+            "CantLotesDefectuososNoDetectados": self.defectuosos_no_detectados,
             "CostoAhorradoPorTCaro": dict(zip(ETAPAS, self.costo_ahorrado)),
             "CostoAhorradoPorTCaroTotal": sum(self.costo_ahorrado),
             "ColasAlTF": colas_al_tf,
@@ -675,12 +717,62 @@ def ejecutar_casos(
     return {"casos": [resultado for resultado in resultados_ordenados if resultado is not None]}
 
 
+def expandir_combinaciones_maquinas(definicion: dict[str, Any]) -> dict[str, Any]:
+    """Expande un producto cartesiano de cantidades por etapa y algoritmos."""
+    matriz = definicion.get("combinaciones_maquinas")
+    if not isinstance(matriz, dict):
+        return definicion
+    if "cases" in definicion:
+        raise ValueError("No se pueden combinar 'cases' y 'combinaciones_maquinas'.")
+
+    minimo = matriz.get("minimo")
+    maximo = matriz.get("maximo")
+    algoritmos = matriz.get("algoritmos")
+    if not isinstance(minimo, int) or isinstance(minimo, bool) or minimo < 1:
+        raise ValueError("combinaciones_maquinas.minimo debe ser un entero mayor o igual a 1.")
+    if not isinstance(maximo, int) or isinstance(maximo, bool) or maximo < minimo:
+        raise ValueError("combinaciones_maquinas.maximo debe ser un entero mayor o igual a minimo.")
+    if not isinstance(algoritmos, list) or not algoritmos:
+        raise ValueError("combinaciones_maquinas.algoritmos debe ser una lista no vacía.")
+    algoritmos_validos = {"FIFO", "PRIORIDADES", "POR_CONFIGURACION"}
+    if any(not isinstance(algoritmo, str) or algoritmo not in algoritmos_validos
+           for algoritmo in algoritmos):
+        raise ValueError("Los algoritmos deben ser FIFO, PRIORIDADES o POR_CONFIGURACION.")
+    if len(set(algoritmos)) != len(algoritmos):
+        raise ValueError("combinaciones_maquinas.algoritmos no puede contener duplicados.")
+
+    casos = []
+    for algoritmo in algoritmos:
+        prefijo = algoritmo.lower()
+        for impresion in range(minimo, maximo + 1):
+            for encuadernacion in range(minimo, maximo + 1):
+                for qa in range(minimo, maximo + 1):
+                    for embalaje in range(minimo, maximo + 1):
+                        cantidades = [impresion, encuadernacion, qa, embalaje]
+                        casos.append({
+                            "case_id": (
+                                f"{prefijo}_cm_i{impresion}_e{encuadernacion}"
+                                f"_q{qa}_em{embalaje}"
+                            ),
+                            "description": (
+                                f"{algoritmo}: máquinas por etapa "
+                                f"[{impresion}, {encuadernacion}, {qa}, {embalaje}]."
+                            ),
+                            "ALG": algoritmo,
+                            "CM": cantidades,
+                            "configuraciones_iniciales": [
+                                [None] * cantidad for cantidad in cantidades
+                            ],
+                        })
+    return {"cases": casos}
+
+
 def cargar_json(ruta: Path) -> dict[str, Any]:
     with ruta.open(encoding="utf-8") as archivo:
         contenido = json.load(archivo)
     if not isinstance(contenido, dict):
         raise ValueError(f"{ruta} debe contener un objeto JSON.")
-    return contenido
+    return expandir_combinaciones_maquinas(contenido)
 
 
 def main() -> None:

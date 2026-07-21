@@ -11,7 +11,7 @@ flowchart TD
     h --> |si| h1["TiempoParadoEtapa[i] += TFin - InicioOcio[i][j]"] --> h2["j ++"] --> g
     h --> |no| h2
     g --> |no| i1["i ++"] --> d
-    d --> |no| r1["CTE = CTEProd + CTEConfiguracion + CTEParado"] --> r2["CostoFijoMaquinas = TFin x sum(CFM_por_min_etapa[e] x CM[e])"] --> r3["CostoTotal = (CMPxL x CTL) + CTE + CostoManoObraConfiguracion + CostoFijoMaquinas + $TM"] --> r4{"CTPFin > 0"}
+    d --> |no| r1["CTE = CTEProd + CTEConfiguracion + CTEParado"] --> r2["CostoFijoMaquinas = TFin x sum(CFM_por_min_etapa[e] x CM[e])"] --> r3["CostoBase = (CMPxL x CTL) + CTE + CostoManoObraConfiguracion + CostoFijoMaquinas + $TM"] --> r31["CostoDefectosNoDetectados = 3 x CantLotesDefectuososNoDetectados x CostoBase / CTLFin si CTLFin > 0; si no, 0"] --> r32["CostoTotal = CostoBase + CostoDefectosNoDetectados"] --> r4{"CTPFin > 0"}
     r4 --> |si| r5["CostoPromPedido = CostoTotal / CTPFin"] --> r6
     r4 --> |no| r7["CostoPromPedido = 0"] --> r8
     r6{"CTLFin > 0"} --> |si| r9["CostoPromLote = CostoTotal / CTLFin"] --> r11

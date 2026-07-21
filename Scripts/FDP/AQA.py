@@ -1,2 +1,3 @@
-def muestrear(rng, p=0.025):
-    return 1 if rng.random() < p else 0
+def muestrear(rng):
+    """Resultado continuo del control de calidad, uniforme en [0, 1)."""
+    return rng.random()

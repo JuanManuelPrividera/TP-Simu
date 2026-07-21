@@ -238,6 +238,49 @@
       ]
     },
     {
+      "case_id": "fifo_embalaje_cm_7",
+      "description": "FIFO: embalaje con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        5,
+        5,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "fifo_embalaje_cm_8",
       "description": "FIFO: embalaje con 8 maquinas.",
       "ALG": "FIFO",
@@ -825,6 +868,49 @@
       ]
     },
     {
+      "case_id": "prioridades_embalaje_cm_7",
+      "description": "PRIORIDADES: embalaje con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        5,
+        5,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "prioridades_embalaje_cm_8",
       "description": "PRIORIDADES: embalaje con 8 maquinas.",
       "ALG": "PRIORIDADES",
@@ -1402,6 +1488,49 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_embalaje_cm_7",
+      "description": "POR_CONFIGURACION: embalaje con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        5,
+        5,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,

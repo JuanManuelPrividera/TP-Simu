@@ -1,0 +1,27 @@
+{
+  "TF": 10000,
+  "IM": 1440,
+  "semilla": 20260714,
+  "CM": [2, 2, 2, 2],
+  "configuraciones_iniciales": [[null, null], [null, null], [null, null], [null, null]],
+  "ALG": "FIFO",
+  "CONFIG_PRIORITARIA": "tapa_dura_grande",
+  "PQA": 0.975,
+  "PEFC": false,
+  "InicioCaro": 18,
+  "FinCaro": 22,
+  "distribucion_configuraciones": [
+    "tapa_dura_grande",
+    "tapa_blanda_grande",
+    "tapa_dura_chico",
+    "tapa_blanda_chico"
+  ],
+  "mock_cant_lotes_min": 1,
+  "mock_cant_lotes_max": 25,
+  "costos": {
+    "CTN_por_min": 1.0,
+    "CTC_por_min": 2.5,
+    "CMPxL": 10.0,
+    "mantenimiento_por_etapa": [100.0, 80.0, 60.0]
+  }
+}

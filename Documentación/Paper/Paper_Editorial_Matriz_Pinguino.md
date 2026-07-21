@@ -62,13 +62,14 @@ El modelo es estocástico: parte de sus entradas se generan con números pseudoa
 | `DE` | duración de encuadernación | `U(0,11; 0,13)` | min/lote |
 | `DQA` | duración de control de calidad | `U(0,35; 0,4192)` | min/lote |
 | `DEm` | duración de embalaje | `U(0,05; 0,059)` | min/lote |
-| `AQA` | resultado de QA | Bernoulli con `p = 0,025` de defecto | 0 aprueba; 1 defectuoso |
+| `EstadoLote` | estado real del intento productivo | Bernoulli con `PD = 0,025` | correcto o defectuoso |
+| `AQA` | resultado continuo de la inspección | uniforme `U(0,1)` | se detecta un defecto si `AQA < PQA` |
 | `TConf` | preparación por cambio de configuración | normal truncada, media 5 y desvío 0,333 | 3,333 a 6,667 min |
 | `ID` / `DD` | intervalo y duración de desperfecto | `U(2000; 2209,6)` / `DM + U(125; 137,2)` | min |
 | `IM` | intervalo entre mantenimientos preventivos | parámetro fijo de configuración por caso | min |
 | `DM` | duración de mantenimiento | `U(20;25)` | min |
 
-La definición de `DD` garantiza que el desperfecto dure más que el mantenimiento, lo cual hace consistente la hipótesis operativa de que una intervención preventiva es más breve que una reparación correctiva. La probabilidad de defecto se modela por `AQA`; el umbral `PQA` se conserva como parámetro de control de la regla de aceptación. En la lógica vigente, un resultado superior a ese umbral dispara el reproceso. Para la Bernoulli documentada, el resultado 1 representa defecto y 0 aprobación, por lo que con `PQA = 0,025` el caso defectuoso se reenvía a impresión.
+La definición de `DD` garantiza que el desperfecto dure más que el mantenimiento, lo cual hace consistente la hipótesis operativa de que una intervención preventiva es más breve que una reparación correctiva. La probabilidad real de defecto se modela mediante `EstadoLote` y el parámetro `PD`. Si el lote es defectuoso, `PQA` representa la probabilidad de que QA lo detecte: `AQA < PQA` dispara el reproceso. Los lotes correctos siempre avanzan y los defectuosos no detectados generan una penalización de costo.
 
 Las distribuciones y sus parámetros deben considerarse supuestos iniciales, no verdades universales sobre la planta. Antes de utilizar la simulación para tomar decisiones de inversión, corresponde contrastarlas con registros reales, analizar valores atípicos y verificar independencia, estabilidad temporal y unidad de medida. La generación de variables aleatorias y la validación de datos de entrada son componentes centrales de un estudio de simulación [4], [5].
 
@@ -78,7 +79,7 @@ Las distribuciones y sus parámetros deben considerarse supuestos iniciales, no 
 
 Una llegada crea un pedido y sus lotes. Cada lote intenta asignarse a una impresora libre; si no hay disponibilidad, se incorpora a `CLM[0]`. La asignación intenta primero encontrar una máquina libre con configuración coincidente. Si existe, el tiempo de configuración es cero. Si no, se selecciona una máquina candidata libre, se genera `TConf` y se programa la finalización de impresión. La misma lógica de compatibilidad se aplica en impresión, encuadernación y embalaje. QA recibe y conserva el atributo de configuración del lote, pero su duración no incluye un tiempo de cambio de configuración.
 
-Al concluir impresión, el lote se ofrece a encuadernación. Si hay una encuadernadora disponible se programa `TPE`; de lo contrario, ingresa a la cola de encuadernación. La terminación de encuadernación análogamente intenta asignar una máquina de QA o deposita el lote en `CLM[2]`. Una vez que termina el control, se genera `AQA`. Si el lote aprueba, avanza a embalaje; si no aprueba, vuelve a impresión. El retorno no crea una entidad nueva ni reinicia sus atributos temporales: el mismo lote conserva su `pedido_id` y `t_inicio`. Esta condición evita subestimar el tiempo de los lotes reprocesados y evita contabilizar dos veces un pedido.
+Al concluir impresión se genera el estado real del intento mediante `EstadoLote` y el lote se ofrece a encuadernación. Si hay una encuadernadora disponible se programa `TPE`; de lo contrario, ingresa a la cola de encuadernación. La terminación de encuadernación análogamente intenta asignar una máquina de QA o deposita el lote en `CLM[2]`. Una vez que termina el control, un lote correcto avanza a embalaje. Para un lote defectuoso se genera `AQA`: si QA lo detecta vuelve a impresión y si no lo detecta continúa a embalaje con la penalización correspondiente. El retorno no crea una entidad nueva ni reinicia sus atributos temporales, pero el próximo paso por impresión vuelve a muestrear su estado real.
 
 La terminación de embalaje materializa el fin productivo del lote. En ese instante se acumula `T - lote.t_inicio` en `STPL`, se incrementa el conteo de lotes terminados y se actualiza el pedido correspondiente. Si la cantidad de lotes finalizados coincide con la cantidad total de ese pedido, se acumula `T - Pedidos[pedido_id].t_inicio` en `STPP`. Por lo tanto, el indicador de pedido captura el efecto de que sus lotes recorran caminos temporales diferentes y finalice recién el último.
 
@@ -99,7 +100,7 @@ La terminación de embalaje materializa el fin productivo del lote. En ese insta
 
 La regla energética se aplica a las preparaciones y a las operaciones de impresión, encuadernación, QA y embalaje. Cuando `PEFC` permite trabajar durante la franja cara, la actividad continúa y cada tramo acumula la tarifa energética correspondiente. Cuando `PEFC` es falso, ninguna preparación ni producción avanza durante esa franja: la actividad se demora o pausa y continúa fuera de ella.
 
-El costo de energía total incluye producción, configuración y parada. Los cambios de configuración agregan además mano de obra mediante el vector `CMO_configuracion_por_min_etapa`. Al finalizar la corrida, el modelo calcula el costo total como materia prima más energía de producción, energía de configuración, mano de obra de configuración, energía en parada, costo fijo de máquinas y mantenimiento.
+El costo de energía total incluye producción, configuración y parada. Los cambios de configuración agregan además mano de obra mediante el vector `CMO_configuracion_por_min_etapa`. Al finalizar la corrida, el modelo calcula primero el costo base como materia prima más energía de producción, energía de configuración, mano de obra de configuración, energía en parada, costo fijo de máquinas y mantenimiento. Por cada defecto no detectado agrega tres veces el costo promedio base de un lote.
 
 `CostoPromPedido = CostoTotal / CTPFin`, si `CTPFin > 0`;
 
@@ -157,7 +158,7 @@ Para el análisis estadístico se recomienda realizar múltiples réplicas indep
 | Capacidad | número de máquinas por etapa | capacidad adicional desplaza o reduce el cuello de botella | colas, `TPPP`, `TiempoParadoEtapa` |
 | Energía | `PEFC` verdadero/falso y franjas | ahorrar energía puede aumentar tiempos y acumulación de cola | ahorro, costos, `TPPL`, `TPPP` |
 | Mantenimiento | intervalo y costo preventivo | un mantenimiento oportuno reduce fallas costosas | `DesEv/CantMan`, `$TM`, tiempos, costos |
-| Calidad | probabilidad de defecto o umbral | más reproceso aumenta carga aguas arriba | reprocesos, `TPPL`, costo y utilización |
+| Calidad | `PD` real y detección `PQA` | más reproceso aumenta carga y más escapes aumentan la penalización | reprocesos, defectos no detectados, `TPPL` y costo |
 
 > **[Lugar previsto para Figura 5 — Diseño experimental.]** Incluir un diagrama de bloques que relacione los factores controlables (política de cola, cantidad de máquinas, energía, mantenimiento y QA) con las métricas de salida. Se recomienda usar flechas hacia `TPPL`, `TPPP`, costos, ociosidad, reprocesos y ahorro energético.
 
@@ -201,7 +202,7 @@ La tabla queda intencionalmente sin valores para evitar convertir supuestos de d
 
 El modelo propuesto es más rico que los casos elementales de una única cola porque integra una red de recursos, configuraciones, realimentación y eventos de disponibilidad. Esta estructura permite representar interacciones que, de otro modo, se ocultarían. Por ejemplo, una política que favorece conservar la configuración puede disminuir `SumTConf`, pero también demorar lotes con otra configuración y empeorar el tiempo de ciertos pedidos. Una política FIFO puede ser transparente y equitativa en el orden de llegada, pero exigir cambios de configuración más frecuentes. La simulación es particularmente valiosa para estudiar estos intercambios sin interrumpir la operación real [2], [3].
 
-El lazo de reproceso introduce una fuente de carga adicional dependiente de calidad. Aunque la probabilidad de defecto de la especificación actual sea baja, cada lote rechazado vuelve a competir por impresión y puede amplificar las demoras de otros lotes. Por ende, el efecto de calidad no debe medirse sólo como cantidad de defectos; debe observarse cómo modifica la ocupación de los recursos, las colas y el tiempo del último lote de cada pedido. En un escenario con mayor volumen o capacidad ajustada, un cambio pequeño en la tasa de reproceso podría tener una consecuencia desproporcionada.
+El lazo de reproceso introduce una fuente de carga adicional dependiente de calidad. Aunque `PD` sea bajo, cada defecto detectado vuelve a competir por impresión y puede amplificar las demoras de otros lotes. Los defectos no detectados no agregan carga al sistema, pero sí una penalización equivalente a tres lotes al costo promedio base. Por ende, la calidad debe analizarse conjuntamente mediante reprocesos, escapes, ocupación, colas, tiempos y costo.
 
 También es relevante la distinción entre el tiempo promedio por lote y por pedido. El primer indicador es adecuado para describir la circulación de una unidad productiva. El segundo representa mejor una promesa de finalización de un pedido, ya que depende del lote más tardío. Si se tomara el promedio de los tiempos de lote como sustituto del tiempo de pedido, se perdería el efecto de sincronización que aparece cuando los lotes de un mismo pedido terminan en instantes distintos. La estructura `Pedidos[]` incorporada al modelo responde precisamente a este requisito.
 

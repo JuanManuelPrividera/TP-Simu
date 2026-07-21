@@ -47,7 +47,8 @@ No requiere dependencias externas. `configuracion.json` contiene todos los pará
 - `CM`: máquinas de impresión, encuadernación, QA y embalaje, en ese orden.
 - `configuraciones_iniciales`: configuración inicial de cada máquina en el mismo orden que `CM`; use `null` si no tiene una configuración cargada.
 - `ALG`: `FIFO`, `PRIORIDADES` o `POR_CONFIGURACION`.
-- `PQA`: umbral de QA. Para cada lote se genera `AQA ~ U(0,1)` y se reprocesa si `AQA > PQA`. Por ejemplo, `0.975` implica aproximadamente 2,5% de reprocesos.
+- `PD`: probabilidad de que cada intento productivo genere un lote realmente defectuoso. Se vuelve a muestrear después de cada paso por impresión.
+- `PQA`: probabilidad de que QA detecte un defecto real. Un defecto detectado se reprocesa; uno no detectado continúa y genera una penalización equivalente a tres lotes al costo promedio base. Los lotes correctos siempre se aprueban.
 - `cantidad_configuraciones`: cantidad de tipos de configuración posibles. `FDP/TipoConfig.py` genera `config_1..config_N` con probabilidad uniforme.
 - `cant_lotes_media` y `cant_lotes_desvio`: media y desvío de la FDP normal discreta truncada de `FDP/CantLotes.py`.
 - `costos.CMO_configuracion_por_min_etapa`: costo de mano de obra por minuto de cambio de configuración para impresión, encuadernación, QA y embalaje. QA usa cero porque no requiere configuración.
@@ -65,7 +66,7 @@ Cada lote equivale siempre a 100 ejemplares (`FDP/constantes.py`). Las páginas 
 
 ## FDP
 
-Cada variable aleatoria está aislada en un archivo dentro de `FDP/` (por ejemplo, `FDP/CantLotes.py`, `FDP/AQA.py` y `FDP/DI.py`). Cada archivo ofrece la función `muestrear(rng, ...)`; se puede reemplazar una FDP sin alterar el motor de eventos.
+Cada variable aleatoria está aislada en un archivo dentro de `FDP/` (por ejemplo, `FDP/CantLotes.py`, `FDP/EstadoLote.py`, `FDP/AQA.py` y `FDP/DI.py`). Cada archivo ofrece la función `muestrear(rng, ...)`; se puede reemplazar una FDP sin alterar el motor de eventos.
 
 ## Nota sobre `TiempoParadoEtapa`
 

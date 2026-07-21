@@ -211,6 +211,55 @@
       ]
     },
     {
+      "case_id": "fifo_all_cm_7",
+      "description": "FIFO: todas las etapas con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "fifo_all_cm_8",
       "description": "FIFO: todas las etapas con 8 maquinas.",
       "ALG": "FIFO",
@@ -987,6 +1036,49 @@
       ]
     },
     {
+      "case_id": "fifo_impresion_cm_7",
+      "description": "FIFO: impresion con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        7,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "fifo_impresion_cm_8",
       "description": "FIFO: impresion con 8 maquinas.",
       "ALG": "FIFO",
@@ -1550,6 +1642,49 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_encuadernacion_cm_7",
+      "description": "FIFO: encuadernacion con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        7,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -2161,6 +2296,49 @@
       ]
     },
     {
+      "case_id": "fifo_qa_cm_7",
+      "description": "FIFO: qa con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        5,
+        7,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "fifo_qa_cm_8",
       "description": "FIFO: qa con 8 maquinas.",
       "ALG": "FIFO",
@@ -2738,6 +2916,49 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_embalaje_cm_7",
+      "description": "FIFO: embalaje con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        5,
+        5,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -3424,6 +3645,56 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "fifo_pefc_all_cm_7",
+      "description": "FIFO: PEFC=true y todas las etapas con 7 maquinas.",
+      "ALG": "FIFO",
+      "PEFC": true,
+      "CM": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -4180,6 +4451,55 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_all_cm_7",
+      "description": "PRIORIDADES: todas las etapas con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -4966,6 +5286,49 @@
       ]
     },
     {
+      "case_id": "prioridades_impresion_cm_7",
+      "description": "PRIORIDADES: impresion con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        7,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "prioridades_impresion_cm_8",
       "description": "PRIORIDADES: impresion con 8 maquinas.",
       "ALG": "PRIORIDADES",
@@ -5529,6 +5892,49 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_encuadernacion_cm_7",
+      "description": "PRIORIDADES: encuadernacion con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        7,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -6140,6 +6546,49 @@
       ]
     },
     {
+      "case_id": "prioridades_qa_cm_7",
+      "description": "PRIORIDADES: qa con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        5,
+        7,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "prioridades_qa_cm_8",
       "description": "PRIORIDADES: qa con 8 maquinas.",
       "ALG": "PRIORIDADES",
@@ -6717,6 +7166,49 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_embalaje_cm_7",
+      "description": "PRIORIDADES: embalaje con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        5,
+        5,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -7403,6 +7895,56 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "prioridades_pefc_all_cm_7",
+      "description": "PRIORIDADES: PEFC=true y todas las etapas con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "PEFC": true,
+      "CM": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -8159,6 +8701,55 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_all_cm_7",
+      "description": "POR_CONFIGURACION: todas las etapas con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -8945,6 +9536,49 @@
       ]
     },
     {
+      "case_id": "por_configuracion_impresion_cm_7",
+      "description": "POR_CONFIGURACION: impresion con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        7,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "por_configuracion_impresion_cm_8",
       "description": "POR_CONFIGURACION: impresion con 8 maquinas.",
       "ALG": "POR_CONFIGURACION",
@@ -9508,6 +10142,49 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_7",
+      "description": "POR_CONFIGURACION: encuadernacion con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        7,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -10119,6 +10796,49 @@
       ]
     },
     {
+      "case_id": "por_configuracion_qa_cm_7",
+      "description": "POR_CONFIGURACION: qa con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        5,
+        7,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "por_configuracion_qa_cm_8",
       "description": "POR_CONFIGURACION: qa con 8 maquinas.",
       "ALG": "POR_CONFIGURACION",
@@ -10696,6 +11416,49 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_embalaje_cm_7",
+      "description": "POR_CONFIGURACION: embalaje con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        5,
+        5,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,
@@ -11382,6 +12145,56 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_pefc_all_cm_7",
+      "description": "POR_CONFIGURACION: PEFC=true y todas las etapas con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "PEFC": true,
+      "CM": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,

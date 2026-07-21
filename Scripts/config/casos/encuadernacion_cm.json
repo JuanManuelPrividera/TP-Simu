@@ -238,6 +238,49 @@
       ]
     },
     {
+      "case_id": "fifo_encuadernacion_cm_7",
+      "description": "FIFO: encuadernacion con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        7,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "fifo_encuadernacion_cm_8",
       "description": "FIFO: encuadernacion con 8 maquinas.",
       "ALG": "FIFO",
@@ -825,6 +868,49 @@
       ]
     },
     {
+      "case_id": "prioridades_encuadernacion_cm_7",
+      "description": "PRIORIDADES: encuadernacion con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        7,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "prioridades_encuadernacion_cm_8",
       "description": "PRIORIDADES: encuadernacion con 8 maquinas.",
       "ALG": "PRIORIDADES",
@@ -1388,6 +1474,49 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_encuadernacion_cm_7",
+      "description": "POR_CONFIGURACION: encuadernacion con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        7,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,

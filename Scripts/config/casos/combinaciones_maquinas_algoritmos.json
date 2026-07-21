@@ -1,0 +1,11 @@
+{
+  "combinaciones_maquinas": {
+    "minimo": 1,
+    "maximo": 10,
+    "algoritmos": [
+      "FIFO",
+      "PRIORIDADES",
+      "POR_CONFIGURACION"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "case_id": "escenario_pesimista",
+      "description": "Pesimista: máxima tasa de rechazo observada, capacidad base y secuenciación FIFO.",
+      "ALG": "FIFO",
+      "CM": [5, 5, 5, 5],
+      "PD": 0.025,
+      "PEFC": false
+    },
+    {
+      "case_id": "escenario_equilibrado",
+      "description": "Mejor equilibrio: capacidad reforzada en impresión, secuenciación por configuración y calidad base.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [8, 5, 5, 5],
+      "configuraciones_iniciales": [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null],
+        [null, null, null, null, null],
+        [null, null, null, null, null]
+      ],
+      "PD": 0.025,
+      "PEFC": false
+    },
+    {
+      "case_id": "escenario_optimista_excesivo",
+      "description": "Optimista en exceso: veinte máquinas por etapa, sin rechazos y operación permitida durante la franja cara.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [20, 20, 20, 20],
+      "configuraciones_iniciales": [
+        [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+      ],
+      "PD": 0.0,
+      "PEFC": true
+    },
+    {
+      "case_id": "escenario_costo_minimo",
+      "description": "Costo mínimo: una embaladora, capacidad base en las demás etapas y secuenciación por configuración.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [5, 5, 5, 1],
+      "configuraciones_iniciales": [
+        [null, null, null, null, null],
+        [null, null, null, null, null],
+        [null, null, null, null, null],
+        [null]
+      ],
+      "PD": 0.025,
+      "PEFC": false
+    }
+  ]
+}

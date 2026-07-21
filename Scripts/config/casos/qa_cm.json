@@ -238,6 +238,49 @@
       ]
     },
     {
+      "case_id": "fifo_qa_cm_7",
+      "description": "FIFO: qa con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        5,
+        5,
+        7,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "fifo_qa_cm_8",
       "description": "FIFO: qa con 8 maquinas.",
       "ALG": "FIFO",
@@ -825,6 +868,49 @@
       ]
     },
     {
+      "case_id": "prioridades_qa_cm_7",
+      "description": "PRIORIDADES: qa con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        5,
+        5,
+        7,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "prioridades_qa_cm_8",
       "description": "PRIORIDADES: qa con 8 maquinas.",
       "ALG": "PRIORIDADES",
@@ -1395,6 +1481,49 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_qa_cm_7",
+      "description": "POR_CONFIGURACION: qa con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        5,
+        5,
+        7,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,

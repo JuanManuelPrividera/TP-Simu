@@ -41,7 +41,9 @@ CostoConfiguracion = CTEConfiguracion + CostoManoObraConfiguracion
 CTEParado = sum(CTP_parado_por_min_etapa[e] × TiempoParadoEtapa[e] para e en 0..3)
 $Fijo = TFin × sum(CFM[e] × CM[e] para e en 0..3)
 $TM += $M[i_man]    # al terminar la lógica de un mantenimiento
-CostoTotal = (CMPxL × CTL) + CTEProd + CTEConfiguracion + CostoManoObraConfiguracion + CTEParado + $Fijo + $TM
+CostoBase = (CMPxL × CTL) + CTEProd + CTEConfiguracion + CostoManoObraConfiguracion + CTEParado + $Fijo + $TM
+CostoDefectosNoDetectados = 3 × CantLotesDefectuososNoDetectados × (CostoBase / CTLFin) si CTLFin > 0; en otro caso 0
+CostoTotal = CostoBase + CostoDefectosNoDetectados
 CostoPromLote = CostoTotal / CTLFin si CTLFin > 0; en otro caso 0
 CostoPromPedido = CostoTotal / CTPFin si CTPFin > 0; en otro caso 0
 ```

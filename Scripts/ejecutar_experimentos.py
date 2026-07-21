@@ -29,9 +29,14 @@ class Conjunto:
 
     archivo: Path
     descripcion: str
+    ejecutar_por_defecto: bool = True
 
 
 CONJUNTOS = {
+    "escenarios_representativos": Conjunto(
+        Path("config/casos/escenarios_representativos.json"),
+        "Cuatro escenarios representativos para la comparación final.",
+    ),
     "all_cm": Conjunto(Path("config/casos/all_cm.json"), "Máquinas en todas las etapas."),
     "impresion_cm": Conjunto(Path("config/casos/impresion_cm.json"), "Máquinas de impresión."),
     "encuadernacion_cm": Conjunto(Path("config/casos/encuadernacion_cm.json"), "Máquinas de encuadernación."),
@@ -39,7 +44,13 @@ CONJUNTOS = {
     "embalaje_cm": Conjunto(Path("config/casos/embalaje_cm.json"), "Máquinas de embalaje."),
     "configs": Conjunto(Path("config/casos/configs.json"), "Cantidad de configuraciones."),
     "pefc_all_cm": Conjunto(Path("config/casos/pefc_all_cm.json"), "Política energética."),
-    "im": Conjunto(Path("config/casos_im.json"), "Frecuencia de mantenimiento."),
+    "im": Conjunto(Path("config/casos/casos_im.json"), "Frecuencia de mantenimiento."),
+    "rechazos_qa": Conjunto(Path("config/casos/rechazos_qa.json"), "Probabilidad de detección de defectos en QA."),
+    "combinaciones_maquinas_algoritmos": Conjunto(
+        Path("config/casos/combinaciones_maquinas_algoritmos.json"),
+        "Producto cartesiano de 1 a 10 máquinas por etapa y los tres algoritmos (30.000 casos).",
+        ejecutar_por_defecto=False,
+    ),
 }
 
 
@@ -77,7 +88,10 @@ def main() -> None:
         listar_casos()
         return
 
-    nombres = args.casos or list(CONJUNTOS)
+    nombres = args.casos or [
+        nombre for nombre, conjunto in CONJUNTOS.items()
+        if conjunto.ejecutar_por_defecto
+    ]
     desconocidos = [nombre for nombre in nombres if nombre not in CONJUNTOS]
     if desconocidos:
         parser.error(

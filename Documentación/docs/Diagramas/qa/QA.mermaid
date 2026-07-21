@@ -4,8 +4,9 @@ flowchart TD
     a[T = TPQA] --> lote["lote = CxM[2][i_qa].lote"]
 
     subgraph Imprimir si salio mal el QA
-    lote --> bb{{AQA}}
-    bb --> bb1{"PQA < AQA"}
+    lote --> defecto{"lote.defectuoso"}
+    defecto --> |si| bb{{AQA}}
+    bb --> bb1{"AQA < PQA"}
     bb1 --> |si| lol["CantLotesReProcesados ++"] --> e1{{Encontrar mejor impresora}} --> f1{"i_imp != null"}
     f1 --> |si| aimp["CxM[0][i_imp].lote = lote; CxM[0][i_imp].config = lote.config"] --> g1{{DI}} --> ii1{"TPI[i_imp] == HV"} --> |si| ii2["FTO[0] += T; InicioOcio[0][i_imp] = HV"] --> ii9
     ii1 --> |no| ii9["TPI[i_imp] = T + DI + TConf"] --> z[" "]
@@ -13,7 +14,9 @@ flowchart TD
     end
 
     subgraph Generar embalaje
-    bb1 --> |no| g{{Encontrar mejor embaladora}} --> if2{"i_emb != null"}
+    defecto --> |no| g{{Encontrar mejor embaladora}}
+    bb1 --> |no| escape["CantLotesDefectuososNoDetectados ++"] --> g
+    g --> if2{"i_emb != null"}
     if2 --> |si| aemb["CxM[3][i_emb].lote = lote; CxM[3][i_emb].config = lote.config"] --> aaa{{DEm}} --> iaa1{"TPEm[i_emb] == HV"} --> |si| iaa2["FTO[3] += T; InicioOcio[3][i_emb] = HV"] --> hhh
     iaa1 --> |no| hhh["TPEm[i_emb] = T + DEm + TConf"] --> z
     if2 --> |no| z99["lote.ts = T"] --> aa["CLM[3].push(lote)"]  --> z

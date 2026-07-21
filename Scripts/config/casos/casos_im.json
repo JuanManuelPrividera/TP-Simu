@@ -49,6 +49,41 @@
       "case_id": "im_96h",
       "description": "Mantenimiento preventivo muy poco frecuente: cada 96 horas.",
       "IM": 5760
+    },
+    {
+      "case_id": "im_120h",
+      "description": "Mantenimiento preventivo excepcional: cada 120 horas.",
+      "IM": 7200
+    },
+    {
+      "case_id": "im_144h",
+      "description": "Mantenimiento preventivo de baja frecuencia: cada 144 horas.",
+      "IM": 8640
+    },
+    {
+      "case_id": "im_168h",
+      "description": "Mantenimiento preventivo semanal: cada 168 horas.",
+      "IM": 10080
+    },
+    {
+      "case_id": "im_240h",
+      "description": "Mantenimiento preventivo de baja frecuencia: cada 240 horas.",
+      "IM": 14400
+    },
+    {
+      "case_id": "im_336h",
+      "description": "Mantenimiento preventivo quincenal: cada 336 horas.",
+      "IM": 20160
+    },
+    {
+      "case_id": "im_504h",
+      "description": "Mantenimiento preventivo de muy baja frecuencia: cada 504 horas.",
+      "IM": 30240
+    },
+    {
+      "case_id": "im_720h",
+      "description": "Mantenimiento preventivo mensual aproximado: cada 720 horas.",
+      "IM": 43200
     }
   ]
 }

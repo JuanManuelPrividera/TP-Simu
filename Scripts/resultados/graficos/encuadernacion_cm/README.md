@@ -1,7 +1,7 @@
 # Gráficos generados
 
-Casos: `C:\Users\tomas\Desktop\Simu\TP-Simu\Scripts\config\casos\encuadernacion_cm.json`
-Resultados: `C:\Users\tomas\Desktop\Simu\TP-Simu\Scripts\resultados\encuadernacion_cm.json`
+Casos: `/home/juanma/Facultad/Simulacion/Scripts/config/casos/encuadernacion_cm.json`
+Resultados: `/home/juanma/Facultad/Simulacion/Scripts/resultados/encuadernacion_cm.json`
 Formato: `SVG`
 
 - `1.0_costo_maquinas.svg`

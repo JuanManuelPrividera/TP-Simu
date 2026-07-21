@@ -321,7 +321,7 @@
         "TFin": 1336533.9030486352,
         "TiempoParadoTotal": 17304239.366023898,
         "TiempoParadoEtapa": {
-          "impresion": 3089.6317046755926,
+          "impresion": 3089.631704675592,
           "encuadernacion": 6308990.797685236,
           "qa": 4512061.059222657,
           "embalaje": 6480097.877411331
@@ -1335,7 +1335,7 @@
         "TFin": 1343038.596243961,
         "TiempoParadoTotal": 17439789.721360467,
         "TiempoParadoEtapa": {
-          "impresion": 2418.8005027352833,
+          "impresion": 2418.800502735283,
           "encuadernacion": 6384863.8871086445,
           "qa": 4535488.204284754,
           "embalaje": 6517018.829464332
@@ -1827,7 +1827,7 @@
           "impresion": 6010439.816129399,
           "encuadernacion": 100983.95378611732,
           "qa": 678187.5752846154,
-          "embalaje": 29019.337997775474
+          "embalaje": 29019.33799777549
         },
         "CostoAhorradoPorTCaroTotal": 6818630.683197908,
         "DesperfectosEvitadosPorMantenimiento": 0.6267562614538791,
@@ -2208,7 +2208,7 @@
         "TPPL": 94342.80798926101,
         "TPPP": 101596.71441672753,
         "PermanenciaPromEtapa": {
-          "impresion": 91640.2157765101,
+          "impresion": 91640.21577651009,
           "encuadernacion": 18.69528920821957,
           "qa": 146.5501406788653,
           "embalaje": 23.17232658868728
@@ -2349,7 +2349,7 @@
         "TFin": 1210157.1904101032,
         "TiempoParadoTotal": 15669614.642741062,
         "TiempoParadoEtapa": {
-          "impresion": 3500.1674596817234,
+          "impresion": 3500.167459681723,
           "encuadernacion": 5807395.758754706,
           "qa": 3911989.360371362,
           "embalaje": 5946729.356155312

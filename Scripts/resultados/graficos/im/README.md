@@ -1,7 +1,7 @@
 # Gráficos generados
 
-Casos: `C:\Users\tomas\Desktop\Simu\TP-Simu\Scripts\config\casos_im.json`
-Resultados: `C:\Users\tomas\Desktop\Simu\TP-Simu\Scripts\resultados\im.json`
+Casos: `/home/juanma/Facultad/Simulacion/Scripts/config/casos/casos_im.json`
+Resultados: `/home/juanma/Facultad/Simulacion/Scripts/resultados/im.json`
 Formato: `SVG`
 
 - `5.0_costo_mantenimiento.svg`

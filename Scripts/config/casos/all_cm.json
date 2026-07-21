@@ -211,6 +211,55 @@
       ]
     },
     {
+      "case_id": "fifo_all_cm_7",
+      "description": "FIFO: todas las etapas con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "fifo_all_cm_8",
       "description": "FIFO: todas las etapas con 8 maquinas.",
       "ALG": "FIFO",
@@ -960,6 +1009,55 @@
       ]
     },
     {
+      "case_id": "prioridades_all_cm_7",
+      "description": "PRIORIDADES: todas las etapas con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "prioridades_all_cm_8",
       "description": "PRIORIDADES: todas las etapas con 8 maquinas.",
       "ALG": "PRIORIDADES",
@@ -1699,6 +1797,55 @@
           null
         ],
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_all_cm_7",
+      "description": "POR_CONFIGURACION: todas las etapas con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        7,
+        7,
+        7,
+        7
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
           null,
           null,
           null,

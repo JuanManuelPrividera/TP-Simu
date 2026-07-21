@@ -1,7 +1,7 @@
 # Gráficos generados
 
-Casos: `C:\Users\tomas\Desktop\Simu\TP-Simu\Scripts\config\casos\qa_cm.json`
-Resultados: `C:\Users\tomas\Desktop\Simu\TP-Simu\Scripts\resultados\qa_cm.json`
+Casos: `/home/juanma/Facultad/Simulacion/Scripts/config/casos/qa_cm.json`
+Resultados: `/home/juanma/Facultad/Simulacion/Scripts/resultados/qa_cm.json`
 Formato: `SVG`
 
 - `1.0_costo_maquinas.svg`

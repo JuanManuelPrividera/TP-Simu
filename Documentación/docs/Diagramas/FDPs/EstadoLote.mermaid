@@ -1,0 +1,4 @@
+flowchart TD
+    inicio{{EstadoLote}} --> r{{R ~ U(0,1)}} --> condicion{"R < PD"}
+    condicion --> |si| defecto["defectuoso = true"] --> fin((Fin))
+    condicion --> |no| correcto["defectuoso = false"] --> fin

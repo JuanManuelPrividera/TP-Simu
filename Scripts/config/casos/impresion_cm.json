@@ -238,6 +238,49 @@
       ]
     },
     {
+      "case_id": "fifo_impresion_cm_7",
+      "description": "FIFO: impresion con 7 maquinas.",
+      "ALG": "FIFO",
+      "CM": [
+        7,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "fifo_impresion_cm_8",
       "description": "FIFO: impresion con 8 maquinas.",
       "ALG": "FIFO",
@@ -825,6 +868,49 @@
       ]
     },
     {
+      "case_id": "prioridades_impresion_cm_7",
+      "description": "PRIORIDADES: impresion con 7 maquinas.",
+      "ALG": "PRIORIDADES",
+      "CM": [
+        7,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "case_id": "prioridades_impresion_cm_8",
       "description": "PRIORIDADES: impresion con 8 maquinas.",
       "ALG": "PRIORIDADES",
@@ -1381,6 +1467,49 @@
       ],
       "configuraciones_iniciales": [
         [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "case_id": "por_configuracion_impresion_cm_7",
+      "description": "POR_CONFIGURACION: impresion con 7 maquinas.",
+      "ALG": "POR_CONFIGURACION",
+      "CM": [
+        7,
+        5,
+        5,
+        5
+      ],
+      "configuraciones_iniciales": [
+        [
+          null,
           null,
           null,
           null,
